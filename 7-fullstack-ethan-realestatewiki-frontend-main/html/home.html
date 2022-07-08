@@ -1,185 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>부동산WIKI-HOME</title>
-    <link
-      rel="stylesheet"
-      href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/3299dead40.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <div id="wrapper">
-      <!-- header -->
-      <header>
-        <div class="header">
-          <!-- 1번째 헤더 -->
-          <div class="first-header">
-            <div class="item item-logo">
-              <img
-                class="logo"
-                src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-                alt="logo"
-              />
-            </div>
-            <div class="item"><a href="">부동산뉴스</a></div>
-            <div class="item"><a href="">자유게시판</a></div>
-            <div class="item"><a href="">로그인</a></div>
-            <div class="item"><a href="">회원가입</a></div>
-            <div class="item"><a href="">마이페이지</a></div>
-          </div>
-          <!-- 2번째 헤더 -->
-          <div class="second-header">
-            <div>
-              <a href=""
-                ><img
-                  src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_korean.png"
-                  alt="korean logo"
-              /></a>
-            </div>
-            <div>
-              <a href=""><i class="fa-solid fa-bars"></i></a>
-            </div>
-          </div>
-        </div>
-      </header>
-      <!-- 검색어 입력창 -->
-      <nav>
-        <div class="logo">
-          <img
-            src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/paint_information.png"
-            alt="아파트 정보 / 실거래가 정보"
-          />
-        </div>
-        <div class="search-box-wrapper">
-          <div class="search-box">
-            <input
-              type="text"
-              class="search-txt"
-              name=""
-              placeholder="  검색어를 입력해주세요."
-            />
-            <a href="#" class="search-btn">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
-          </div>
-        </div>
-      </nav>
 
-      <!-- 메인 페이지 (인기 부동산)-->
-      <section>
-        <div class="board">
-          <div class="board__nav">
-            <a href=""><div class="board__title">인기 부동산 TOP 10</div></a>
-            <a href=""
-              ><div><i class="fa-solid fa-angle-right"></i></div
-            ></a>
-          </div>
-          <ul class="board__items">
-            <li class="first">
-              <a href="">롯데캐슬골드 10차 아파트, 한빛프라...</a>
-              <div>
-                <span>서울시 송파구 송파동</span>
-                <span>/ 최근 실거래가 : <b>10억</b></span>
-              </div>
-            </li>
-            <li class="second">
-              <a href="">시그마타워아파트</a>
-              <div>
-                <span>서울시 강남구 강남동</span>
-                <span>/ 최근 실거래가 : <b>15억</b></span>
-              </div>
-            </li>
-            <li class="third">
-              <a href="">삼성웰리스아파트, 한빛프라자</a>
-              <div>
-                <span>서울시 강서구 강서동</span>
-                <span>/ 최근 실거래가 : <b>12억</b></span>
-              </div>
-            </li>
-            <li><a href="">잠실 장비1차아파트</a></li>
-            <li><a href="">롯데캐슬골드2단지</a></li>
-            <li><a href="">구서롯데캐슬골드1단지</a></li>
-            <li><a href="">울산롯데캐슬골드</a></li>
-            <li><a href="">롯데캐슬골드2단지</a></li>
-            <li><a href="">구서롯데캐슬골드1단지</a></li>
-            <li><a href="">울산롯데캐슬골드</a></li>
-          </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>부동산WIKI-홈</title>
+  <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+    rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <header>
+      <nav>
+        <img class="logo" src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
+          alt="logo" />
+        <a href="">부동산뉴스</a>
+        <a href="">자유게시판</a>
+        <a href="">로그인</a>
+        <a href="">회원가입</a>
+        <a href="">마이페이지</a>
+      </nav>
+      <nav>
+        <a href=""><img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_korean.png"
+            alt="korean logo" /></a>
+        <a href=""><i class="fa-solid fa-bars"></i></a>
+      </nav>
+    </header>
+
+    <!-- 검색어 입력창 -->
+    <section class="search-bar">
+      <img class="search-bar__banner"
+        src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/paint_information.png"
+        alt="아파트 정보 / 실거래가 정보" />
+      <form class="search-bar__container" action="">
+        <div class="search-bar__selector-wrapper">
+          <!-- <label for="si">시</label> -->
+          <select id="si" class="search-bar__selector-option">
+            <option value="all">시 : 전체검색</option>
+            <option value="seoul">서울시</option>
+            <option value="busan">부산시</option>
+          </select>
+          <!-- <label for="gu">구</label> -->
+          <select id="gu" class="search-bar__selector-option">
+            <option value="all">구 : 전체검색</option>
+            <option value="gangnam">강남구</option>
+            <option value="songpa">송파구</option>
+          </select>
+          <!-- <label for="dong">동</label> -->
+          <select id="dong" class="search-bar__selector-option">
+            <option value="all">동 : 전체검색</option>
+            <option value="suseo">수서동</option>
+            <option value="ilwon">일원동</option>
+          </select>
         </div>
-      </section>
-      <!-- 메인 페이지 (인기 게시글)-->
-      <section>
-        <div class="board">
-          <div class="board__nav">
-            <a href=""><div class="board__title">인기 게시글 TOP 10</div></a>
-            <a href=""
-              ><div><i class="fa-solid fa-angle-right"></i></div
-            ></a>
-          </div>
-          <ul class="board__items">
-            <li class="first">
-              <a href="">서울 제외, 최고의 아파트</a>
-              <div>
-                <span>mammoth</span>
-                <span>/ 조회수 : 1000</span>
-                <span>/ 좋아요수 : 500</span>
-              </div>
-            </li>
-            <li class="second">
-              <a href="">힐스테이트 광교 호수뷰</a>
-              <div>
-                <span>tiger</span>
-                <span>/ 조회수 : 1000</span>
-                <span>/ 좋아요수 : 500</span>
-              </div>
-            </li>
-            <li class="third">
-              <a href="">오늘이 제일 싼 아파트</a>
-              <div>
-                <span>cat</span>
-                <span>/ 조회수 : 1000</span>
-                <span>/ 좋아요수 : 500</span>
-              </div>
-            </li>
-            <li><a href="">2022년 부동산 현 상황</a></li>
-            <li><a href="">앞으로 10년 부동산 미래</a></li>
-            <li><a href="">롯데캐슬골드 심층 분석</a></li>
-            <li><a href="">재건축 정책 정리</a></li>
-            <li><a href="">앞으로 10년 부동산 미래</a></li>
-            <li><a href="">롯데캐슬골드 심층 분석</a></li>
-            <li><a href="">재건축 정책 정리</a></li>
-          </ul>
+        <div class="search-bar__input-wrapper">
+          <input type="text" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
+          <button href="#" class="search-bar__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
-      </section>
-    </div>
-    <!-- footer-->
-    <footer>
-      <div class="footer-info">
-        <a href=""><span>홈 |</span></a>
-        <a href=""><span>로그인 |</span></a>
-        <a href=""><span>회원가입 |</span></a>
-        <a href=""><span>pc버전 |</span></a>
+      </form>
+    </section>
+
+    <!-- 메인 페이지 (인기 부동산)-->
+    <section>
+      <div class="board">
+        <div class="board__nav">
+          <a href="">
+            <div class="board__title">인기 부동산 TOP 10</div>
+          </a>
+          <a href="">
+            <div><i class="fa-solid fa-angle-right"></i></div>
+          </a>
+        </div>
+        <ul class="board__items">
+          <li class="first">
+            <a href="">롯데캐슬골드 10차 아파트, 한빛프라...</a>
+            <div>
+              <span>서울시 송파구 송파동</span>
+              <span>/ 최근 실거래가 : <b>10억</b></span>
+            </div>
+          </li>
+          <li class="second">
+            <a href="">시그마타워아파트</a>
+            <div>
+              <span>서울시 강남구 강남동</span>
+              <span>/ 최근 실거래가 : <b>15억</b></span>
+            </div>
+          </li>
+          <li class="third">
+            <a href="">삼성웰리스아파트, 한빛프라자</a>
+            <div>
+              <span>서울시 강서구 강서동</span>
+              <span>/ 최근 실거래가 : <b>12억</b></span>
+            </div>
+          </li>
+          <li><a href="">잠실 장비1차아파트</a></li>
+          <li><a href="">롯데캐슬골드2단지</a></li>
+          <li><a href="">구서롯데캐슬골드1단지</a></li>
+          <li><a href="">울산롯데캐슬골드</a></li>
+          <li><a href="">롯데캐슬골드2단지</a></li>
+          <li><a href="">구서롯데캐슬골드1단지</a></li>
+          <li><a href="">울산롯데캐슬골드</a></li>
+        </ul>
       </div>
-      <div class="footer-info">
-        <a href=""><span>이용약관 |</span></a>
-        <a href=""><span>개인정보처리방침 |</span></a>
-        <a href=""><span>고객센터</span></a>
+    </section>
+    <!-- 메인 페이지 (인기 게시글)-->
+    <section>
+      <div class="board">
+        <div class="board__nav">
+          <a href="">
+            <div class="board__title">인기 게시글 TOP 10</div>
+          </a>
+          <a href="">
+            <div><i class="fa-solid fa-angle-right"></i></div>
+          </a>
+        </div>
+        <ul class="board__items">
+          <li class="first">
+            <a href="">서울 제외, 최고의 아파트</a>
+            <div>
+              <span>mammoth</span>
+              <span>/ 조회수 : 1000</span>
+              <span>/ 좋아요수 : 500</span>
+            </div>
+          </li>
+          <li class="second">
+            <a href="">힐스테이트 광교 호수뷰</a>
+            <div>
+              <span>tiger</span>
+              <span>/ 조회수 : 1000</span>
+              <span>/ 좋아요수 : 500</span>
+            </div>
+          </li>
+          <li class="third">
+            <a href="">오늘이 제일 싼 아파트</a>
+            <div>
+              <span>cat</span>
+              <span>/ 조회수 : 1000</span>
+              <span>/ 좋아요수 : 500</span>
+            </div>
+          </li>
+          <li><a href="">2022년 부동산 현 상황</a></li>
+          <li><a href="">앞으로 10년 부동산 미래</a></li>
+          <li><a href="">롯데캐슬골드 심층 분석</a></li>
+          <li><a href="">재건축 정책 정리</a></li>
+          <li><a href="">앞으로 10년 부동산 미래</a></li>
+          <li><a href="">롯데캐슬골드 심층 분석</a></li>
+          <li><a href="">재건축 정책 정리</a></li>
+        </ul>
       </div>
-      <div class="footer-info">
-        <a href=""><span>ethandeveloper2@gmail.com</span></a>
-      </div>
-    </footer>
-  </body>
+    </section>
+  </div>
+  <!-- footer-->
+  <footer>
+    <nav class="footer-info">
+      <a href=""><span>홈 |</span></a>
+      <a href=""><span>로그인 |</span></a>
+      <a href=""><span>회원가입 |</span></a>
+      <a href=""><span>pc버전 |</span></a>
+    </nav>
+    <nav class="footer-info">
+      <a href=""><span>이용약관 |</span></a>
+      <a href=""><span>개인정보처리방침 |</span></a>
+      <a href=""><span>고객센터</span></a>
+    </nav>
+    <address class="footer-info">
+      <a href=""><span>ethandeveloper2@gmail.com</span></a>
+    </address>
+  </footer>
+</body>
+
 </html>

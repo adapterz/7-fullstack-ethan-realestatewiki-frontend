@@ -41,99 +41,11 @@ a {
   color: black;
 }
 
-header {
-  width: 100%;
-}
-
-.first-header {
-  /* margin: 0 calc(var(--margin)); */
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 15px;
-  font-size: var(--font-micro);
-}
-
-.first-header .item {
-  display: inline-block;
-  padding: calc(var(--padding) / 0.9);
-  background-color: var(--grey-light-color);
-  flex-grow: 1;
-  text-align: center;
-  border-right: var(--white-color) solid 1px;
-}
-
-.first-header .item a {
-  color: var(--dark-grey-color) !important;
-}
-
-.first-header .item-logo {
-  background-color: var(--white-color);
-}
-.first-header .item .logo {
-  width: 25px;
-  vertical-align: middle;
-}
-
-.second-header {
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-}
-
-.second-header img {
-  height: 40px;
-  padding: var(--padding) 0 0 0;
-  margin: 0 var(--margin);
-  display: flex;
-  vertical-align: middle;
-}
-
-.second-header i {
-  font-size: calc(var(--font-large) * 1.4);
-  color: var(--grey-dark-color);
-  margin: 0 var(--margin);
-  vertical-align: middle;
-  line-height: 50px;
-}
-
-nav {
-  width: 100%;
-  /* height:%; */
-  height: 300px;
-  background-image: url("/7-fullstack-ethan-realestatewiki-frontend-main/images/background-search.png");
-  background-position: 50% 50%;
-  text-align: left;
-}
-
-nav ::before {
-  opacity: 0.5;
-  /* background-color: #000; */
-}
-
-nav .logo img {
-  padding: calc(var(--padding) * 8) calc(var(--padding) * 3)
-    calc(var(--padding)) calc(var(--padding) * 3);
-  /* width: 60%; */
-  height: 200px;
-  z-index: 1;
-}
-
 .searchbar {
   margin: auto;
   padding: calc(var(--margin)) calc(var(--margin) * 2);
   width: 100%;
   /* border: 1px solid #bbb; */
-}
-
-input {
-  width: 90%;
-  border-radius: 8px;
-  padding: calc(var(--padding) / 2) calc(var(--padding));
-  font-size: var(--font-medium);
 }
 
 .searchbar button {
@@ -314,11 +226,22 @@ footer {
   text-align: center;
   color: var(--red-color);
   background-color: var(--grey-light-color);
+  display: table;
 }
 
 .search-result__content li .apt_info-likes span {
+  font-size: var(--font-small);
+  display: table-cell;
   vertical-align: middle;
-  line-height: 45.6px;
+}
+
+.apt_info-title {
+  /* height: 54px; */
+}
+
+.apt_info-title,
+.apt_info-detail {
+  width: 350px;
 }
 
 .search-result__content li .apt_info-title {
@@ -348,7 +271,8 @@ footer {
 /* 페이지네이션 */
 .pagenation {
   text-align: center;
-  margin: calc(var(--margin)) 0;
+  margin: calc(var(--margin) * 2) 0;
+  vertical-align: middle;
 }
 
 .pagenation a {
@@ -361,6 +285,12 @@ footer {
   background-color: var(--white-color);
   font-size: var(--font-large);
   color: var(--grey-dark-color);
+  vertical-align: middle;
+}
+
+.pagenation a i {
+  vertical-align: middle;
+  line-height: 35px;
 }
 
 .pagenation a.active {
@@ -374,6 +304,7 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   border-bottom: var(--grey-dark-color) solid 1px;
+  padding-bottom: calc(var(--margin) / 2);
   margin-bottom: calc(var(--margin) / 5);
 }
 
@@ -405,7 +336,7 @@ footer {
 }
 
 .search-result_subtitle div {
-  padding-bottom: calc(var(--padding) / 3);
+  padding-bottom: calc(var(--padding) / 2);
 }
 
 .search-result_image {
@@ -414,11 +345,12 @@ footer {
 }
 
 .search-result_price {
-  margin-bottom: var(--margin);
+  margin-bottom: calc(var(--margin) * 2);
 }
 
 .search-result_price h4 {
   vertical-align: middle;
+  padding-bottom: calc(var(--margin) / 2);
   border-bottom: var(--grey-dark-color) solid 1px;
 }
 
@@ -433,6 +365,10 @@ footer {
   font-size: var(--font-medium);
   font-weight: var(--weight-normal);
   text-align: right;
+}
+
+.search-result_posts {
+  margin-bottom: calc(var(--margin) * 2);
 }
 
 .search-result_comments .content,
@@ -451,30 +387,533 @@ footer {
   margin: calc(var(--margin) / 5) 0;
 }
 
-.comment .title {
-  font-size: var(--font-large);
-  padding-bottom: var(--padding);
+.comment-maker__title {
+  margin-bottom: var(--margin);
 }
 
-.comment .input {
+.comment-maker__title span {
+  color: var(--blue-color);
+}
+
+.comment-maker__input {
+  text-align: center;
+  border: 1px solid var(--grey-dark-color);
+}
+
+.comment-maker__input {
+  margin-top: calc(var(--margin));
+}
+
+.comment-maker__input textarea {
+  width: 100%;
+  padding: 15px 15px;
+  font-size: var(--font-medium);
+  border: none;
+}
+
+.comment-maker__input div {
+  border-top: 1px solid var(--grey-dark-color);
+  height: 35px;
+}
+
+.comment-maker__input button {
+  text-align: center;
+  width: 15%;
+  height: 100%;
+  background: #3396ff;
+  color: var(--white-color);
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  cursor: pointer;
+  font-size: var(--font-large);
+  float: right;
+}
+.apt-comment {
+  margin-bottom: calc(var(--margin) * 2);
+}
+
+.apt-comment h4 span {
+  color: blue;
+}
+
+.apt-comment h4 {
+  border-bottom: 1px solid var(--grey-dark-color);
+  margin-bottom: calc(var(--margin) / 2);
+  padding-bottom: calc(var(--margin) / 2);
+}
+
+.apt-comment ul li {
+  display: flex;
+  margin-bottom: var(--margin);
+  display: table;
+}
+
+.apt-comment ul li .apt-comment__img {
+  line-height: 100%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.apt-comment ul li .apt-comment__img img {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 10px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.apt-comment__writer {
+  font-size: var(--font-small);
+}
+
+.apt-comment__content {
+  font-size: var(--font-medium);
+}
+
+.section--signup {
+  padding: 0;
+}
+
+/* 회원가입 */
+
+.signup__header {
+  text-align: center;
+  padding: var(--padding) 0;
+  color: var(--white-color);
+  background-color: #23b3c6;
+}
+
+.signup__content {
+  margin: var(--margin);
+}
+
+.signup__content h3 {
+  padding: var(--margin) 0;
+  margin-bottom: var(--margin);
+  border-bottom: 2px solid var(--dark-green);
+}
+
+.signup__content h3 img {
+  width: 30px;
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.signup__content h3 span {
+  color: orangered;
+}
+
+.signup__element {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: var(--grey-light-color) 1px solid;
+}
+
+.signup__element label {
+  width: 30%;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 59px;
+}
+
+.signup__element label span {
+  color: var(--red-color);
+}
+
+.signup__element div {
+  margin-right: 20px;
+  width: 60%;
+  border: 1px solid var(--grey-dark-color);
+  margin: var(--margin) auto;
+  padding: var(--padding);
+}
+
+.signup__element div input {
+  border: none;
+  width: 100%;
+}
+
+.signup__button {
   text-align: center;
 }
 
-.comment .input input {
-  width: 88%;
-  /* height: 100px; */
-  border-radius: 8px;
-  font-size: var(--font-medium);
+.signup__button button {
+  font-size: var(--font-large);
+  display: inline-block;
+  height: 50px;
+  width: 130px;
+  margin: calc(var(--margin)) calc(var(--margin) / 2);
+  border: none;
 }
 
-.comment .input button {
-  width: 10%;
-  background: var(--dark-green);
+.signup__button--confirm {
+  background-color: #0a2e4f;
   color: var(--white-color);
-  border: 1px solid var(--dark-green);
+}
+
+.signup__button--cancel {
+  background-color: var(--dark-green);
+  color: var(--white-color);
+}
+
+/* 이용약관 동의 */
+
+.signup__element--terms {
+  border-bottom: solid 1px var(--grey-light-color);
+  padding: var(--padding);
+}
+
+.signup__element--terms label span {
+  color: var(--red-color);
+}
+
+.signup__element--terms div {
+  width: 100%;
+  height: 40px;
+  text-align: center;
+
+  font-size: var(--font-large);
+  margin-top: var(--margin);
+  border: 1px solid var(--grey-dark-color);
+}
+
+.signup__element--terms div button {
+  background: inherit;
+  border: none;
   box-shadow: none;
-  border-radius: 8px;
+  border-radius: 0;
+  padding: 0;
   overflow: visible;
   cursor: pointer;
+  width: 100%;
+  vertical-align: middle;
+  height: 33px;
+}
+
+/* 로그인 페이지 */
+.section-login {
+  padding: calc(var(--padding) * 3);
+  height: 100%;
+  background-color: #daf0f1;
+}
+
+.section-login__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.section-login__wrapper article {
+  padding: calc(var(--padding) * 2);
+  position: absolute;
+  border-radius: 10px;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-login__wrapper article img {
+  width: 15%;
+}
+
+.section-login__wrapper article h1 {
+  font-size: 30px;
+  color: #0a2e4f;
+  margin-top: var(--margin);
+  margin-bottom: var(--margin);
+}
+.section-login__wrapper article form {
+  text-align: center;
+  margin-top: var(--margin);
+}
+
+.section-login__wrapper article form > input {
+  border: none;
+  border-bottom: 1px solid var(--dark-grey-color);
+  margin-top: var(--margin);
+  padding-left: calc(var(--padding) * 2);
+  padding-bottom: calc(var(--padding) * 2);
+  width: 80%;
+  font-size: var(--font-large);
+}
+
+.section-login__button {
+  display: block;
+  margin: calc(var(--margin) * 2) auto;
+  font-size: var(--font-super-large);
+  font-weight: var(--weight-bold);
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 8px;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 80%;
+  height: 20%;
+  background-color: #0a2e4f;
+  color: white;
+}
+
+.section-login__checkbox-wrapper {
+  margin-top: calc(var(--margin) * 2);
+  padding-left: calc(var(--padding) * 6);
+  text-align: left;
+}
+
+.section-login__checkbox {
+  padding: var(--padding);
+}
+
+/* 헤더 */
+header nav:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  background-color: var(--white-color);
+}
+
+header nav:nth-child(1) img {
+  width: 40px;
+  height: 40px;
+  padding: 3px;
+}
+
+header nav:nth-child(1) a {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: var(--font-small);
+  color: #7e81a6;
+  background-color: var(--grey-light-color);
+  border-right: var(--white-color) 1px solid;
+}
+
+header nav:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding);
+}
+
+header nav:nth-child(2) a img {
+  width: 60%;
+}
+
+header nav:nth-child(2) a i {
+  font-size: calc(var(--font-large) * 1.5);
+}
+
+/* 검색바 */
+.search-bar {
+  background-image: url(/7-fullstack-ethan-realestatewiki-frontend-main/images/main/background-search.png);
+  background-size: cover;
+  height: 175px;
+}
+
+.search-bar__banner {
+  padding: calc(var(--padding) / 3);
+  width: 50%;
+}
+
+.search-bar__input-wrapper {
+  border: 1px solid var(--grey-dark-color);
+  border-radius: 30px;
+  height: 30px;
+  margin-top: calc(var(--margin) / 2);
+}
+
+.search-bar__txt {
+  width: 90%;
+  border: none;
+  background-color: inherit;
+  padding-left: var(--padding);
+}
+
+.search-bar__button {
+  width: 5%;
   font-size: var(--font-medium);
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+
+/* 게시글 조회 */
+.section-post {
+  padding: var(--padding) 0;
+}
+
+.section-post__header {
+  text-align: center;
+  padding: var(--padding) 0;
+  color: var(--white-color);
+  background-color: #23b3c6;
+}
+
+.section-post__content {
+  padding: calc(var(--padding) * 2);
+}
+
+.section-post__content p {
+  margin: calc(var(--padding) * 2) 0 calc(var(--padding) * 8) 0;
+}
+
+.section-post__content h2 {
+  color: #0a2e4f;
+}
+
+.section-post__imoticon {
+  margin: var(--margin) 0;
+  padding-bottom: calc(var(--margin));
+  border-bottom: 1px solid var(--grey-light-color);
+  display: flex;
+  justify-content: left;
+}
+
+.section-post__imoticon div {
+  margin-right: var(--padding);
+}
+
+.section-post__imoticon span {
+  /* padding: 0 calc(var(--padding) / 2); */
+  color: #7e81a6;
+  /* font-size: var(--font-small); */
+}
+
+.section-post__imoticon span i {
+  padding: 0 calc(var(--padding) / 2);
+}
+.section-post__profile-picture {
+  width: 15%;
+}
+.section-post__profile-picture img {
+  width: 50px;
+  height: 50px;
+  border-radius: 70px;
+}
+
+.apt-comment h4 {
+  font-weight: var(--font-medium);
+  border-bottom: 1px solid var(--grey-light-color);
+}
+
+/* 자유게시글 - 작성 */
+.section-make-post {
+  padding: var(--padding) 0;
+}
+
+.section-make-post header {
+  text-align: center;
+  padding: var(--padding) 0;
+  color: var(--white-color);
+  background-color: #23b3c6;
+}
+
+.section-make-post section form {
+  text-align: center;
+}
+
+.section-make-post__title {
+  font-size: var(--font-medium);
+  border-bottom: solid 1px var(--grey-light-color);
+  margin-bottom: var(--margin);
+  padding: var(--padding) 0;
+}
+
+.section-make-post__title label {
+  margin: var(--margin);
+}
+
+.section-make-post__title input {
+  padding: calc(var(--padding));
+  border: solid 1px var(--grey-light-color);
+  width: 70%;
+}
+
+.section-make-post__content textarea {
+  width: 95%;
+  border: solid 1px var(--grey-dark-color);
+  padding: calc(var(--padding) * 2);
+  margin-bottom: var(--margin);
+  min-height: 350px;
+}
+
+/* mypage */
+.mypage {
+  padding: 0;
+  margin: 0;
+}
+
+.mypage header {
+  text-align: center;
+  background-color: #23b3c6;
+  color: white;
+  height: 4%;
+}
+
+.mypage__mypost {
+  padding: var(--padding);
+}
+
+.mypage__mypost h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.mypage__mypost h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.mypage__posts-info {
+  margin: var(--margin) 0;
+  padding: var(--margin) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.mypage__mypost span {
+  font-size: var(--font-small);
+  margin-right: var(--margin);
+}
+
+.mypage__mypost button {
+  font-size: var(--font-small);
+  border: none;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.mypost__item li {
+  margin-bottom: var(--margin);
+  padding-bottom: calc(var(--margin) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+}
+
+.mypost__sub-detail {
+  font-size: var(--font-small);
+  color: #999999;
 }
