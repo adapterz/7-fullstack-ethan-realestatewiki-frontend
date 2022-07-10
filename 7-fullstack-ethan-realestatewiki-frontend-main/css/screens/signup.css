@@ -1,0 +1,121 @@
+@import "../root.css";
+@import "../components/header.css";
+@import "../components/searchbar.css";
+@import "../components/footer.css";
+
+/* 회원가입 */
+
+.signup__header {
+  text-align: center;
+  padding: var(--padding) 0;
+  color: var(--white-color);
+  background-color: #23b3c6;
+}
+
+.signup__content {
+  margin: var(--margin);
+}
+
+.signup__content h3 {
+  padding: var(--margin) 0;
+  margin-bottom: var(--margin);
+  border-bottom: 2px solid var(--dark-green);
+}
+
+.signup__content h3 img {
+  width: 30px;
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.signup__content h3 span {
+  color: orangered;
+}
+
+.signup__element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--grey-light-color) 1px solid;
+}
+
+.signup__element label {
+  width: 35%;
+  text-align: center;
+  vertical-align: middle;
+  /* line-height: 70px; */
+}
+
+.signup__element label span {
+  color: var(--red-color);
+}
+
+.signup__element div {
+  /* margin-right: 20px; */
+  width: 60%;
+  border: 1px solid var(--grey-dark-color);
+  margin: calc(var(--margin) / 1.5) auto;
+  padding: var(--padding);
+}
+
+.signup__element div input {
+  border: none;
+  width: 100%;
+}
+
+.signup__button {
+  text-align: center;
+}
+
+.signup__button button {
+  font-size: var(--font-large);
+  display: inline-block;
+  height: 50px;
+  width: 130px;
+  margin: calc(var(--margin)) calc(var(--margin) / 2);
+  border: none;
+}
+
+.signup__button--confirm {
+  background-color: #0a2e4f;
+  color: var(--white-color);
+}
+
+.signup__button--cancel {
+  background-color: var(--dark-green);
+  color: var(--white-color);
+}
+
+/* 이용약관 동의 */
+
+.signup__element--terms {
+  border-bottom: solid 1px var(--grey-light-color);
+  padding: var(--padding);
+}
+
+.signup__element--terms label span {
+  color: var(--red-color);
+}
+
+.signup__element--terms div {
+  width: 100%;
+  height: 40px;
+  text-align: center;
+
+  font-size: var(--font-large);
+  margin-top: var(--margin);
+  border: 1px solid var(--grey-dark-color);
+}
+
+.signup__element--terms div button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 100%;
+  vertical-align: middle;
+  height: 33px;
+}

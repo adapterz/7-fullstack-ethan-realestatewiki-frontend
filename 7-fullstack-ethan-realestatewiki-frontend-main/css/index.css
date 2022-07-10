@@ -45,7 +45,6 @@ a {
   margin: auto;
   padding: calc(var(--margin)) calc(var(--margin) * 2);
   width: 100%;
-  /* border: 1px solid #bbb; */
 }
 
 .searchbar button {
@@ -69,7 +68,6 @@ a {
   width: 80%;
   margin: var(--margin) auto;
   padding: var(--padding);
-  /* position: absolute; */
   height: 40px;
   border-radius: 30px;
   border: 1px solid var(--black-color);
@@ -87,7 +85,6 @@ a {
 }
 
 .search-btn {
-  /* text-decoration: none; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,9 +97,6 @@ a {
 section {
   padding: calc(var(--margin) / 2) calc(var(--margin)) 0 calc(var(--margin));
 }
-/* .search-section {
-  padding: calc(var(--margin) / 2) calc(var(--margin)) 0 calc(var(--margin));
-} */
 
 #search-section {
   padding-right: 0;
@@ -212,13 +206,10 @@ footer {
 .search-result__content li {
   list-style: none;
   border-bottom: solid var(--grey-light-color) 1px;
-  /* margin-bottom: calc(var(--margin) / 2); */
-  /* padding-top: calc(var(--padding)/2); */
   margin-bottom: 0;
   display: flex;
   justify-content: space-between;
   vertical-align: middle;
-  /* height: 50px; */
 }
 
 .search-result__content li .apt_info-likes {
@@ -254,19 +245,6 @@ footer {
   color: #999999;
   padding-bottom: calc(var(--padding) / 2);
 }
-
-/* .board__items__item {
-  border-bottom: var(--grey-dark-color) solid 1px;
-  margin-bottom: calc(var(--margin) / 3);
-}
-.board__items__item li {
-  border: none;
-  margin-bottom: 0;
-}
-
-.board__items__item div span {
-  font-size: var(--font-small);
-} */
 
 /* 페이지네이션 */
 .pagenation {
@@ -307,10 +285,6 @@ footer {
   padding-bottom: calc(var(--margin) / 2);
   margin-bottom: calc(var(--margin) / 5);
 }
-
-/* .search-result-item {
-  margin: calc(var(--margin) / 2) 0;
-} */
 
 .search-result_title {
   margin: calc(var(--margin) / 2) 0 calc(var(--margin) / 4) 0;

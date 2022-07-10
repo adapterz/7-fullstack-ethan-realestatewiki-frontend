@@ -1,0 +1,45 @@
+@import "../root.css";
+
+/* 헤더 */
+header nav:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  background-color: var(--white-color);
+}
+
+header nav:nth-child(1) img {
+  width: 40px;
+  height: 40px;
+  padding: 3px;
+}
+
+header nav:nth-child(1) a {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: var(--font-small);
+  color: #7e81a6;
+  background-color: var(--grey-light-color);
+  border-right: var(--white-color) 1px solid;
+}
+
+header nav:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding);
+}
+
+header nav:nth-child(2) a img {
+  width: 60%;
+}
+
+header nav:nth-child(2) a i {
+  font-size: calc(var(--font-large) * 1.5);
+}

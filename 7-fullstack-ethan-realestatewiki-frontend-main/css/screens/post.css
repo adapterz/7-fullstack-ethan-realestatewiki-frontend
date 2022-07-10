@@ -1,0 +1,71 @@
+@import "../root.css";
+@import "../components/header.css";
+@import "../components/searchbar.css";
+@import "../components/footer.css";
+@import "../components/pagenation.css";
+@import "../components/comment.css";
+
+/* 게시글 조회 */
+.section-post {
+  padding: var(--padding) 0;
+}
+
+.section-post__header {
+  text-align: center;
+  padding: var(--padding) 0;
+  color: var(--white-color);
+  background-color: #23b3c6;
+}
+
+.section-post__content {
+  padding: calc(var(--padding) * 1);
+}
+
+.section-post__content p {
+  margin: calc(var(--padding) * 2) 0 calc(var(--padding) * 8) 0;
+}
+
+.section-post__content h2 {
+  color: #0a2e4f;
+}
+
+.section-post__imoticon {
+  margin: var(--margin) 0;
+  padding-bottom: calc(var(--padding) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+  display: flex;
+  justify-content: left;
+}
+
+.section-post__imoticon div {
+  margin-right: var(--padding);
+}
+
+.section-post__imoticon span {
+  /* padding: 0 calc(var(--padding) / 2); */
+  color: #7e81a6;
+  font-size: var(--font-small);
+}
+
+.section-post__imoticon > div:nth-child(2) {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.section-post__imoticon span i {
+  padding: 0 calc(var(--padding) / 4);
+}
+.section-post__profile-picture {
+  width: 13%;
+}
+.section-post__profile-picture img {
+  width: 100%;
+  height: 100%;
+  border-radius: 70px;
+}
+
+.apt-comment h4 {
+  font-weight: var(--font-medium);
+  border-bottom: 1px solid var(--grey-light-color);
+}

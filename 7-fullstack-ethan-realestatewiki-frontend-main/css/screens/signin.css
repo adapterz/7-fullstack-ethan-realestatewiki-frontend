@@ -1,0 +1,80 @@
+@import "../root.css";
+
+/* 로그인 페이지 */
+.section-login {
+  padding: calc(var(--padding) * 1.5);
+  height: 100%;
+  background-color: #daf0f1;
+}
+
+.section-login__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.section-login__wrapper article {
+  padding: calc(var(--padding) * 2);
+  position: absolute;
+  border-radius: 10px;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-login__wrapper article img {
+  width: 15%;
+}
+
+.section-login__wrapper article h1 {
+  font-size: 30px;
+  color: #0a2e4f;
+  margin-top: var(--margin);
+  margin-bottom: var(--margin);
+}
+.section-login__wrapper article form {
+  text-align: center;
+  margin-top: var(--margin);
+}
+
+.section-login__wrapper article form > input {
+  border: none;
+  border-bottom: 1px solid var(--dark-grey-color);
+  margin-top: var(--margin);
+  padding-left: calc(var(--padding) * 2);
+  padding-bottom: calc(var(--padding) * 2);
+  width: 80%;
+  font-size: var(--font-large);
+}
+
+.section-login__button {
+  display: block;
+  margin: calc(var(--margin) * 2) auto;
+  font-size: var(--font-super-large);
+  font-weight: var(--weight-bold);
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 8px;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 80%;
+  height: 20%;
+  background-color: #0a2e4f;
+  color: white;
+}
+
+.section-login__checkbox-wrapper {
+  margin-top: calc(var(--margin) * 2);
+  padding-left: calc(var(--padding) * 6);
+  text-align: left;
+}
+
+.section-login__checkbox {
+  padding: var(--padding);
+}

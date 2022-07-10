@@ -1,0 +1,47 @@
+:root {
+  /* color */
+  --medium-green: #00687d;
+  --dark-green: #01a5af;
+  --light-green: #67ced5;
+  --white-color: #fff;
+  --black-color: #140a00;
+  --blue-color: #045fd4;
+  --red-color: #ff0000;
+  --grey-dark-color: #909090;
+  --grey-light-color: #e0e0e0;
+  --dark-grey-color: #7e81a6;
+  /* size */
+  --margin: 16px;
+  --padding: 12px;
+  --avatar-size: 36px;
+
+  /* font-size */
+  --font-super-large: 18px;
+  --font-large: 16px;
+  --font-medium: 14px;
+  --font-small: 12px;
+  --font-micro: 10px;
+
+  /* weight */
+  --weight-light: 200;
+  --weight-normal: 400;
+  --weight-bold: 700;
+}
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#wrapper {
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 70px;
+}

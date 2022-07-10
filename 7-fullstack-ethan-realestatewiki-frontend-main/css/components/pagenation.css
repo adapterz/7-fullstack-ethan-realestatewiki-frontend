@@ -1,0 +1,32 @@
+@import "../root.css";
+
+/* 페이지네이션 */
+.pagenation {
+  text-align: center;
+  margin: calc(var(--margin)) 0;
+  vertical-align: middle;
+}
+
+.pagenation a {
+  margin: 0 0;
+  display: inline-block;
+  border: 1px solid var(--grey-light-color);
+  width: 33px;
+  height: 33px;
+  line-height: 33px;
+  background-color: var(--white-color);
+  font-size: var(--font-large);
+  color: var(--grey-dark-color);
+  vertical-align: middle;
+}
+
+.pagenation a i {
+  vertical-align: middle;
+  line-height: 35px;
+}
+
+.pagenation a.active {
+  background-color: #42454c;
+  color: #fff;
+  border: 1px solid #42454c;
+}
