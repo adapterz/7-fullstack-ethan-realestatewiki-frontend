@@ -1,17 +1,10 @@
 @import "../root.css";
 @import "../components/header.css";
+@import "../components/header-line.css";
 @import "../components/searchbar.css";
 @import "../components/footer.css";
 
 /* 회원가입 */
-
-.signup__header {
-  text-align: center;
-  padding: var(--padding) 0;
-  color: var(--white-color);
-  background-color: #23b3c6;
-}
-
 .signup__content {
   margin: var(--margin);
 }

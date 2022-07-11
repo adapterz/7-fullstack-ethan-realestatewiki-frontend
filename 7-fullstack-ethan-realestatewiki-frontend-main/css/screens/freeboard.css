@@ -1,9 +1,9 @@
 @import "../components/header.css";
 @import "../components/searchbar.css";
 @import "../components/footer.css";
-@import "../components/list-freeboard.css";
+@import "../components/basic-board.css";
 @import "../components/pagenation.css";
 
-#wrapper section {
-  padding-right: 0;
+.pagenation {
+  padding-right: var(--padding);
 }

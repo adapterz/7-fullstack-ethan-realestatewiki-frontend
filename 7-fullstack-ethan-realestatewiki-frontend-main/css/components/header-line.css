@@ -1,0 +1,6 @@
+#wrapper section header {
+  text-align: center;
+  padding: var(--padding) 0;
+  color: var(--white-color);
+  background-color: #23b3c6;
+}

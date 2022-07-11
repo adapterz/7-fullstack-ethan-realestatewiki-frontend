@@ -1,21 +1,20 @@
 @import "../root.css";
 
-.board__nav {
+#wrapper section {
+  padding: var(--padding);
+}
+
+.home-board__title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: var(--font-super-large);
   border-bottom: var(--grey-dark-color) solid;
-  margin-bottom: calc(var(--margin) / 5);
+  padding-bottom: calc(var(--margin) / 5);
+  margin-bottom: calc(var(--margin) / 2);
 }
 
-.popular-board__title {
-  display: block;
-  color: var(--medium-green);
-  font-weight: var(--weight-bold);
-}
-
-.board__items {
+.home-board__items {
   list-style: none;
   margin-bottom: calc(var(--margin) / 2);
   padding: 0;
@@ -23,14 +22,14 @@
   margin-bottom: var(--margin);
 }
 
-.board__items li {
+.home-board__items li {
   margin-bottom: calc(var(--margin) / 3);
   counter-increment: list-number;
   padding-bottom: 7px;
   font-size: var(--font-medium);
 }
 
-.board__items li a::before {
+.home-board__items li a::before {
   content: counter(list-number);
   display: inline-block;
   text-align: center;
@@ -44,27 +43,26 @@
   font-size: 16px;
 }
 
-.board__items .first,
-.board__items .second,
-.board__items .third {
+.home-board__items .first,
+.home-board__items .second,
+.home-board__items .third {
   font-size: var(--font-large);
   border-bottom: var(--grey-light-color) solid 1px;
 }
 
-.board__items .first div,
-.board__items .second div,
-.board__items .third div {
-  margin-left: calc(var(--margin) * 3);
-  padding-right: calc(var(--padding) * 5);
-  font-size: var(--font-medium);
+.home-board__items .first div,
+.home-board__items .second div,
+.home-board__items .third div {
+  margin-left: calc(var(--margin) * 2.3);
+  font-size: var(--font-small);
   color: #999999;
 }
 
-.board__items .first ::before {
+.home-board__items .first ::before {
   background: orangered;
 }
 
-.board__items .second ::before,
-.board__items .third ::before {
+.home-board__items .second ::before,
+.home-board__items .third ::before {
   background: var(--blue-color);
 }

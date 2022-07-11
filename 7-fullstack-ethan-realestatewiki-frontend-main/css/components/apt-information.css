@@ -1,3 +1,7 @@
+.search-result {
+  padding: var(--padding);
+}
+
 .search-result_title {
   margin: calc(var(--margin) / 2) 0 calc(var(--margin) / 4) 0;
 }

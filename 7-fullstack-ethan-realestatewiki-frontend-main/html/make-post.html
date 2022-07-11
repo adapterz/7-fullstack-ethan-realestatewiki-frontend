@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>부동산WIKI-자유게시판_글수정</title>
+    <title>부동산WIKI-자유게시판_글작성</title>
     <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
-    <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/update-post.css">
+    <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/make-post.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
@@ -33,35 +33,32 @@
                 <a href=""><i class="fa-solid fa-bars"></i></a>
             </nav>
         </header>
-        <section class="section-make-post">
+
+        <!-- 자유게시판 - 글작성 -->
+        <section class="make-post">
             <header>
-                <h3 class="section-make-post__header">자유게시판 / 게시글 수정하기</h3>
+                <h3 class="make-post__header">자유게시판 - 글작성</h3>
             </header>
             <section>
                 <form action="">
-                    <div class="section-make-post__title">
-                        <label for="post_title">제목</label>
-                        <input type="text" id="post_title" placeholder="제목을 입력하세요.">
+                    <div class="make-post__title">
+                        <label for="title">제목</label>
+                        <input type="text" id="title" placeholder="제목을 입력하세요.">
                     </div>
-                    <div class="section-make-post__content">
+                    <div class="make-post__content">
                         <textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea>
                     </div>
-                    <div class="signup__button">
-                        <button class="signup__button signup__button--cancel">
+                    <div class="button">
+                        <button class="button button--cancel">
                             취소
                         </button>
-                        <button class="signup__button signup__button--confirm">
+                        <button class="button button--confirm">
                             작성완료
                         </button>
                     </div>
                 </form>
             </section>
-
-
-
         </section>
-
-
         </section>
     </div>
     <!-- footer-->

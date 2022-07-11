@@ -1,57 +1,10 @@
 @import "../root.css";
 @import "../components/header.css";
 @import "../components/searchbar.css";
+@import "../components/basic-board.css";
 @import "../components/footer.css";
 @import "../components/pagenation.css";
 
-/* 검색결과 */
-
-.search-result {
-  padding: var(--padding) 0 var(--padding) var(--padding);
-}
-
-.search-result__content {
-  margin-top: calc(var(--margin) / 2);
-}
-
-.search-result__content li {
-  list-style: none;
-  border-bottom: solid var(--grey-light-color) 1px;
-  /* margin-bottom: calc(var(--margin) / 2); */
-  /* padding-top: calc(var(--padding)/2); */
-  margin-bottom: 0;
-  display: flex;
-  justify-content: space-between;
-  vertical-align: middle;
-  /* height: 50px; */
-}
-
-.search-result__content li .apt_info-likes {
-  width: 9%;
-  text-align: center;
-  color: var(--red-color);
-  background-color: var(--grey-light-color);
-  display: table;
-}
-
-.search-result__content li .apt_info-likes span {
-  font-size: var(--font-small);
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.apt_info-title,
-.apt_info-detail {
-  width: 100%;
-}
-
-.search-result__content li .apt_info-title {
-  list-style: none;
-  padding: calc(var(--padding) / 1.5) 0;
-}
-
-.search-result__content li .apt_info-detail {
-  font-size: var(--font-small);
-  color: #999999;
-  padding-bottom: calc(var(--padding) / 2);
+.pagenation {
+  padding-right: var(--padding);
 }

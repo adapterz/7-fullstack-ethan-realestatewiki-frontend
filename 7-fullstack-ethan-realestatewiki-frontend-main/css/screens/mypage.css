@@ -1,41 +1,27 @@
 @import "../root.css";
 @import "../components/header.css";
+@import "../components/header-line.css";
 @import "../components/searchbar.css";
 @import "../components/footer.css";
 @import "../components/pagenation.css";
 
-.mypage header {
-  text-align: center;
-  background-color: #23b3c6;
-  color: white;
-  height: 4%;
-}
-
-.mypage header h3 {
-  vertical-align: middle;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mypage__mypost {
+.myposts {
   padding: var(--padding);
 }
 
-.mypage__mypost h3 {
+.myposts h3 {
   display: flex;
   align-items: center;
   color: #0a2e4f;
 }
 
-.mypage__mypost h3 img {
+.myposts h3 img {
   padding: calc(var(--padding) / 2);
   width: 8%;
   vertical-align: middle;
 }
 
-.mypage__posts-info {
+.myposts__info {
   margin: calc(var(--margin) / 2) 0;
   padding: calc(var(--padding) / 2) 0;
   display: flex;
@@ -44,12 +30,12 @@
   border-bottom: 2px solid var(--grey-light-color);
 }
 
-.mypage__mypost span {
+.myposts span {
   font-size: var(--font-small);
   margin-right: var(--margin);
 }
 
-.mypage__mypost button {
+.myposts button {
   font-size: var(--font-small);
   border: none;
   background-color: var(--dark-green);
@@ -59,18 +45,18 @@
   border-radius: 5px;
 }
 
-.mypost__item li {
+.myposts__Items li {
   list-style: none;
   margin-bottom: var(--margin);
   padding-bottom: calc(var(--margin) / 2);
   border-bottom: 1px solid var(--grey-light-color);
 }
 
-.mypost__sub-detail {
+.myposts__sub-detail {
   font-size: var(--font-small);
   color: #999999;
 }
 
-.mypost__sub-detail span i {
+.myposts__sub-detail span i {
   padding-right: calc(var(--padding) / 3);
 }

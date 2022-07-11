@@ -1,0 +1,40 @@
+/* 자유게시글 - 작성 */
+.make-post {
+  padding: var(--padding) 0;
+}
+
+.make-post header {
+  text-align: center;
+  padding: var(--padding) 0;
+  color: var(--white-color);
+  background-color: #23b3c6;
+}
+
+.make-post section form {
+  text-align: center;
+}
+
+.make-post__title {
+  font-size: var(--font-medium);
+  border-bottom: solid 1px var(--grey-light-color);
+  margin-bottom: var(--margin);
+  padding: var(--padding) 0;
+}
+
+.make-post__title label {
+  margin: var(--margin);
+}
+
+.make-post__title input {
+  padding: calc(var(--padding));
+  border: solid 1px var(--grey-light-color);
+  width: 70%;
+}
+
+.make-post__content textarea {
+  width: 95%;
+  border: solid 1px var(--grey-dark-color);
+  padding: calc(var(--padding) * 2);
+  margin-bottom: var(--margin);
+  min-height: 350px;
+}
