@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Our superheroes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+    </header>
+
+    <section>
+
+    </section>
+
+    <script>
+        // 변수로 둘 JSON의 URL을 가져온다.
+        var requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+        // 요청을 만들기 위해, 우리는 new 키워드를 이용하여 XMLHttpRequest 생성자로부터 새로운 request 인스턴스를 생성해야 합니다.
+        var request = new XMLHttpRequest();
+        // 이제 open() 메소드를 사용해 새로운 요청을 만듭니다.
+        request.open('GET', requestURL);
+        // responseType 을 JSON으로 설정했어요. XHR로 하여금 서버가 JSON 데이터를 반환할 것이며, 자바스크립트 객체로서 변환될 것이라는 걸 알게 하기 위해서죠.
+        request.responseType = 'json';
+        // send() 메서드를 이용해 요청을 보냅시다.
+        request.send();
+        //서버의 응답을 기다리고, 그것의 처리까지와 관련된 섹션
+        request.onload = function () {
+            // 요청에 대한 응답은 superHeros 변수에 저장
+            // 이 변수는 이제 JSON 데이터에 기반한 자바스크립트 객체를 포함하게 된다.
+            var superHeroes = request.response;
+            populateHeader(superHeroes);
+            showHeroes(superHeroes);
+        }
+        // 로드 이벤트가 request 객체에 발생할 때 작동하는 이벤트 핸들러 내에 코드를 넣었다.
+        // 왜냐하면 응답이 성공적으로 들어왔을 떄만 로드 이벤트가 작동하기 때문.
+
+        // 헤더 조작하기
+        // 매개변수의 이름은 jsonObj로 한다. 자바스크립트 객체가 JSON으로 부터 생겨났다는 것을 상기시키기 위해.
+        function populateHeader(jsonObj) {
+            // h1 요소를 생성한다.
+            var myH1 = document.createElement('h1');
+            // textContent를 객체의 squadName 프로퍼티와 같게 만든다.
+            myH1.textContent = jsonObj['squadName'];
+            // 이것을 헤더에 붙인다.
+            header.appendChild(myH1);
+
+            var myPara = document.createElement('p');
+            myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + ' // Formed: ' + jsonObj['formed'];
+            header.appendChild(myPara);
+        }
+
+        function showHeroes(jsonObj) {
+            var heroes = jsonObj['members'];
+
+            for (var i = 0; i < heroes.length; i++) {
+                // 요소들을 생성한다.
+                var myArticle = document.createElement('article');
+                var myH2 = document.createElement('h2');
+                var myPara1 = document.createElement('p');
+                var myPara2 = document.createElement('p');
+                var myPara3 = document.createElement('p');
+                var myList = document.createElement('ul');
+
+                // 각 요소에 textContent를 넣는다.
+                myH2.textContent = heroes[i].name;
+                myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+                myPara2.textContent = 'Age: ' + heroes[i].age;
+                myPara3.textContent = 'Superpowers:';
+
+
+                var superPowers = heroes[i].powers;
+                for (var j = 0; j < superPowers.length; j++) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = superPowers[j];
+                    myList.appendChild(listItem);
+                }
+
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(myPara1);
+                myArticle.appendChild(myPara2);
+                myArticle.appendChild(myPara3);
+                myArticle.appendChild(myList);
+
+                section.appendChild(myArticle);
+            }
+        }
+
+
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+    </script>
+</body>
+
+</html>

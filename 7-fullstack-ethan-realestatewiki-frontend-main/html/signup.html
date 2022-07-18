@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부동산WIKI-회원가입</title>
     <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
-    <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/signup.css">
+    <link rel="stylesheet" href="../css/screens/signup.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
@@ -19,17 +19,15 @@
         <!-- header -->
         <header>
             <nav>
-                <img class="logo" src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-                    alt="logo" />
+                <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />
                 <a href="">부동산뉴스</a>
-                <a href="">자유게시판</a>
-                <a href="">로그인</a>
-                <a href="">회원가입</a>
-                <a href="">마이페이지</a>
+                <a href="freeboard">자유게시판</a>
+                <a href="login">로그인</a>
+                <a href="signup">회원가입</a>
+                <a href="mypage">마이페이지</a>
             </nav>
             <nav>
-                <a href=""><img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_korean.png"
-                        alt="korean logo" /></a>
+                <a href="home"><img src="../../images/main/logo_korean.png" alt="korean logo" /></a>
                 <a href=""><i class="fa-solid fa-bars"></i></a>
             </nav>
         </header>
@@ -38,8 +36,7 @@
                 <h3>회원가입</h3>
             </header>
             <div class="signup__content">
-                <h3> <img class="logo" src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-                        alt="logo" />회원정보(필수<span>*</span>)</h3>
+                <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />회원정보(필수<span>*</span>)</h3>
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="signup__element">
                         <label for="user_id">아이디<span> * </span></label>
@@ -71,9 +68,8 @@
                                 placeholder="이미지 파일만 업로드 가능"></div>
                     </div>
 
-                    <h3> <img class="logo"
-                            src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-                            alt="logo" />이용약관 동의(필수<span>*</span>)</h3>
+                    <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />이용약관
+                        동의(필수<span>*</span>)</h3>
 
                     <div class="signup__element--terms">
                         <input type="checkbox" id="agree_all">
