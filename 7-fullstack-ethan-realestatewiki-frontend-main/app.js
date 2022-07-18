@@ -53,7 +53,7 @@ function makeComment(req, res) {
   });
 }
 
-app.listen(3000, () => {
+app.listen(80, () => {
   console.log("server is listening");
   console.log(__dirname);
 });
