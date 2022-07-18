@@ -1,57 +1,57 @@
-.search-result {
+.apt-info {
   padding: var(--padding);
 }
 
-.search-result_title {
+.apt-info__title {
   margin: calc(var(--margin) / 2) 0 calc(var(--margin) / 4) 0;
 }
 
-.search-result_title-wrapper {
+.apt-info__title-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.search-result_title-wrapper div a {
+.apt-info__title-wrapper div a {
   line-height: 36px;
   font-size: var(--font-medium);
 }
 
-.search-result_title-wrapper div a i {
+.apt-info__title-wrapper div a i {
   font-size: var(--font-large);
 }
 
-.search-result_subtitle {
+.apt-info__subtitle {
   font-size: var(--font-small);
   margin-bottom: calc(var(--margin) / 2);
 }
 
-.search-result_subtitle div {
+.apt-info__subtitle div {
   padding-bottom: calc(var(--padding) / 2);
 }
 
-.search-result_image {
+.apt-info__image {
   margin: calc(var(--margin)) 0;
   text-align: center;
 }
 
-.search-result_price {
+.apt-info__price {
   margin-bottom: calc(var(--margin) * 2);
 }
 
-.search-result_price h4 {
+.apt-info__price h4 {
   vertical-align: middle;
   padding-bottom: calc(var(--margin) / 2);
   border-bottom: var(--grey-dark-color) solid 1px;
 }
 
-.search-result_price .content {
+.apt-info__price .content {
   font-size: var(--font-large);
   font-weight: var(--weight-bold);
   text-align: right;
   color: orangered;
 }
 
-.search-result_price .content-sub {
+.apt-info__price .content-sub {
   font-size: var(--font-medium);
   font-weight: var(--weight-normal);
   text-align: right;

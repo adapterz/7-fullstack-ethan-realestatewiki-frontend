@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>부동산WIKI-롯데캐슬골드파크1차</title>
-  <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/information.css">
+  <link rel="stylesheet" href="../css/screens/information.css">
   <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
   <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
 </head>
@@ -18,26 +18,22 @@
     <!-- header -->
     <header>
       <nav>
-        <img class="logo" src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-          alt="logo" />
+        <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
         <a href="">부동산뉴스</a>
-        <a href="">자유게시판</a>
-        <a href="">로그인</a>
-        <a href="">회원가입</a>
-        <a href="">마이페이지</a>
+        <a href="freeboard">자유게시판</a>
+        <a href="login">로그인</a>
+        <a href="signup">회원가입</a>
+        <a href="mypage">마이페이지</a>
       </nav>
       <nav>
-        <a href=""><img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_korean.png"
-            alt="korean logo" /></a>
+        <a href="home"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
         <a href=""><i class="fa-solid fa-bars"></i></a>
       </nav>
     </header>
 
     <!-- 검색어 입력창 -->
     <section class="search-bar">
-      <img class="search-bar__banner"
-        src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/paint_information.png"
-        alt="아파트 정보 / 실거래가 정보" />
+      <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
       <form class="search-bar__container" action="">
         <div class="search-bar__selector-wrapper">
           <!-- <label for="si">시</label> -->
@@ -70,12 +66,12 @@
 
     <!-- 메인 페이지 (상세 조회)-->
     <section>
-      <div class="search-result">
-        <div class="search-result_title-wrapper">
-          <h3 class="search-result_title">롯데캐슬골드파크1차</h3>
+      <div class="apt-info">
+        <div class="apt-info__title-wrapper">
+          <h3 class="apt-info__title">롯데캐슬골드파크1차</h3>
           <div><a href=""><span>관심등록 </span><i class="fa-regular fa-star"></i></a></div>
         </div>
-        <div class="search-result_subtitle">
+        <div class="apt-info__subtitle">
           <div>
             <span>세대수 : 1743대</span>
             <span>/ 동수 : 총 11동</span>
@@ -85,12 +81,11 @@
             <span>/ 면적 : 81.95m^2 ~ 138.93m^2</span>
           </div>
         </div>
-        <div class="search-result_image">
+        <div class="apt-info__image">
           <!-- inline style 안돼 -->
-          <img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/apts/heliocity.jpg" alt="롯데캐슬골드파크1차"
-            width="250px" />
+          <img src="../images/apts/heliocity.jpg" alt="롯데캐슬골드파크1차" width="70%" />
         </div>
-        <div class="search-result_price">
+        <div class="apt-info__price">
           <div>
             <h4>최근 매매 실거래가</h4>
           </div>
@@ -99,8 +94,8 @@
             <div class="content-sub">2022.04.11, 11층, 81m^2</div>
           </div>
         </div>
-        <div class="search-result_posts">
-          <div class="title_wrapper">
+        <div class="apt-info__posts">
+          <div class="title__wrapper">
             <h4 class="title">관련 게시글 보기</h4>
             <div>
               <a href="">
@@ -111,14 +106,14 @@
 
           <!-- li태그 감싸주기 -->
           <div class="content">
-            <li><a href="">서울 제외, 최고의 아파트</a></li>
+            <!-- <li><a href="">서울 제외, 최고의 아파트</a></li>
             <li><a href="">재건축 정책 정리</a></li>
             <li><a href="">재건축 정책 정리</a></li>
-            <li><a href="">재건축 정책 정리</a></li>
+            <li><a href="">재건축 정책 정리</a></li> -->
           </div>
         </div>
       </div>
-      <!-- <div class="search-result_comments">
+      <!-- <div class="apt-info_comments">
           <div class="title_wrapper">
             <h4 class="title">관련 댓글 보기</h4>
           <a href=""
@@ -136,73 +131,6 @@
       <div class="comment">
         <h4>댓글 보기 <span> 5 </span></h4>
         <ul>
-          <li>
-            <div class="comment__user-profile-image">
-              <img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/profiles/basic_profile.jpg" alt="">
-            </div>
-            <div class="comment__wrapper">
-              <div class="comment__content">
-                정책상 9시까지만 영업을 하는게 아쉽지만 다양한 카페가 있고
-                쇼핑도 할 수 있어서 좋음.
-              </div>
-              <div class="comment__writer">
-                <span> mammoth </span>
-                <span> / '22.05.10 </span>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="comment__user-profile-image">
-              <img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/profiles/basic_profile.jpg" alt="">
-            </div>
-            <div class="comment__wrapper">
-              <div class="comment__content">
-                지하로 잠실역 백화점 다 연결되어있고 너무 편한데 왜 다들 깍아내리는지 ㅜㅜ 지하로 잠실역 백화점 다 연결되어있고 너무
-              </div>
-              <div class="comment__writer">
-                <span> 햄순이 </span>
-                <span> / '22.03.15 </span>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="comment__user-profile-image">
-              <img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/profiles/dog2.jpg" alt="">
-            </div>
-            <div class="comment__content">
-              잠실역 사거리소재 대형 주상복합시설
-            </div>
-            <div class="comment__writer">
-              <span> 이학철 </span>
-              <span> / '22.03.02 </span>
-            </div>
-          </li>
-          <li>
-            <div class="comment__user-profile-image">
-              <img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/profiles/dog.jpg" alt="">
-            </div>
-            <div class="comment__content">
-              지하부터 2층까지 각종 상가가 있어 편리함. 교보문고부터 각종
-              음식점 구두수선점까지.
-            </div>
-            <div class="comment__writer">
-              <span> miwave </span>
-              <span> / '20.10.02 </span>
-            </div>
-          </li>
-          <li>
-            <div class="comment__user-profile-image">
-              <img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/profiles/rozi.png" alt="">
-            </div>
-            <div class="comment__content">
-              지하부터 2층까지 각종 상가가 있어 편리함. 교보문고부터 각종
-              음식점 구두수선점까지.
-            </div>
-            <div class="comment__writer">
-              <span> miwave </span>
-              <span> / '20.10.02 </span>
-            </div>
-          </li>
         </ul>
       </div>
       <!-- 페이지네이션 -->
@@ -223,9 +151,11 @@
       <div class="comment-maker">
         <h4 class="comment-maker__title">댓글 작성</h4>
         <div class="comment-maker__input">
-          <textarea cols="50" rows="5" placeholder="댓글을 입력해 주세요.(200자 제한)"></textarea>
-          <!-- <input type="text" placeholder="댓글을 입력해 주세요.(200자 제한)" /> -->
-          <div><button>등록</button></div>
+          <form action="" id="comment-form">
+            <textarea cols="50" rows="5" placeholder="댓글을 입력해 주세요.(200자 제한)"></textarea>
+            <!-- <input type="text" placeholder="댓글을 입력해 주세요.(200자 제한)" /> -->
+          </form>
+          <div><button class="comment-maker__button" type="submit" form="comment-form">등록</button></div>
         </div>
       </div>
 
@@ -253,6 +183,76 @@
       <a href=""><span>ethandeveloper2@gmail.com</span></a>
     </address>
   </footer>
+  <script src="../javascript/information.js"></script>
 </body>
 
 </html>
+
+
+<!-- <li>
+            <div class="comment__user-profile-image">
+              <img src="../html/server/uploads/JVM, JRE, JDK1655446915341.png" alt="">
+            </div>
+            <div class="comment__wrapper">
+              <div class="comment__content">
+                정책상 9시까지만 영업을 하는게 아쉽지만 다양한 카페가 있고
+                쇼핑도 할 수 있어서 좋음.
+              </div>
+              <div class="comment__writer">
+                <span> mammoth </span>
+                <span> / '22.05.10 </span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment__user-profile-image">
+              <img src="../images/profiles/basic_profile.jpg" alt="">
+            </div>
+            <div class="comment__wrapper">
+              <div class="comment__content">
+                지하로 잠실역 백화점 다 연결되어있고 너무 편한데 왜 다들 깍아내리는지 ㅜㅜ 지하로 잠실역 백화점 다 연결되어있고 너무
+              </div>
+              <div class="comment__writer">
+                <span> 햄순이 </span>
+                <span> / '22.03.15 </span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment__user-profile-image">
+              <img src="../images/profiles/dog2.jpg" alt="">
+            </div>
+            <div class="comment__content">
+              잠실역 사거리소재 대형 주상복합시설
+            </div>
+            <div class="comment__writer">
+              <span> 이학철 </span>
+              <span> / '22.03.02 </span>
+            </div>
+          </li>
+          <li>
+            <div class="comment__user-profile-image">
+              <img src="../images/profiles/dog.jpg" alt="">
+            </div>
+            <div class="comment__content">
+              지하부터 2층까지 각종 상가가 있어 편리함. 교보문고부터 각종
+              음식점 구두수선점까지.
+            </div>
+            <div class="comment__writer">
+              <span> miwave </span>
+              <span> / '20.10.02 </span>
+            </div>
+          </li>
+          <li>
+            <div class="comment__user-profile-image">
+              <img src="../images/profiles/rozi.png" alt="">
+            </div>
+            <div class="comment__content">
+              지하부터 2층까지 각종 상가가 있어 편리함. 교보문고부터 각종
+              음식점 구두수선점까지.
+            </div>
+            <div class="comment__writer">
+              <span> miwave </span>
+              <span> / '20.10.02 </span>
+            </div>
+          </li> -->
