@@ -1,4 +1,4 @@
-.title_wrapper {
+.title__wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -7,18 +7,18 @@
   margin-bottom: calc(var(--margin) / 5);
 }
 
-.search-result_posts {
-  margin-bottom: calc(var(--margin) * 2);
+.apt-info__posts {
+  margin-bottom: calc(var(--margin) / 2);
 }
 
-.search-result_comments .content,
-.search-result_posts .content {
+.apt-info__comments .content,
+.apt-info__posts .content {
   list-style: none;
   font-size: var(--font-medium);
   margin-bottom: calc(var(--margin));
 }
 
-.search-result_comments .content li,
-.search-result_posts .content li {
+.apt-info__comments .content li,
+.apt-info__posts .content li {
   padding: calc(var(--padding) / 5) 0;
 }

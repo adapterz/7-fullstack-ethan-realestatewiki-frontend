@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>부동산WIKI-홈</title>
-  <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/home.css">
+  <link rel="stylesheet" type="text/css" href="../css/screens/home.css">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
@@ -18,26 +18,22 @@
   <div id="wrapper">
     <header>
       <nav>
-        <img class="logo" src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-          alt="logo" />
+        <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
         <a href="">부동산뉴스</a>
-        <a href="">자유게시판</a>
-        <a href="">로그인</a>
-        <a href="">회원가입</a>
-        <a href="">마이페이지</a>
+        <a href="freeboard">자유게시판</a>
+        <a href="login">로그인</a>
+        <a href="signup">회원가입</a>
+        <a href="mypage">마이페이지</a>
       </nav>
       <nav>
-        <a href=""><img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_korean.png"
-            alt="korean logo" /></a>
+        <a href="home"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
         <a href=""><i class="fa-solid fa-bars"></i></a>
       </nav>
     </header>
 
     <!-- 검색어 입력창 -->
     <section class="search-bar">
-      <img class="search-bar__banner"
-        src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/paint_information.png"
-        alt="아파트 정보 / 실거래가 정보" />
+      <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
       <form class="search-bar__container" action="">
         <div class="search-bar__selector-wrapper">
           <!-- <label for="si">시</label> -->
@@ -74,8 +70,45 @@
         <header class="home-board__title">
           <h4>인기 부동산 TOP 10</h4>
         </header>
-        <ul class=" home-board__items">
-          <li class="first">
+        <ul class=" home-board__items popular-apt">
+        </ul>
+      </div>
+    </section>
+
+    <!-- 메인 페이지 (인기 게시글)-->
+    <section>
+      <div class="home-board">
+        <header class="home-board__title">
+          <h4>인기 게시글 TOP 10</h4>
+        </header>
+        <ul class="home-board__items popular-post">
+        </ul>
+      </div>
+    </section>
+  </div>
+  <!-- footer-->
+  <footer>
+    <nav class="footer-info">
+      <a href=""><span>홈 |</span></a>
+      <a href=""><span>로그인 |</span></a>
+      <a href=""><span>회원가입 |</span></a>
+      <a href=""><span>pc버전 |</span></a>
+    </nav>
+    <nav class="footer-info">
+      <a href=""><span>이용약관 |</span></a>
+      <a href=""><span>개인정보처리방침 |</span></a>
+      <a href=""><span>고객센터</span></a>
+    </nav>
+    <address class="footer-info">
+      <a href=""><span>ethandeveloper2@gmail.com</span></a>
+    </address>
+  </footer>
+  <script src="../javascript/home.js"></script>
+</body>
+
+</html>
+
+<!-- <li class="first">
             <a href="">롯데캐슬골드 10차 아파트, 한빛프라...</a>
             <div>
               <span>서울시 송파구 송파동</span>
@@ -102,18 +135,9 @@
           <li><a href="">울산롯데캐슬골드</a></li>
           <li><a href="">롯데캐슬골드2단지</a></li>
           <li><a href="">구서롯데캐슬골드1단지</a></li>
-          <li><a href="">울산롯데캐슬골드</a></li>
-        </ul>
-      </div>
-    </section>
-    <!-- 메인 페이지 (인기 게시글)-->
-    <section>
-      <div class="home-board">
-        <header class="home-board__title">
-          <h4>인기 게시글 TOP 10</h4>
-        </header>
-        <ul class="home-board__items">
-          <li class="first">
+          <li><a href="">울산롯데캐슬골드</a></li> -->
+
+<!-- <li class="first">
             <a href="">서울 제외, 최고의 아파트</a>
             <div>
               <span>mammoth</span>
@@ -143,28 +167,4 @@
           <li><a href="">재건축 정책 정리</a></li>
           <li><a href="">앞으로 10년 부동산 미래</a></li>
           <li><a href="">롯데캐슬골드 심층 분석</a></li>
-          <li><a href="">재건축 정책 정리</a></li>
-        </ul>
-      </div>
-    </section>
-  </div>
-  <!-- footer-->
-  <footer>
-    <nav class="footer-info">
-      <a href=""><span>홈 |</span></a>
-      <a href=""><span>로그인 |</span></a>
-      <a href=""><span>회원가입 |</span></a>
-      <a href=""><span>pc버전 |</span></a>
-    </nav>
-    <nav class="footer-info">
-      <a href=""><span>이용약관 |</span></a>
-      <a href=""><span>개인정보처리방침 |</span></a>
-      <a href=""><span>고객센터</span></a>
-    </nav>
-    <address class="footer-info">
-      <a href=""><span>ethandeveloper2@gmail.com</span></a>
-    </address>
-  </footer>
-</body>
-
-</html>
+          <li><a href="">재건축 정책 정리</a></li> -->

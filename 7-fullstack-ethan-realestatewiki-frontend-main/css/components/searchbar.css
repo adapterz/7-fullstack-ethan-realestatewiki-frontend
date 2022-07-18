@@ -2,7 +2,7 @@
 
 /* 검색바 */
 .search-bar {
-  background-image: url(/7-fullstack-ethan-realestatewiki-frontend-main/images/main/background-search.png);
+  background-image: url(../../images/main/background-search.png);
   background-size: cover;
   padding: calc(var(--padding)) var(--padding) calc(var(--padding))
     var(--padding);

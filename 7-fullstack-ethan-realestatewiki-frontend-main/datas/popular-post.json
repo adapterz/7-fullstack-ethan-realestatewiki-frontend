@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "author_id": 1,
+    "user_id": "ethan12",
+    "title": "첫번째게시글",
+    "content": "첫번째 게시글 입니다. 잠실",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-May-4th 19:00:21",
+    "views": 7,
+    "recommended_number": 100,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 2,
+    "author_id": 89,
+    "user_id": "ethan9",
+    "title": "89번째 사용자가 쓴 28번째 게시글",
+    "content": "89번째 사용자가 쓴 28번째 게시글89번째 사용자가 쓴 28번째 게시글89번째 사용자가 쓴 28번째 게시글adjflkasjldgkjasdlgjalsgjalsdjglasdjglaadssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssadjflkasjldgkjasdlgjalsgjalsdjglasdjglaadsssssssssssssssssssssssssssssssssssssssssssssadjflkasjldgkjasdlgjalsgjalsdjglasdjglaadsssssssssssssssssssssssssssssss",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-June-10th 14:50:56",
+    "views": 0,
+    "recommended_number": 99,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  },
+  {
+    "id": 3,
+    "author_id": 96,
+    "user_id": "ethan20",
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림3",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-June-21st 20:44:15",
+    "views": 0,
+    "recommended_number": 70,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  },
+  {
+    "id": 4,
+    "author_id": 2,
+    "user_id": "ethan2",
+    "title": "두번째게시글 잠실",
+    "content": "두번째 게시글 입니다.",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-May-4th 19:00:22",
+    "views": 4,
+    "recommended_number": 1,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 5,
+    "author_id": 3,
+    "user_id": "ethan3",
+    "title": "세번째게시글 신림",
+    "content": "세번째 게시글 입니다.",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-May-4th 19:00:23",
+    "views": 4,
+    "recommended_number": 1,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 6,
+    "author_id": 4,
+    "user_id": "ethan4",
+    "title": "네번째게시글",
+    "content": "네번째 게시글 입니다. 신림",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-May-4th 19:00:26",
+    "views": 3,
+    "recommended_number": 1,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 7,
+    "author_id": 89,
+    "user_id": "ethan9",
+    "title": "update post, user_id:2 , post_id: 71 ",
+    "content": "update post, 8번 유저가 쓴 27번째 게시물2",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-May-4th 19:00:26",
+    "views": 3,
+    "recommended_number": 1,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 8,
+    "author_id": 89,
+    "user_id": "ethan9",
+    "title": "update post, user_id:2 , post_id: 71 ",
+    "content": "update post, 8번 유저가 쓴 27번째 게시물2",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-June-10th 13:37:12",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 9,
+    "author_id": 89,
+    "user_id": "ethan9",
+    "title": "update post, user_id:2 , post_id: 71 ",
+    "content": "update post, 8번 유저가 쓴 27번째 게시물2",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-June-10th 13:37:16",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 10,
+    "author_id": 96,
+    "user_id": "ethan20",
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림1",
+    "DATE_FORMAT(datetime_created, '%Y-%M-%D %H:%i:%s')": "2022-June-21st 20:44:03",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  }
+]
