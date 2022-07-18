@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부동산WIKI-로그인</title>
-    <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/signin.css">
+    <link rel="stylesheet" href="../css/screens/signin.css">
     <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,25 +18,22 @@
     <section class="section-login">
         <div class="section-login__wrapper">
             <article>
-                <img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png" alt="">
+                <img src="../../images/main/logo_simple.png" alt="">
                 <h1>부동산WIKI 로그인</h1>
                 <form action="">
                     <input id="user_id" type="text" placeholder="아이디">
-                    <input id="user_id" type="text" placeholder="비밀번호">
+                    <input id="user_pw" type="password" placeholder="비밀번호">
                     <!-- <input type="checkbox" name="xxx" value="yyy" checked> 아이디 기억하기 -->
                     <div class="section-login__checkbox-wrapper">
                         <input class="section-login__checkbox" type="checkbox" id="remember_id">
                         <label class="section-login__checkbox-label" for="remember_id">아이디 기억하기</label>
                     </div>
-                    <button class="section-login__button">로그인</button>
+                    <button id="loginButton" type="submit" class="section-login__button">로그인</button>
                 </form>
-
-
-
-
             </article>
         </div>
     </section>
+    <script type="module" src="../javascript/login.js"></script>
 </body>
 
 </html>
