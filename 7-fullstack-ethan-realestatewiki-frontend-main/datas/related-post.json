@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "첫번째게시글",
+    "content": "첫번째 게시글 입니다. 잠실 우장산",
+    "datetime_updated": "22-07-15 11:06:37",
+    "views": 8,
+    "recommended_number": 100,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  },
+  {
+    "id": 31,
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림1 우장산",
+    "datetime_updated": "22-07-15 11:06:37",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  },
+  {
+    "id": 35,
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림3 우장산",
+    "datetime_updated": "22-07-15 11:06:37",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  },
+
+  {
+    "id": 31,
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림1 우장산",
+    "datetime_updated": "22-07-15 11:06:37",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  },
+  {
+    "id": 35,
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림3 우장산",
+    "datetime_updated": "22-07-15 11:06:37",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  },
+
+  {
+    "id": 31,
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림1 우장산",
+    "datetime_updated": "22-07-15 11:06:37",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  },
+  {
+    "id": 35,
+    "title": "88번째 사용자가 쓴 29번째 게시글",
+    "content": "신림3 우장산",
+    "datetime_updated": "22-07-15 11:06:37",
+    "views": 0,
+    "recommended_number": 0,
+    "use_enabled": 0,
+    "comments_enabled": 0
+  }
+]

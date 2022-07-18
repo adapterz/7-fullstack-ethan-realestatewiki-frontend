@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "author_id": 1,
+    "nickname": "ethan1",
+    "image": "dfadgasgagda",
+    "title": "첫번째게시글",
+    "content": "첫번째 게시글 입니다. 잠실 우장산",
+    "datetime_updated": "2022-07-16",
+    "views": 41,
+    "recommended_number": 100,
+    "use_enabled": 1,
+    "comments_enabled": 1
+  }
+]
