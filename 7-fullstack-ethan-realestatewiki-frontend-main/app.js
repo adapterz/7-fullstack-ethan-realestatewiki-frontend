@@ -10,7 +10,9 @@ app.use(express.static(`${__dirname}`));
 
 // home 화면 띄워주기
 app.get("/home", (req, res) => {
-  res.sendFile(`${__dirname}\\html\\home.html`);
+  const dirPath = path.join(__dirname, "html", "home.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
 });
 
 // 아파트 정보 화면 띄워주기
@@ -30,7 +32,9 @@ app.get("/login", (req, res) => {
 
 // 게시판 화면 띄워주기
 app.get("/freeboard", (req, res) => {
+  __filename, path.extname(__filename);
   res.sendFile(`${__dirname}\\html\\freeboard.html`);
+  // res.sendFile(`${__dirname}\\html\\freeboard.html`);
 });
 
 // 마이페이지 띄워주기
@@ -56,4 +60,6 @@ function makeComment(req, res) {
 app.listen(80, () => {
   console.log("server is listening");
   console.log(__dirname);
+  const dirPath = path.join(__dirname, "html", "home.html");
+  console.log(dirPath);
 });

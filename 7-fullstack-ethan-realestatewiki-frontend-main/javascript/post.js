@@ -77,6 +77,14 @@ async function getComment() {
   }
 }
 
+// 프론트 서버 내에서 json 파일을 이용해서, comment 작성 하는 법.
+// fetch를 이용해서 post 요청을 하는 방법에 대해서 몰랐다.
+// 단순히 json파일의 경로를 fetch 경로로 지정하고, post 요청을 보내면,
+// 해당 json 파일로 post 요청이 가는 줄 알았다.
+// 그것이 아니라, fetch를 통해서, post 요청을 보내고.
+// 따로 서버에서 json 파일에 데이터를 작성해줄, 라우트 경로를 하나더
+// 만들어서 해당 기능을 구현해야 했다.
+
 // 댓글 등록(아파트 정보 페이지에서)
 async function makeComment() {
   const comment = {
