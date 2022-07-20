@@ -1,4 +1,6 @@
 import express from "express";
+import "./env.js";
+// import { config } from "./env.js";
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -9,7 +11,7 @@ app.use(express.json());
 app.use(express.static(`${__dirname}`));
 
 // home 화면 띄워주기
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
   const dirPath = path.join(__dirname, "html", "home.html");
   console.log(dirPath);
   res.sendFile(dirPath);
@@ -17,34 +19,45 @@ app.get("/home", (req, res) => {
 
 // 아파트 정보 화면 띄워주기
 app.get("/info", (req, res) => {
-  res.sendFile(`${__dirname}\\html\\information.html`);
+  const dirPath = path.join(__dirname, "html", "information.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
 });
 
 // 아파트 정보 화면 띄워주기
 app.get("/post", (req, res) => {
-  res.sendFile(`${__dirname}\\html\\post.html`);
+  const dirPath = path.join(__dirname, "html", "post.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
 });
 
 // 로그인 화면 띄워주기
 app.get("/login", (req, res) => {
-  res.sendFile(`${__dirname}\\html\\login.html`);
+  const dirPath = path.join(__dirname, "html", "login.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
 });
 
 // 게시판 화면 띄워주기
 app.get("/freeboard", (req, res) => {
   __filename, path.extname(__filename);
-  res.sendFile(`${__dirname}\\html\\freeboard.html`);
-  // res.sendFile(`${__dirname}\\html\\freeboard.html`);
+  const dirPath = path.join(__dirname, "html", "freeboard.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
 });
 
 // 마이페이지 띄워주기
 app.get("/mypage", (req, res) => {
-  res.sendFile(`${__dirname}\\html\\mypage.html`);
+  const dirPath = path.join(__dirname, "html", "mypage.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
 });
 
 // 회원가입 띄워주기
 app.get("/signup", (req, res) => {
-  res.sendFile(`${__dirname}\\html\\signup.html`);
+  const dirPath = path.join(__dirname, "html", "signup.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
 });
 
 app.post("/make-comment", makeComment);
@@ -57,9 +70,7 @@ function makeComment(req, res) {
   });
 }
 
-app.listen(80, () => {
+app.listen(process.env.PORT_NUM, () => {
   console.log("server is listening");
-  console.log(__dirname);
-  const dirPath = path.join(__dirname, "html", "home.html");
-  console.log(dirPath);
+  console.log("The value of PORT is:", process.env.PORT_NUM);
 });
