@@ -78,38 +78,38 @@ const option =
     ? {
         key: fs.readFileSync(
           path.join(
-            __dirname +
-              ".." +
-              ".." +
-              "etc" +
-              "letsencrypt" +
-              "archive" +
-              "realestatewiki.kr" +
-              "privkey1.pem"
+            __dirname,
+            "..",
+            "..",
+            "etc",
+            "letsencrypt",
+            "archive",
+            "realestatewiki.kr",
+            "privkey1.pem"
           )
         ),
         cert: fs.readFileSync(
           path.join(
-            __dirname +
-              ".." +
-              ".." +
-              "etc" +
-              "letsencrypt" +
-              "archive" +
-              "realestatewiki.kr" +
-              "cert1.pem"
+            __dirname,
+            "..",
+            "..",
+            "etc",
+            "letsencrypt",
+            "archive",
+            "realestatewiki.kr",
+            "cert1.pem"
           )
         ),
         ca: fs.readFileSync(
           path.join(
-            __dirname +
-              ".." +
-              ".." +
-              "etc" +
-              "letsencrypt" +
-              "archive" +
-              "realestatewiki.kr" +
-              "chain1.pem"
+            __dirname,
+            "..",
+            "..",
+            "etc",
+            "letsencrypt",
+            "archive",
+            "realestatewiki.kr",
+            "chain1.pem"
           )
         ),
       }
@@ -126,3 +126,4 @@ option
 //   console.log("server is listening");
 //   console.log("The value of PORT is:", process.env.PORT_NUM);
 // });
+np;
