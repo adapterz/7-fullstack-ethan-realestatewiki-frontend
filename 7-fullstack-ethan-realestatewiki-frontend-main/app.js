@@ -1,4 +1,7 @@
 import express from "express";
+import https from "https";
+import http from "http";
+import fs from "fs";
 import "./env.js";
 // import { config } from "./env.js";
 import path from "path";
@@ -70,7 +73,56 @@ function makeComment(req, res) {
   });
 }
 
-app.listen(process.env.PORT_NUM, () => {
-  console.log("server is listening");
-  console.log("The value of PORT is:", process.env.PORT_NUM);
-});
+const option =
+  process.env.NODE_ENV === "production"
+    ? {
+        key: fs.readFileSync(
+          path.join(
+            __dirname +
+              ".." +
+              ".." +
+              "etc" +
+              "letsencrypt" +
+              "archive" +
+              "realestatewiki.kr" +
+              "privkey1.pem"
+          )
+        ),
+        cert: fs.readFileSync(
+          path.join(
+            __dirname +
+              ".." +
+              ".." +
+              "etc" +
+              "letsencrypt" +
+              "archive" +
+              "realestatewiki.kr" +
+              "cert1.pem"
+          )
+        ),
+        ca: fs.readFileSync(
+          path.join(
+            __dirname +
+              ".." +
+              ".." +
+              "etc" +
+              "letsencrypt" +
+              "archive" +
+              "realestatewiki.kr" +
+              "chain1.pem"
+          )
+        ),
+      }
+    : undefined;
+
+option
+  ? https.createServer(option, app).listen(process.env.PORT_NUM, () => {
+      console.log(`server is listening ${process.env.PORT_NUM}`);
+    })
+  : http.createServer(app).listen(process.env.PORT_NUM, () => {
+      console.log(`server is listening ${process.env.PORT_NUM}`);
+    });
+// app.listen(process.env.PORT_NUM, () => {
+//   console.log("server is listening");
+//   console.log("The value of PORT is:", process.env.PORT_NUM);
+// });
