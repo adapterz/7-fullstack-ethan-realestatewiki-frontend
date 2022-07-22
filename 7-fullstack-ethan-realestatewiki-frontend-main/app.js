@@ -10,6 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
 app.use(function (req, res, next) {
   if (!req.secure) {
     res.redirect("https://" + "realestatewiki.kr" + req.url);
@@ -80,16 +81,6 @@ function makeComment(req, res) {
     message: `Created : creating post success`,
   });
 }
-
-const capath = path.resolve(
-  "/etc",
-  "letsencrypt",
-  "archive",
-  "realestatewiki.kr",
-  "privkey1.pem"
-);
-
-console.log(capath);
 
 const options = {
   // letsencrypt로 받은 인증서 경로를 입력
