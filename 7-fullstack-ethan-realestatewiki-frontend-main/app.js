@@ -11,13 +11,13 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-app.use(function (req, res, next) {
-  if (!req.secure) {
-    res.redirect("https://" + "realestatewiki.kr" + req.url);
-  } else {
-    next();
-  }
-});
+// app.use(function (req, res, next) {
+//   if (!req.secure) {
+//     res.redirect("https://" + "realestatewiki.kr" + req.url);
+//   } else {
+//     next();
+//   }
+// });
 
 app.use(express.json());
 app.use(express.static(`${__dirname}`));
@@ -97,42 +97,42 @@ function makeComment(req, res) {
   });
 }
 
-const options = {
-  // letsencrypt로 받은 인증서 경로를 입력
-  ca: fs.readFileSync(
-    path.resolve(
-      "/etc",
-      "letsencrypt",
-      "archive",
-      "realestatewiki.kr",
-      "fullchain1.pem"
-    )
-  ),
-  key: fs.readFileSync(
-    path.resolve(
-      "/etc",
-      "letsencrypt",
-      "archive",
-      "realestatewiki.kr",
-      "privkey1.pem"
-    )
-  ),
-  cert: fs.readFileSync(
-    path.resolve(
-      "/etc",
-      "letsencrypt",
-      "archive",
-      "realestatewiki.kr",
-      "cert1.pem"
-    )
-  ),
-};
+// const options = {
+//   // letsencrypt로 받은 인증서 경로를 입력
+//   ca: fs.readFileSync(
+//     path.resolve(
+//       "/etc",
+//       "letsencrypt",
+//       "archive",
+//       "realestatewiki.kr",
+//       "fullchain1.pem"
+//     )
+//   ),
+//   key: fs.readFileSync(
+//     path.resolve(
+//       "/etc",
+//       "letsencrypt",
+//       "archive",
+//       "realestatewiki.kr",
+//       "privkey1.pem"
+//     )
+//   ),
+//   cert: fs.readFileSync(
+//     path.resolve(
+//       "/etc",
+//       "letsencrypt",
+//       "archive",
+//       "realestatewiki.kr",
+//       "cert1.pem"
+//     )
+//   ),
+// };
 
-https.createServer(options, app).listen(443);
+// https.createServer(options, app).listen(443);
 
-// app.listen(3000, () => {
-//   console.log("server is listening");
-// });
+app.listen(3000, () => {
+  console.log("server is listening");
+});
 
 // app.listen(process.env.PORT_NUM, () => {
 //   console.log("server is listening");
