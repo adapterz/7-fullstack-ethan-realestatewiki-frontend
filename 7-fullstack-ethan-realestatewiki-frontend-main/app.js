@@ -1,7 +1,7 @@
 import express from "express";
 import https from "https";
 import http from "http";
-import fs from "fs";
+import fs, { rmSync } from "fs";
 import "./env.js";
 // import { config } from "./env.js";
 import path from "path";
@@ -10,6 +10,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+app.use(function (req, res, next) {
+  if (!req.secure) {
+    res.redirect("https://" + "realestatewiki.kr" + req.url);
+  } else {
+    next();
+  }
+});
+
 app.use(express.json());
 app.use(express.static(`${__dirname}`));
 
