@@ -73,59 +73,38 @@ function makeComment(req, res) {
   });
 }
 
-const keyPath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "/etc",
-  "letsencrypt",
-  "archive",
-  "realestatewiki.kr",
-  "cert1.pem"
-);
+const options = {
+  // letsencrypt로 받은 인증서 경로를 입력
+  ca: fs.readFileSync(
+    path.resolve(
+      "/etc",
+      "letsencrypt",
+      "archive",
+      "realestatewiki.kr",
+      "privkey1.pem"
+    )
+  ),
+  key: fs.readFileSync(
+    path.resolve(
+      "/etc",
+      "letsencrypt",
+      "archive",
+      "realestatewiki.kr",
+      "chain1.pem"
+    )
+  ),
+  cert: fs.readFileSync(
+    path.resolve(
+      "/etc",
+      "letsencrypt",
+      "archive",
+      "realestatewiki.kr",
+      "privkey1.pem"
+    )
+  ),
+};
 
-console.log(keyPath);
-
-const option =
-  process.env.NODE_ENV === "production"
-    ? {
-        key: fs.readFileSync(
-          path.resolve(
-            "/etc",
-            "letsencrypt",
-            "archive",
-            "realestatewiki.kr",
-            "privkey1.pem"
-          )
-        ),
-        cert: fs.readFileSync(
-          path.resolve(
-            "/etc",
-            "letsencrypt",
-            "archive",
-            "realestatewiki.kr",
-            "cert1.pem"
-          )
-        ),
-        ca: fs.readFileSync(
-          path.resolve(
-            "/etc",
-            "letsencrypt",
-            "archive",
-            "realestatewiki.kr",
-            "chain1.pem"
-          )
-        ),
-      }
-    : undefined;
-
-option
-  ? https.createServer(option, app).listen(process.env.PORT_NUM, () => {
-      console.log(`server is listening ${process.env.PORT_NUM}`);
-    })
-  : http.createServer(app).listen(process.env.PORT_NUM, () => {
-      console.log(`server is listening ${process.env.PORT_NUM}`);
-    });
+https.createServer(options, app).listen(443);
 // app.listen(process.env.PORT_NUM, () => {
 //   console.log("server is listening");
 //   console.log("The value of PORT is:", process.env.PORT_NUM);
