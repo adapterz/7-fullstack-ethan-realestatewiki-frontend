@@ -91,7 +91,7 @@ const options = {
       "letsencrypt",
       "archive",
       "realestatewiki.kr",
-      "privkey1.pem"
+      "fullchain1.pem"
     )
   ),
   key: fs.readFileSync(
@@ -100,7 +100,7 @@ const options = {
       "letsencrypt",
       "archive",
       "realestatewiki.kr",
-      "chain1.pem"
+      "privkey1.pem"
     )
   ),
   cert: fs.readFileSync(
@@ -109,7 +109,7 @@ const options = {
       "letsencrypt",
       "archive",
       "realestatewiki.kr",
-      "privkey1.pem"
+      "cert1.pem"
     )
   ),
 };
