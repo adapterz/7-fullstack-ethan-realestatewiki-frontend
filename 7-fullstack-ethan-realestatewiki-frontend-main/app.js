@@ -22,9 +22,24 @@ app.use(function (req, res, next) {
 app.use(express.json());
 app.use(express.static(`${__dirname}`));
 
+async function getUrls() {
+  return await getUrlsFromDatabase();
+}
+
 // home 화면 띄워주기
 app.get("/", (req, res) => {
   const dirPath = path.join(__dirname, "html", "home.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
+});
+
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send("User-agent: *\nAllow: /");
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  const dirPath = path.join(__dirname, "html", "sitemap.xml");
   console.log(dirPath);
   res.sendFile(dirPath);
 });
@@ -114,7 +129,12 @@ const options = {
 };
 
 https.createServer(options, app).listen(443);
+
+// app.listen(3000, () => {
+//   console.log("server is listening");
+// });
+
 // app.listen(process.env.PORT_NUM, () => {
 //   console.log("server is listening");
 //   console.log("The value of PORT is:", process.env.PORT_NUM);
-// });;
+// });
