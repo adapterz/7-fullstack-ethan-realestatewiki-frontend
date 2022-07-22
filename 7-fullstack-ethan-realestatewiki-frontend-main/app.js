@@ -73,14 +73,24 @@ function makeComment(req, res) {
   });
 }
 
+const keyPath = path.join(
+  __dirname,
+  "..",
+  "..",
+  "/etc",
+  "letsencrypt",
+  "archive",
+  "realestatewiki.kr",
+  "cert1.pem"
+);
+
+console.log(keyPath);
+
 const option =
   process.env.NODE_ENV === "production"
     ? {
         key: fs.readFileSync(
-          path.join(
-            __dirname,
-            "..",
-            "..",
+          path.resolve(
             "/etc",
             "letsencrypt",
             "archive",
@@ -89,10 +99,7 @@ const option =
           )
         ),
         cert: fs.readFileSync(
-          path.join(
-            __dirname,
-            "..",
-            "..",
+          path.resolve(
             "/etc",
             "letsencrypt",
             "archive",
@@ -101,10 +108,7 @@ const option =
           )
         ),
         ca: fs.readFileSync(
-          path.join(
-            __dirname,
-            "..",
-            "..",
+          path.resolve(
             "/etc",
             "letsencrypt",
             "archive",
