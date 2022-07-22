@@ -73,6 +73,16 @@ function makeComment(req, res) {
   });
 }
 
+const capath = path.resolve(
+  "/etc",
+  "letsencrypt",
+  "archive",
+  "realestatewiki.kr",
+  "privkey1.pem"
+);
+
+console.log(capath);
+
 const options = {
   // letsencrypt로 받은 인증서 경로를 입력
   ca: fs.readFileSync(
