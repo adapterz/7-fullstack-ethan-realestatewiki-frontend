@@ -57,6 +57,118 @@
   color: #999999;
 }
 
-.myposts__sub-detail span i {
+.myposts__sub-detail i {
+  padding-right: calc(var(--padding) / 3);
+}
+
+.myPostcomments {
+  padding: var(--padding);
+}
+
+.myPostcomments h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.myPostcomments h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.myPostcomments__info {
+  margin: calc(var(--margin) / 2) 0;
+  padding: calc(var(--padding) / 2) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.myPostcomments span {
+  font-size: var(--font-small);
+  margin-right: var(--margin);
+}
+
+.myPostcomments button {
+  font-size: var(--font-small);
+  border: none;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.myPostcomments__Items li {
+  list-style: none;
+  margin-bottom: var(--margin);
+  padding-bottom: calc(var(--margin) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+}
+
+.myPostcomments__sub-detail {
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+.myPostcomments__sub-detail i {
+  padding-right: calc(var(--padding) / 3);
+}
+
+.myAptcomments {
+  padding: var(--padding);
+}
+
+.myAptcomments h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.myAptcomments h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.myAptcomments__info {
+  margin: calc(var(--margin) / 2) 0;
+  padding: calc(var(--padding) / 2) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.myAptcomments span {
+  font-size: var(--font-small);
+  margin-right: var(--margin);
+}
+
+.myAptcomments button {
+  font-size: var(--font-small);
+  border: none;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.myAptcomments__Items li {
+  list-style: none;
+  margin-bottom: var(--margin);
+  padding-bottom: calc(var(--margin) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+}
+
+.myAptcomments__sub-detail {
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+.myAptcomments__sub-detail i {
   padding-right: calc(var(--padding) / 3);
 }

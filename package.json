@@ -2,8 +2,10 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "nodemon": "^2.0.19",
+    "sweetalert2": "^11.4.24",
     "terser": "^5.14.2"
   },
   "name": "7-fullstack-ethan-realestatewiki-frontend-main",
@@ -16,7 +18,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=production node 7-fullstack-ethan-realestatewiki-frontend-main/app.js",
+    "start": "cross-env NODE_ENV=production nodemon 7-fullstack-ethan-realestatewiki-frontend-main/app.js",
     "dev": "cross-env NODE_ENV=development nodemon 7-fullstack-ethan-realestatewiki-frontend-main/app.js"
   },
   "repository": {

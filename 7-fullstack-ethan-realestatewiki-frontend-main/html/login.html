@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8" />
@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
         rel="stylesheet" />
     <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -24,11 +26,13 @@
                     <input id="user_id" type="text" placeholder="아이디">
                     <input id="user_pw" type="password" placeholder="비밀번호">
                     <!-- <input type="checkbox" name="xxx" value="yyy" checked> 아이디 기억하기 -->
-                    <div class="section-login__checkbox-wrapper">
+                    <!-- <div class="section-login__checkbox-wrapper">
                         <input class="section-login__checkbox" type="checkbox" id="remember_id">
                         <label class="section-login__checkbox-label" for="remember_id">아이디 기억하기</label>
-                    </div>
-                    <button id="loginButton" type="submit" class="section-login__button">로그인</button>
+                    </div> -->
+                    <!-- 로그인 후 리로드 현상 처리 type = button-->
+                    <button id="loginButton" type="button" class="section-login__button">로그인</button>
+                    <button id="signupButton" type="button" class="section-signup__button">회원가입</button>
                 </form>
             </article>
         </div>

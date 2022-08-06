@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../css/screens/freeboard.css">
   <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
   <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -17,42 +18,38 @@
     <header>
       <nav>
         <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
-        <a href="">부동산뉴스</a>
-        <a href="freeboard">자유게시판</a>
-        <a href="login">로그인</a>
-        <a href="signup">회원가입</a>
-        <a href="mypage">마이페이지</a>
+        <a href="http://localhost:443/news">부동산뉴스</a>
+        <a href="http://localhost:443/freeboard">자유게시판</a>
+        <a href="http://localhost:443/login">로그인</a>
+        <a href="http://localhost:443/signup">회원가입</a>
+        <a href="http://localhost:443/mypage">마이페이지</a>
       </nav>
       <nav>
-        <a href="home"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
+        <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
         <a href=""><i class="fa-solid fa-bars"></i></a>
       </nav>
     </header>
-
     <!-- 검색어 입력창 -->
     <section class="search-bar">
       <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
       <form class="search-bar__container" action="">
-        <div class="search-bar__selector-wrapper">
-          <!-- <label for="si">시</label> -->
+        <!-- <div class="search-bar__selector-wrapper">
           <select id="si" class="search-bar__selector-option">
             <option value="all">시 : 전체검색</option>
             <option value="seoul">서울시</option>
             <option value="busan">부산시</option>
           </select>
-          <!-- <label for="gu">구</label> -->
           <select id="gu" class="search-bar__selector-option">
             <option value="all">구 : 전체검색</option>
             <option value="gangnam">강남구</option>
             <option value="songpa">송파구</option>
           </select>
-          <!-- <label for="dong">동</label> -->
           <select id="dong" class="search-bar__selector-option">
             <option value="all">동 : 전체검색</option>
             <option value="suseo">수서동</option>
             <option value="ilwon">일원동</option>
           </select>
-        </div>
+        </div> -->
         <div class="search-bar__input-wrapper">
           <input type="text" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
           <button href="#" class="search-bar__button">
@@ -68,6 +65,7 @@
         <header class="board__header">
           <h3>
             <a href="">자유게시판</a>
+            <button class="board__button-make-post" type="button">글쓰기</button>
           </h3>
         </header>
         <ul class="board__content">
@@ -237,15 +235,6 @@
 
         <!-- 페이지네이션 -->
         <div class="pagenation">
-          <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
-          <a class="arrow prev" href="#"><i class="fa-solid fa-angle-left"></i></a>
-          <a href="#" class="active">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a class="arrow next" href="#"><i class="fa-solid fa-angle-right"></i></a>
-          <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a>
         </div>
       </article>
     </section>
@@ -268,7 +257,8 @@
       <a href=""><span>ethandeveloper2@gmail.com</span></a>
     </address>
   </footer>
-  <script src="../javascript/freeboard.js"></script>
+
 </body>
+<script src="../javascript/freeboard.js"></script>
 
 </html>

@@ -7,8 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>부동산WIKI-검색결과</title>
   <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
-  <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/search-result.css">
+  <link rel="stylesheet" href="../css/screens/search-result.css">
   <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -16,50 +17,43 @@
     <!-- header -->
     <header>
       <nav>
-        <img class="logo" src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-          alt="logo" />
-        <a href="">부동산뉴스</a>
-        <a href="freeboard">자유게시판</a>
-        <a href="login">로그인</a>
-        <a href="signup">회원가입</a>
-        <a href="mypage">마이페이지</a>
+        <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
+        <a href="http://localhost:443/news">부동산뉴스</a>
+        <a href="http://localhost:443/freeboard">자유게시판</a>
+        <a href="http://localhost:443/login">로그인</a>
+        <a href="http://localhost:443/signup">회원가입</a>
+        <a href="http://localhost:443/mypage">마이페이지</a>
       </nav>
       <nav>
-        <a href="home"><img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_korean.png"
-            alt="korean logo" /></a>
+        <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
         <a href=""><i class="fa-solid fa-bars"></i></a>
       </nav>
     </header>
 
     <!-- 검색어 입력창 -->
     <section class="search-bar">
-      <img class="search-bar__banner"
-        src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/paint_information.png"
-        alt="아파트 정보 / 실거래가 정보" />
+      <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
       <form class="search-bar__container" action="">
-        <div class="search-bar__selector-wrapper">
-          <!-- <label for="si">시</label> -->
+        <!-- <div class="search-bar__selector-wrapper">
           <select id="si" class="search-bar__selector-option">
             <option value="all">시 : 전체검색</option>
             <option value="seoul">서울시</option>
             <option value="busan">부산시</option>
           </select>
-          <!-- <label for="gu">구</label> -->
           <select id="gu" class="search-bar__selector-option">
             <option value="all">구 : 전체검색</option>
             <option value="gangnam">강남구</option>
             <option value="songpa">송파구</option>
           </select>
-          <!-- <label for="dong">동</label> -->
           <select id="dong" class="search-bar__selector-option">
             <option value="all">동 : 전체검색</option>
             <option value="suseo">수서동</option>
             <option value="ilwon">일원동</option>
           </select>
-        </div>
+        </div> -->
         <div class="search-bar__input-wrapper">
-          <input type="text" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
-          <button href="#" class="search-bar__button">
+          <input type="text" id="keyword" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
+          <button type="button" class="search-bar__button">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
@@ -70,11 +64,11 @@
       <article class="board">
         <header class="board__header">
           <h3 class="board__title">
-            <a href="">롯데캐슬골드 검색결과</a>
+            <a href="#"></a>
           </h3>
         </header>
         <ul class="board__content">
-          <li>
+          <!-- <li>
             <div>
               <div class="board__content-title">
                 <a href="">롯데캐슬골드파크1차</a>
@@ -214,12 +208,12 @@
             <div class="board__content-likes">
               <span>0</span>
             </div>
-          </li>
+          </li> -->
         </ul>
 
         <!-- 페이지네이션 -->
         <div class="pagenation">
-          <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
+          <!-- <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
           <a class="arrow prev" href="#"><i class="fa-solid fa-angle-left"></i></a>
           <a href="#" class="active">1</a>
           <a href="#">2</a>
@@ -227,7 +221,7 @@
           <a href="#">4</a>
           <a href="#">5</a>
           <a class="arrow next" href="#"><i class="fa-solid fa-angle-right"></i></a>
-          <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a>
+          <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a> -->
         </div>
       </article>
     </section>
@@ -249,6 +243,7 @@
       <a href=""><span>ethandeveloper2@gmail.com</span></a>
     </address>
   </footer>
+  <script type="module" src="../javascript/search-result.js"></script>
 </body>
 
 </html>

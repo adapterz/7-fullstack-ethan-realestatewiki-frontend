@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../css/screens/information.css">
   <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
   <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <!-- head와 body 붙여쓰기 -->
 
@@ -19,14 +20,14 @@
     <header>
       <nav>
         <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
-        <a href="">부동산뉴스</a>
-        <a href="freeboard">자유게시판</a>
-        <a href="login">로그인</a>
-        <a href="signup">회원가입</a>
-        <a href="mypage">마이페이지</a>
+        <a href="http://localhost:443/news">부동산뉴스</a>
+        <a href="http://localhost:443/freeboard">자유게시판</a>
+        <a href="http://localhost:443/login">로그인</a>
+        <a href="http://localhost:443/signup">회원가입</a>
+        <a href="http://localhost:443/mypage">마이페이지</a>
       </nav>
       <nav>
-        <a href="home"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
+        <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
         <a href=""><i class="fa-solid fa-bars"></i></a>
       </nav>
     </header>
@@ -35,29 +36,26 @@
     <section class="search-bar">
       <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
       <form class="search-bar__container" action="">
-        <div class="search-bar__selector-wrapper">
-          <!-- <label for="si">시</label> -->
+        <!-- <div class="search-bar__selector-wrapper">
           <select id="si" class="search-bar__selector-option">
             <option value="all">시 : 전체검색</option>
             <option value="seoul">서울시</option>
             <option value="busan">부산시</option>
           </select>
-          <!-- <label for="gu">구</label> -->
           <select id="gu" class="search-bar__selector-option">
             <option value="all">구 : 전체검색</option>
             <option value="gangnam">강남구</option>
             <option value="songpa">송파구</option>
           </select>
-          <!-- <label for="dong">동</label> -->
           <select id="dong" class="search-bar__selector-option">
             <option value="all">동 : 전체검색</option>
             <option value="suseo">수서동</option>
             <option value="ilwon">일원동</option>
           </select>
-        </div>
+        </div> -->
         <div class="search-bar__input-wrapper">
-          <input type="text" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
-          <button href="#" class="search-bar__button">
+          <input type="text" id="keyword" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
+          <button href="#" type="button" class="search-bar__button">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
@@ -68,17 +66,17 @@
     <section>
       <div class="apt-info">
         <div class="apt-info__title-wrapper">
-          <h3 class="apt-info__title">롯데캐슬골드파크1차</h3>
+          <h3 class="apt-info__title"></h3>
           <div><a href=""><span>관심등록 </span><i class="fa-regular fa-star"></i></a></div>
         </div>
         <div class="apt-info__subtitle">
           <div>
-            <span>세대수 : 1743대</span>
-            <span>/ 동수 : 총 11동</span>
+            <span></span>
+            <span></span>
           </div>
           <div>
-            <span>사용승인일 : 2016.11.30</span>
-            <span>/ 면적 : 81.95m^2 ~ 138.93m^2</span>
+            <span></span>
+            <span></span>
           </div>
         </div>
         <div class="apt-info__image">
@@ -90,8 +88,8 @@
             <h4>최근 매매 실거래가</h4>
           </div>
           <div>
-            <div class="content">5억원</div>
-            <div class="content-sub">2022.04.11, 11층, 81m^2</div>
+            <div class="content"></div>
+            <div class="content-sub"></div>
           </div>
         </div>
         <div class="apt-info__posts">
@@ -129,13 +127,13 @@
         </div> -->
 
       <div class="comment">
-        <h4>댓글 보기 <span> 5 </span></h4>
+        <h4>댓글 보기 <span> </span></h4>
         <ul>
         </ul>
       </div>
       <!-- 페이지네이션 -->
       <div class="pagenation">
-        <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
+        <!-- <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
         <a class="arrow prev" href="#"><i class="fa-solid fa-angle-left"></i></a>
         <a href="#" class="active">1</a>
         <a href="#">2</a>
@@ -143,7 +141,7 @@
         <a href="#">4</a>
         <a href="#">5</a>
         <a class="arrow next" href="#"><i class="fa-solid fa-angle-right"></i></a>
-        <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a>
+        <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a> -->
       </div>
 
 
@@ -155,7 +153,7 @@
             <textarea cols="50" rows="5" placeholder="댓글을 입력해 주세요.(200자 제한)"></textarea>
             <!-- <input type="text" placeholder="댓글을 입력해 주세요.(200자 제한)" /> -->
           </form>
-          <div><button class="comment-maker__button" type="submit" form="comment-form">등록</button></div>
+          <div><button class="comment-maker__button" type="button" form="comment-form">등록</button></div>
         </div>
       </div>
 

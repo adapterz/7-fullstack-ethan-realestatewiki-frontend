@@ -1,30 +1,29 @@
 import express from "express";
-import https from "https";
 import http from "http";
-import fs, { rmSync } from "fs";
+import https from "https";
+import fs from "fs";
 import "./env.js";
-// import { config } from "./env.js";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import { dir } from "console";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-app.use(function (req, res, next) {
-  if (!req.secure) {
-    res.redirect("https://" + "realestatewiki.kr" + req.url);
-  } else {
-    next();
-  }
-});
+// app.use(function (req, res, next) {
+//   console.log(req.secure);
+//   if (!req.secure) {
+//     res.redirect("https://" + "realestatewiki.kr" + req.url);
+//   } else {
+//     next();
+//   }
+// });
 
 app.use(express.json());
 app.use(express.static(`${__dirname}`));
-
-async function getUrls() {
-  return await getUrlsFromDatabase();
-}
+app.set("view engine", "ejs");
 
 // home 화면 띄워주기
 app.get("/", (req, res) => {
@@ -45,14 +44,17 @@ app.get("/sitemap.xml", (req, res) => {
 });
 
 // 아파트 정보 화면 띄워주기
-app.get("/info", (req, res) => {
+app.get("/info/:id", (req, res) => {
+  const id = req.params.id;
   const dirPath = path.join(__dirname, "html", "information.html");
   console.log(dirPath);
   res.sendFile(dirPath);
 });
 
-// 아파트 정보 화면 띄워주기
-app.get("/post", (req, res) => {
+// 게시글 화면 띄워주기
+// 그런데,
+app.get("/post/:id", (req, res) => {
+  const id = req.params.id;
   const dirPath = path.join(__dirname, "html", "post.html");
   console.log(dirPath);
   res.sendFile(dirPath);
@@ -87,6 +89,20 @@ app.get("/signup", (req, res) => {
   res.sendFile(dirPath);
 });
 
+// 회원가입 띄워주기
+app.get("/search-result", (req, res) => {
+  const dirPath = path.join(__dirname, "html", "search-result.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
+});
+
+// 글쓰기 페이지로 이동
+app.get("/make-post", (req, res) => {
+  const dirPath = path.join(__dirname, "html", "make-post.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
+});
+
 app.post("/make-comment", makeComment);
 
 function makeComment(req, res) {
@@ -97,9 +113,13 @@ function makeComment(req, res) {
   });
 }
 
-const options = {
-  // letsencrypt로 받은 인증서 경로를 입력
-  ca: fs.readFileSync(
+console.log(`HTTPS 적용 여부 : ${process.env.HTTPS}`);
+
+let chain;
+let key;
+let cert;
+try {
+  chain = fs.readFileSync(
     path.resolve(
       "/etc",
       "letsencrypt",
@@ -107,8 +127,8 @@ const options = {
       "realestatewiki.kr",
       "fullchain1.pem"
     )
-  ),
-  key: fs.readFileSync(
+  );
+  key = fs.readFileSync(
     path.resolve(
       "/etc",
       "letsencrypt",
@@ -116,8 +136,8 @@ const options = {
       "realestatewiki.kr",
       "privkey1.pem"
     )
-  ),
-  cert: fs.readFileSync(
+  );
+  cert = fs.readFileSync(
     path.resolve(
       "/etc",
       "letsencrypt",
@@ -125,16 +145,26 @@ const options = {
       "realestatewiki.kr",
       "cert1.pem"
     )
-  ),
+  );
+} catch (err) {
+  console.log("SSL 인증서가 없습니다. 로컬 환경 입니다.");
+}
+
+const options = {
+  ca: chain,
+  key: key,
+  cert: cert,
 };
 
-https.createServer(options, app).listen(443);
-
-// app.listen(3000, () => {
-//   console.log("server is listening");
-// });
-
-// app.listen(process.env.PORT_NUM, () => {
-//   console.log("server is listening");
-//   console.log("The value of PORT is:", process.env.PORT_NUM);
-// });
+if (options.cert != undefined) {
+  http.createServer(app).listen(80, () => {
+    console.log(`server is listening ${process.env.PORT_NUM_PROD}`);
+  });
+  https.createServer(options, app).listen(443, () => {
+    console.log(`server is listening ${process.env.PORT_NUM}`);
+  });
+} else {
+  http.createServer(app).listen(process.env.PORT_NUM, () => {
+    console.log(`server is listening ${process.env.PORT_NUM}`);
+  });
+}

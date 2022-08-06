@@ -43,6 +43,23 @@
   font-size: 16px;
 }
 
+.home-board__items li,
+.home-board__items li,
+.home-board__items li {
+  font-size: var(--font-large);
+  border-bottom: var(--grey-light-color) solid 1px;
+}
+
+.home-board__items li div,
+.home-board__items li div,
+.home-board__items li div {
+  margin-left: calc(var(--margin) * 2.3);
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+/* ////////////// */
+
 .home-board__items li:nth-child(1),
 .home-board__items li:nth-child(2),
 .home-board__items li:nth-child(3) {

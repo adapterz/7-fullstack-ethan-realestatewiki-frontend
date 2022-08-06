@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
         rel="stylesheet" />
     <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -19,15 +20,15 @@
         <!-- header -->
         <header>
             <nav>
-                <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />
-                <a href="">부동산뉴스</a>
-                <a href="freeboard">자유게시판</a>
-                <a href="login">로그인</a>
-                <a href="signup">회원가입</a>
-                <a href="mypage">마이페이지</a>
+                <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
+                <a href="http://localhost:443/news">부동산뉴스</a>
+                <a href="http://localhost:443/freeboard">자유게시판</a>
+                <a href="http://localhost:443/login">로그인</a>
+                <a href="http://localhost:443/signup">회원가입</a>
+                <a href="http://localhost:443/mypage">마이페이지</a>
             </nav>
             <nav>
-                <a href="home"><img src="../../images/main/logo_korean.png" alt="korean logo" /></a>
+                <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
                 <a href=""><i class="fa-solid fa-bars"></i></a>
             </nav>
         </header>
@@ -37,58 +38,81 @@
             </header>
             <div class="signup__content">
                 <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />회원정보(필수<span>*</span>)</h3>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form id="signup__form" action="" method="post" enctype="multipart/form-data">
                     <div class="signup__element">
                         <label for="user_id">아이디<span> * </span></label>
-                        <div><input type="text" id="user_id" placeholder="5~15자 영문소문자,숫자 포함"></div>
+                        <div><input type="text" id="user_id" placeholder="5~15자 영문소문자,숫자 포함" minlength="5"
+                                maxlength="15" required="반드시 입력해야 합니다.">
+                        </div>
                     </div>
+                    <div class="signup__check_msg signup__check_msg-user_id"> asdasd</div>
+                    <div class="signup__line"></div>
                     <div class="signup__element">
                         <label>비밀번호<span> * </span></label>
-                        <div><input type="password" id="user_pw" placeholder="8~15자 영문소문자,숫자,특수문자 포함"></div>
+                        <div><input type="password" id="user_pw" placeholder="8~15자 영문소문자,숫자,특수문자 포함" minlength="8"
+                                maxlength="15" required="반드시 입력해야 합니다."></div>
                     </div>
+                    <div class="signup__check_msg signup__check_msg-user_pw"> asdasd</div>
+                    <div class="signup__line"></div>
                     <div class="signup__element">
                         <label>비밀번호 확인<span> * </span></label>
-                        <div><input type="password" id="user_pw_check" placeholder="비밀번호 재확인"></div>
+                        <div><input type="password" id="user_pw_check" placeholder="비밀번호 재확인" minlength="8"
+                                maxlength="15" required="반드시 입력해야 합니다."></div>
                     </div>
+                    <div class="signup__check_msg signup__check_msg-user_pw_check"> asdasd</div>
+                    <div class="signup__line"></div>
                     <div class="signup__element">
                         <label>닉네임<span> * </span></label>
-                        <div><input type="text" id="user_nickname" placeholder="5~10자로 구성"></div>
+                        <div><input type="text" id="user_nickname" placeholder="5~10자의 영어, 숫자 또는 한글로 구성" minlength="5"
+                                maxlength="10" required="반드시 입력해야 합니다.">
+                        </div>
                     </div>
+                    <div class="signup__check_msg signup__check_msg-nickname"> asdasd</div>
+                    <div class="signup__line"></div>
                     <div class="signup__element">
                         <label>휴대전화<span> * </span></label>
-                        <div><input type="number" id="user_name" placeholder="- 없이 작성"></div>
+                        <div><input type="number" id="user_phonenumber" placeholder="- 없이 숫자로만 작성"
+                                required="반드시 입력해야 합니다.">
+                        </div>
                     </div>
+                    <div class="signup__check_msg signup__check_msg-phonenumber"> asdasd</div>
+                    <div class="signup__line"></div>
                     <div class="signup__element">
                         <label>이메일 주소<span> * </span></label>
-                        <div><input type="text" id="user_name" placeholder="이메일아이디@도메인주소"></div>
+                        <div><input type="email" id="user_email" placeholder="이메일아이디@도메인주소" required="반드시 입력해야 합니다.">
+                        </div>
                     </div>
+                    <div class="signup__check_msg signup__check_msg-email"> asdasd</div>
+                    <div class="signup__line"></div>
                     <div class="signup__element signup__element--image">
                         <label>프로필 이미지</label>
-                        <div><input type="file" id="user_image" accept="image/*" onchange="loadFile(this)"
-                                placeholder="이미지 파일만 업로드 가능"></div>
+                        <div><input type="file" id="user_image" accept="image/*" placeholder="이미지 파일만 업로드 가능"></div>
                     </div>
-
+                    <div class="signup__check_msg signup__check_msg-image"> asdasd</div>
+                    <div class="signup__line"></div>
                     <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />이용약관
                         동의(필수<span>*</span>)</h3>
 
-                    <div class="signup__element--terms">
+                    <!-- <div class="signup__element--terms">
                         <input type="checkbox" id="agree_all">
                         <label for="agree_all">전체동의</label>
-                    </div>
+                    </div> -->
 
                     <div class="signup__element--terms">
-                        <input type="checkbox" id="agree_all">
-                        <label for="agree_all">개인정보처리방침 동의(필수<span>*</span>)</label>
-                        <div><button><i class="fa-solid fa-arrow-up-right-from-square"></i> 내용보기</button></div>
+                        <input type="checkbox" id="agree">
+                        <label for="agree">개인정보처리방침 동의(필수<span>*</span>)</label>
+                        <div><button class="privacy-policy-content" type="button"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i> 내용보기</button>
+                        </div>
                     </div>
 
 
 
                     <div class="signup__button">
-                        <button class="signup__button signup__button--cancel">
+                        <button class="signup__button signup__button--cancel" type="button">
                             취소
                         </button>
-                        <button class="signup__button signup__button--confirm">
+                        <button class="signup__button signup__button--confirm" type="button">
                             확인
                         </button>
                     </div>
@@ -115,6 +139,8 @@
             <a href=""><span>ethandeveloper2@gmail.com</span></a>
         </address>
     </footer>
+    <script type="module" src="../javascript/signup.js"></script>
+
 </body>
 
 </html>

@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
         rel="stylesheet" />
     <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -19,15 +20,15 @@
         <!-- header -->
         <header>
             <nav>
-                <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />
-                <a href="">부동산뉴스</a>
-                <a href="freeboard">자유게시판</a>
-                <a href="login">로그인</a>
-                <a href="signup">회원가입</a>
-                <a href="mypage">마이페이지</a>
+                <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
+                <a href="http://localhost:443/news">부동산뉴스</a>
+                <a href="http://localhost:443/freeboard">자유게시판</a>
+                <a href="http://localhost:443/login">로그인</a>
+                <a href="http://localhost:443/signup">회원가입</a>
+                <a href="http://localhost:443/mypage">마이페이지</a>
             </nav>
             <nav>
-                <a href="home"><img src="../../images/main/logo_korean.png" alt="korean logo" /></a>
+                <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
                 <a href=""><i class="fa-solid fa-bars"></i></a>
             </nav>
         </header>
@@ -39,118 +40,39 @@
                 <h3> <img src="../../images/main/logo_simple.png" alt="logo" />내가 작성한 글
                 </h3>
                 <div class="myposts__info">
-                    <span>전체 <b>5</b>건</span>
+                    <span>전체 <b></b>건</span>
                 </div>
-                <ul class="myposts__Items">
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                            <span><i class="fa-regular fa-eye"></i>11</span>
-                            <span><i class="fa-regular fa-comment-dots"></i>5</span>
-                            <span><i class="fa-solid fa-thumbs-up"></i>100</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                            <span><i class="fa-regular fa-eye"></i>11</span>
-                            <span><i class="fa-regular fa-comment-dots"></i>5</span>
-                            <span><i class="fa-solid fa-thumbs-up"></i>100</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                            <span><i class="fa-regular fa-eye"></i>11</span>
-                            <span><i class="fa-regular fa-comment-dots"></i>5</span>
-                            <span><i class="fa-solid fa-thumbs-up"></i>100</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                            <span><i class="fa-regular fa-eye"></i>11</span>
-                            <span><i class="fa-regular fa-comment-dots"></i>5</span>
-                            <span><i class="fa-solid fa-thumbs-up"></i>100</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                            <span><i class="fa-regular fa-eye"></i>11</span>
-                            <span><i class="fa-regular fa-comment-dots"></i>5</span>
-                            <span><i class="fa-solid fa-thumbs-up"></i>100</span>
-                        </div>
-                    </li>
+                <ul class="myposts__items">
                 </ul>
                 <!-- 페이지네이션 -->
                 <div class="pagenation">
-                    <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
-                    <a class="arrow prev" href="#"><i class="fa-solid fa-angle-left"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a class="arrow next" href="#"><i class="fa-solid fa-angle-right"></i></a>
-                    <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a>
                 </div>
             </section>
 
-            <section class="myposts">
-                <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />내가 작성한 댓글
+            <section class="myPostcomments">
+                <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />내가 작성한 댓글 (게시글 관련)
                 </h3>
-                <div class="myposts__info">
+                <div class="myPostcomments__info">
                     <span>전체 <b>5</b>건</span>
                 </div>
-                <ul class="myposts__Items">
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="myposts__title" href="">롯데캐슬골드파크1차</a>
-                        <div class="myposts__sub-detail">
-                            <span><i class="fa-regular fa-calendar-days"></i>2022-07-06</span>
-                        </div>
-                    </li>
+                <ul class="myPostcomments__items">
                 </ul>
                 <!-- 페이지네이션 -->
                 <div class="pagenation">
-                    <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
-                    <a class="arrow prev" href="#"><i class="fa-solid fa-angle-left"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a class="arrow next" href="#"><i class="fa-solid fa-angle-right"></i></a>
-                    <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a>
+
+                </div>
+            </section>
+
+            <section class="myAptcomments">
+                <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />내가 작성한 댓글 (아파트 정보 관련)
+                </h3>
+                <div class="myAptcomments__info">
+                    <span>전체 <b>5</b>건</span>
+                </div>
+                <ul class="myAptcomments__items">
+                </ul>
+                <!-- 페이지네이션 -->
+                <div class="pagenation">
                 </div>
             </section>
     </div>
@@ -174,6 +96,7 @@
             <a href=""><span>ethandeveloper2@gmail.com</span></a>
         </address>
     </footer>
+    <script type="module" src="../javascript/mypage.js"></script>
 </body>
 
 </html>

@@ -53,7 +53,7 @@
 
 .section-login__button {
   display: block;
-  margin: calc(var(--margin) * 2) auto;
+  margin: calc(var(--margin) * 1.5) auto;
   font-size: var(--font-super-large);
   font-weight: var(--weight-bold);
   background: inherit;
@@ -66,6 +66,24 @@
   width: 80%;
   height: 20%;
   background-color: #0a2e4f;
+  color: white;
+}
+
+.section-signup__button {
+  display: block;
+  margin: calc(var(--margin) * 1.5) auto;
+  font-size: var(--font-super-large);
+  font-weight: var(--weight-bold);
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 8px;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 80%;
+  height: 20%;
+  background-color: var(--dark-green);
   color: white;
 }
 

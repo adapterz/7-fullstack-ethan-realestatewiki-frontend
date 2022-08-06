@@ -4,6 +4,24 @@
 @import "../components/basic-board.css";
 @import "../components/pagenation.css";
 
+.board__header h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board__button-make-post {
+  margin-right: calc(var(--margin) / 2);
+  font-size: var(--font-medium);
+  border: none;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  width: 25%;
+  padding: calc(var(--padding) / 2) 0;
+  /* height: 25px; */
+  border-radius: 5px;
+}
+
 .pagenation {
   padding-right: var(--padding);
 }

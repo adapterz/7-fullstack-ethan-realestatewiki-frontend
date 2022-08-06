@@ -18,9 +18,12 @@
   font-size: var(--font-large);
   color: var(--grey-dark-color);
   vertical-align: middle;
+  z-index: 2;
 }
 
 .pagenation a i {
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   vertical-align: middle;

@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
         rel="stylesheet" />
     <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -18,15 +20,15 @@
         <!-- header -->
         <header>
             <nav>
-                <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />
-                <a href="">부동산뉴스</a>
-                <a href="freeboard">자유게시판</a>
-                <a href="login">로그인</a>
-                <a href="signup">회원가입</a>
-                <a href="mypage">마이페이지</a>
+                <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
+                <a href="http://localhost:443/news">부동산뉴스</a>
+                <a href="http://localhost:443/freeboard">자유게시판</a>
+                <a href="http://localhost:443/login">로그인</a>
+                <a href="http://localhost:443/signup">회원가입</a>
+                <a href="http://localhost:443/mypage">마이페이지</a>
             </nav>
             <nav>
-                <a href="home"><img src="../../images/main/logo_korean.png" alt="korean logo" /></a>
+                <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
                 <a href=""><i class="fa-solid fa-bars"></i></a>
             </nav>
         </header>
@@ -36,34 +38,34 @@
             </header>
             <section class="post__content">
                 <div class="post__content__wrapper">
-                    <h3>실제 투자금으로 지역을 찾는 방법!! 기대됩니다.</h3>
+                    <h3></h3>
                     <div class="post__imoticon">
                         <div class="post__profile-picture">
                             <img src="../../images/profiles/basic_profile.jpg" alt="">
                         </div>
                         <div>
                             <div class="post__profile-information">
-                                <span><i class="fa-solid fa-user"></i><span>김은영</span></span>
+                                <span><i class="fa-solid fa-user"></i><span></span></span>
                             </div>
                             <div>
-                                <span><i class="fa-regular fa-calendar-days"></i><span>2022-07-06</span></span>
-                                <span><i class="fa-regular fa-eye"></i><span>11</span></span>
-                                <span><i class="fa-regular fa-comment-dots"></i><span>5</span></span>
+                                <span><i class="fa-regular fa-calendar-days"></i><span></span></span>
+                                <span><i class="fa-regular fa-eye"></i><span></span></span>
+                                <span><i class="fa-regular fa-comment-dots"></i><span></span></span>
                             </div>
                         </div>
                     </div>
                     <p>
-                        완전 기대됩니다.^^ 좋은 영상 잘 보고 있습니다...
+
                     </p>
                 </div>
                 <div class="comment">
-                    <h4>댓글 <span> 5 </span></h4>
+                    <h4>댓글 <span> </span></h4>
                     <ul>
                     </ul>
                 </div>
                 <!-- 페이지네이션 -->
                 <div class="pagenation">
-                    <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
+                    <!-- <a class="arrow pprev" href="#"><i class="fa-solid fa-angles-left"></i></a>
                     <a class="arrow prev" href="#"><i class="fa-solid fa-angle-left"></i></a>
                     <a href="#" class="active">1</a>
                     <a href="#">2</a>
@@ -71,7 +73,7 @@
                     <a href="#">4</a>
                     <a href="#">5</a>
                     <a class="arrow next" href="#"><i class="fa-solid fa-angle-right"></i></a>
-                    <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a>
+                    <a class="arrow nnext" href="#"><i class="fa-solid fa-angles-right"></i></a> -->
                 </div>
 
                 <!-- 댓글 달기 -->
@@ -82,7 +84,7 @@
                             <textarea cols="50" rows="5" placeholder="댓글을 입력해 주세요.(200자 제한)"></textarea>
                             <!-- <input type="text" placeholder="댓글을 입력해 주세요.(200자 제한)" /> -->
                         </form>
-                        <div><button class="comment-maker__button" type="submit" form="comment-form">등록</button></div>
+                        <div><button class="comment-maker__button" type="button" form="comment-form">등록</button></div>
                     </div>
                 </div>
             </section>

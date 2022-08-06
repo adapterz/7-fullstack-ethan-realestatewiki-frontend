@@ -29,7 +29,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* border-bottom: var(--grey-light-color) 1px solid; */
+}
+
+.signup__line {
   border-bottom: var(--grey-light-color) 1px solid;
+}
+
+.signup__check_msg {
+  padding-left: calc(var(--margin) * 1.7);
+  color: var(--red-color);
+  display: none;
+  font-size: var(--font-small);
+  margin-bottom: calc(var(--margin) / 3);
 }
 
 .signup__element label {

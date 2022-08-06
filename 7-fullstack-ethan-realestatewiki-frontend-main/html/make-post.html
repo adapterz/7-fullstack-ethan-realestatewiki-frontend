@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부동산WIKI-자유게시판_글작성</title>
     <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
-    <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/screens/make-post.css">
+    <link rel="stylesheet" href="../css/screens/make-post.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
         rel="stylesheet" />
     <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -19,17 +20,15 @@
         <!-- header -->
         <header>
             <nav>
-                <img class="logo" src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_simple.png"
-                    alt="logo" />
-                <a href="">부동산뉴스</a>
-                <a href="freeboard">자유게시판</a>
-                <a href="login">로그인</a>
-                <a href="signup">회원가입</a>
-                <a href="mypage">마이페이지</a>
+                <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
+                <a href="http://localhost:443/news">부동산뉴스</a>
+                <a href="http://localhost:443/freeboard">자유게시판</a>
+                <a href="http://localhost:443/login">로그인</a>
+                <a href="http://localhost:443/signup">회원가입</a>
+                <a href="http://localhost:443/mypage">마이페이지</a>
             </nav>
             <nav>
-                <a href=""><img src="/7-fullstack-ethan-realestatewiki-frontend-main/images/main/logo_korean.png"
-                        alt="korean logo" /></a>
+                <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
                 <a href=""><i class="fa-solid fa-bars"></i></a>
             </nav>
         </header>
@@ -46,13 +45,13 @@
                         <input type="text" id="title" placeholder="제목을 입력하세요.">
                     </div>
                     <div class="make-post__content">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea>
+                        <textarea name="" id="content" cols="30" rows="10" placeholder="내용을 입력하세요."></textarea>
                     </div>
                     <div class="button">
-                        <button class="button button--cancel">
+                        <button class="button button--cancel" type="button">
                             취소
                         </button>
-                        <button class="button button--confirm">
+                        <button class="button button--confirm" type="button">
                             작성완료
                         </button>
                     </div>
@@ -78,6 +77,7 @@
             <a href=""><span>ethandeveloper2@gmail.com</span></a>
         </address>
     </footer>
+    <script src="../javascript/make-post.js"></script>
 </body>
 
 </html>
