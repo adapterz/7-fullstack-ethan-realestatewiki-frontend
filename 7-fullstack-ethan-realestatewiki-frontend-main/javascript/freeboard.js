@@ -1,6 +1,28 @@
 // 자유 게시판 페이지
+// URL 상수
+const URL_FREEBOARD = "http://localhost:8080/freeboard/";
+const URL_GET_ALL_POST = "http://localhost:8080/posts/lists?page=";
+const URL_POST_COUNT = "http://localhost:8080/posts/all";
+const URL_GET_POST = `http://localhost:8080/posts/`;
+const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
 const URL_LOGOUT = "http://localhost:8080/users/logout";
 const URL_LOGIN = `http://localhost:443/login`;
+const URL_MAKE_POST = "http://localhost:443/make-post";
+const URL_SEARCH_RESULT = "http://localhost:443/search-result/?keyword=";
+
+// 페이지 중앙 검색 기능
+const searchBarButton = document.querySelector(".search-bar__button");
+searchBarButton.addEventListener("click", search);
+
+async function search() {
+  const keyword = document.querySelector("#keyword").value;
+  const pageNumber = 1;
+  const searchUrl = `${URL_SEARCH_RESULT}${encodeURIComponent(
+    keyword
+  )}&page=${encodeURIComponent(pageNumber)}`;
+  location.href = searchUrl;
+}
+
 // 쿠키 생성
 function getCookie(cName) {
   cName = cName + "=";
@@ -26,7 +48,6 @@ const loginNav = document.querySelector(
   "header > nav:nth-child(1) > a:nth-child(4)"
 );
 if (getCookie("nickname") && getCookie("LoginSession")) {
-  console.log(loginNav);
   loginNav.innerHTML = "로그아웃";
   loginNav.setAttribute("href", `#`);
   loginNav.addEventListener("click", logout);
@@ -41,25 +62,12 @@ async function logout() {
     },
   });
   deleteCookie("LoginSession");
+  deleteCookie("user_id");
   deleteCookie("nickname");
-  console.log(response);
   logoutPopUp();
   loginNav.setAttribute("href", URL_LOGIN);
   return;
 }
-
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}
-// URL 상수
-const URL_FREEBOARD = "http://localhost:8080/freeboard/";
-const URL_GET_ALL_POST = "http://localhost:8080/posts/lists?page=";
-const URL_POST_COUNT = "http://localhost:8080/posts/all";
-const URL_GET_POST = `http://localhost:8080/posts/`;
-const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
 
 // 페이지 당 컨텐츠 수
 const CONTENTS_PER_PAGE = 20;
@@ -99,7 +107,7 @@ async function getAllPost(pageNumber) {
     postWriter.textContent = data[i]["user_Id"];
     postCreated.textContent = ` / ${data[i]["datetime_updated"]}`;
     postViews.textContent = ` / 조회수 : ${data[i]["views"]}`;
-    postRecomended.textContent = ` / 추천수 : ${data[i]["recommended_number"]}`;
+    // postRecomended.textContent = ` / 추천수 : ${data[i]["recommended_number"]}`;
     const commentCountWrapper = document.createElement("div");
     commentCountWrapper.className = "board__content-likes";
     const commentCount = document.createElement("span");
@@ -134,7 +142,6 @@ async function getDataCount() {
 async function makePagination(page) {
   // 활성화해야할 페이지
   let activePageNumber = page;
-  console.log(activePageNumber);
   // 표시해야하는 페이지네이션의 첫번쨰 페이지를 나타낸다.
   let firstPageNumber = page;
   if (!page) {
@@ -173,7 +180,6 @@ async function makePagination(page) {
   if (data[0]["count(*)"] < 21) {
     return;
   }
-  console.log(`총 게시글 수 : ${data[0]["count(*)"]}`);
   const arrowPprev = document.createElement("a");
   arrowPprev.className = "arrow pprev";
   arrowPprev.setAttribute("href", "#");
@@ -188,21 +194,11 @@ async function makePagination(page) {
   arrowPprev.appendChild(arrowPprevIcon);
   pagination.appendChild(arrowPrev);
   arrowPrev.appendChild(arrowPrevIcon);
-  console.log(
-    `페이지 수 : ${Math.ceil(data[0]["count(*)"] / CONTENTS_PER_PAGE)}`
-  );
   // 전체 페이지를 totalPage 변수에 넣는다.
   const totalPage = Math.ceil(data[0]["count(*)"] / CONTENTS_PER_PAGE);
-  // 요청한 페이지의 pageGroup
-  console.log(`pageGroup : ${pageGroup}`);
-  // 요청한 페이지 그룹에서 처음으로 표시되어야 할 페이지
-  console.log(`firstPageNumber : ${firstPageNumber}`);
-  // 요청한 페이지
-  console.log(`activePageNumber : ${activePageNumber}`);
 
   // 자신의 페이지 그룹 * 5 <= totalPage 일 때
   if (pageGroup * 5 <= totalPage) {
-    console.log("새로운 규칙");
     for (let i = 0; i < 5; i++) {
       const a = document.createElement("a");
       a.textContent = i + firstPageNumber;
@@ -211,14 +207,12 @@ async function makePagination(page) {
       a.classList.add(`page${i + firstPageNumber}`);
       pagination.appendChild(a);
     }
-    console.log(`.page${activePageNumber}`);
     const activePage = document.querySelector(`.page${activePageNumber}`);
     activePage.classList.add("active");
   }
 
   // 자신의 페이지 그룹 * 5 > totalPage 일 때
   if (pageGroup * 5 > totalPage) {
-    console.log("두번째 규칙");
     for (let i = 0; i < totalPage - (pageGroup - 1) * 5; i++) {
       const a = document.createElement("a");
       a.textContent = i + firstPageNumber;
@@ -227,7 +221,6 @@ async function makePagination(page) {
       a.classList.add(`page${i + firstPageNumber}`);
       pagination.appendChild(a);
     }
-    console.log(`.page${activePageNumber}`);
     const activePage = document.querySelector(`.page${activePageNumber}`);
     activePage.classList.add("active");
   }
@@ -263,7 +256,6 @@ pageButton.addEventListener("click", async (event) => {
   // 새로운 페이지의 게시글 불러오기
   // 타겟의 태그가 A라면
   if (event.target.tagName == "A") {
-    console.log("스위치 page");
     event.target.classList.add("active");
     getAllPost(event.target.innerText);
     return;
@@ -272,7 +264,6 @@ pageButton.addEventListener("click", async (event) => {
     switch (event.target.className) {
       // 맨 앞 페이지로 이동
       case "fa-solid fa-angles-left": {
-        console.log("pprev");
         while (pagination.hasChildNodes()) {
           pagination.removeChild(pagination.firstChild);
         }
@@ -282,9 +273,7 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 이전 페이지로 이동
       case "fa-solid fa-angle-left": {
-        console.log("prev");
         prePage = currentPage.previousSibling;
-        console.log(`prePage.innerText : ${prePage.innerText}`);
         // 이전 페이지에 내용이 없는데, 현재 페이지가 1페이지라면
         if (!prePage.innerText && currentPage.innerText == 1) {
           while (pagination.hasChildNodes()) {
@@ -308,14 +297,8 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 다음 페이지로 이동
       case "fa-solid fa-angle-right": {
-        console.log("next");
         // 만약 현재 페이지가 5의 배수라면 다음 페이지 그룹으로 만든다.
         if (currentPage.innerText % 5 == 0) {
-          console.log(
-            `currentPage.innerText / 5 : ${Math.ceil(
-              currentPage.innerText / 5
-            )}`
-          );
           while (pagination.hasChildNodes()) {
             pagination.removeChild(pagination.firstChild);
           }
@@ -325,9 +308,7 @@ pageButton.addEventListener("click", async (event) => {
         }
         // 현재 페이지가 5의 배수가 아니라면,
         nextPage = currentPage.nextSibling;
-        console.log(`nextPage.innerText : ${nextPage.innerText}`);
         if (!nextPage.innerText) {
-          console.log("다음 페이지가 없습니다.");
           currentPage.classList.add("active");
           getAllPost(currentPage.innerText);
           break;
@@ -338,14 +319,12 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 마지막 페이지로 이동
       case "fa-solid fa-angles-right": {
-        console.log("nnext");
         // 전체 데이터 수 가져오기
         const totalData = await getDataCount();
         // 마지막 페이지수 구하기
         const lastPage = Math.ceil(
           totalData[0]["count(*)"] / CONTENTS_PER_PAGE
         );
-        console.log(`lastPage  ${lastPage}`);
         while (pagination.hasChildNodes()) {
           pagination.removeChild(pagination.firstChild);
         }
@@ -358,7 +337,6 @@ pageButton.addEventListener("click", async (event) => {
 });
 
 const boardContent = document.querySelector(".board__content");
-console.log(boardContent.innerText);
 boardContent.addEventListener("click", (event) => {
   if (event.target.tagName == "A") {
     const className = event.target.className;
@@ -366,10 +344,16 @@ boardContent.addEventListener("click", (event) => {
   }
 });
 
-const URL_MAKE_POST = "http://localhost:443/make-post";
 const makePostButton = document.querySelector(".board__button-make-post");
 makePostButton.addEventListener("click", goToMakePostPage);
 
 function goToMakePostPage() {
   location.href = URL_MAKE_POST;
+}
+
+function logoutPopUp() {
+  Swal.fire({
+    text: "로그아웃 되었습니다.",
+    timer: 2000,
+  });
 }

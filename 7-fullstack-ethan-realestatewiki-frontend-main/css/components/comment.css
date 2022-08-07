@@ -86,6 +86,37 @@
   color: #7e81a6;
 }
 
+.comment__writer :nth-child(3),
+.comment__writer :nth-child(4),
+.comment__writer :nth-child(5) {
+  font-size: var(--font-small);
+  color: red;
+  visibility: hidden;
+}
+
 .comment__content {
   font-size: var(--font-medium);
+}
+
+.comment-update-textarea {
+  height: 50px;
+  width: 130%;
+  border: 1px solid black;
+}
+
+.comment-update-button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  color: #7e81a6;
+  margin-right: calc(var(--margin) / 5);
+}
+
+.button-wrapper {
+  width: 130%;
+  text-align: right;
 }

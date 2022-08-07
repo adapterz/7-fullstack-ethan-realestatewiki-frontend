@@ -1,3 +1,14 @@
+const URL_LOGOUT = "http://localhost:8080/users/logout";
+const URL_LOGIN = `http://localhost:443/login`;
+const URL_HOME = "http://localhost:443";
+const URL_GET_MY_POST_COUNT = "http://localhost:8080/posts/user-post/count";
+const URL_GET_MY_POST_COMMENT =
+  "http://localhost:8080/comments/getbyuserIndex/post-comment";
+const URL_GET_MY_APT_COMMENT =
+  "http://localhost:8080/comments/getbyuserIndex/apt-comment";
+const URL_GET_POST = "http://localhost:443/post/";
+const URL_GET_APT_INFO = "http://localhost:443/info/";
+
 // 쿠키 생성
 function getCookie(cName) {
   cName = cName + "=";
@@ -23,7 +34,6 @@ const loginNav = document.querySelector(
   "header > nav:nth-child(1) > a:nth-child(4)"
 );
 if (getCookie("nickname") && getCookie("LoginSession")) {
-  console.log(loginNav);
   loginNav.innerHTML = "로그아웃";
   loginNav.setAttribute("href", `#`);
   loginNav.addEventListener("click", logout);
@@ -38,42 +48,25 @@ async function logout() {
     },
   });
   deleteCookie("LoginSession");
+  deleteCookie("user_id");
   deleteCookie("nickname");
-  console.log(response);
   logoutPopUp();
   loginNav.setAttribute("href", URL_LOGIN);
   return;
 }
 
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}
-
 // 로그인 되어 있지 않을 때, 홈화면으로 돌아가기
-const URL_HOME = "http://localhost:443";
+
 if (!getCookie("LoginSession")) {
   loginRequiredPopUp();
   setTimeout(() => {
     location.href = URL_HOME;
-  }, 1000);
-}
-
-function loginRequiredPopUp() {
-  Swal.fire({
-    text: "로그인이 필요합니다.",
-    timer: 4000,
   });
 }
 
-console.log(getCookie("LoginSession"));
 document.addEventListener("DOMContentLoaded", getMyPost);
 document.addEventListener("DOMContentLoaded", getMyPostComment);
 document.addEventListener("DOMContentLoaded", getMyAptComment);
-
-const URL_GET_MY_POST_COUNT = "http://localhost:8080/posts/user-post/count";
 
 async function getMyPost() {
   const myPostList = document.querySelector(".myposts__items");
@@ -88,8 +81,12 @@ async function getMyPost() {
       credentials: "include",
     }
   );
+  if (response["status"] == 404) {
+    const totalPostCount = document.querySelector(".myposts__info > span > b");
+    totalPostCount.textContent = 0;
+    return;
+  }
   const data = await response.json();
-  console.log(data);
   const totalPostCount = document.querySelector(".myposts__info > span > b");
   totalPostCount.textContent = `${data.length}`;
   for (let i = 0; i < data.length; i++) {
@@ -97,10 +94,7 @@ async function getMyPost() {
     const postTitle = document.createElement("a");
     postTitle.className = "myposts__title";
     postTitle.textContent = data[i]["title"];
-    postTitle.setAttribute(
-      "href",
-      `http://localhost:443/post/${data[i]["id"]}`
-    );
+    postTitle.setAttribute("href", `${URL_GET_POST}${data[i]["id"]}`);
     const postInfo = document.createElement("div");
     postInfo.className = "myposts__sub-detail";
     const dateIcon = document.createElement("i");
@@ -133,11 +127,6 @@ async function getMyPost() {
   }
 }
 
-const URL_GET_MY_POST_COMMENT =
-  "http://localhost:8080/comments/getbyuserIndex/post-comment";
-const URL_GET_MY_APT_COMMENT =
-  "http://localhost:8080/comments/getbyuserIndex/apt-comment";
-
 // 작성한 댓글 보기
 
 async function getMyPostComment() {
@@ -149,8 +138,14 @@ async function getMyPostComment() {
     },
     credentials: "include",
   });
+  if (response["status"] == 404) {
+    const totalPostCount = document.querySelector(
+      ".myPostcomments__info > span > b"
+    );
+    totalPostCount.textContent = 0;
+    return;
+  }
   const data = await response.json();
-  console.log(data);
   const totalPostCount = document.querySelector(
     ".myPostcomments__info > span > b"
   );
@@ -163,7 +158,7 @@ async function getMyPostComment() {
     postCommentTitle.textContent = data[i]["content"];
     postCommentTitle.setAttribute(
       "href",
-      `http://localhost:443/post/${data[i]["post_id"]}`
+      `${URL_GET_POST}${data[i]["post_id"]}`
     );
     const postCommentInfo = document.createElement("div");
     postCommentInfo.className = "myPostcomments__sub-detail";
@@ -188,8 +183,14 @@ async function getMyAptComment() {
     },
     credentials: "include",
   });
+  if (response["status"] == 404) {
+    const totalPostCount = document.querySelector(
+      ".myAptcomments__info > span > b"
+    );
+    totalPostCount.textContent = 0;
+    return;
+  }
   const data = await response.json();
-  console.log(data);
   const totalPostCount = document.querySelector(
     ".myAptcomments__info > span > b"
   );
@@ -202,7 +203,7 @@ async function getMyAptComment() {
     postCommentTitle.textContent = data[i]["content"];
     postCommentTitle.setAttribute(
       "href",
-      `http://localhost:443/info/${data[i]["apt_id"]}`
+      `${URL_GET_APT_INFO}${data[i]["apt_id"]}`
     );
     const postCommentInfo = document.createElement("div");
     postCommentInfo.className = "myPostcomments__sub-detail";
@@ -223,4 +224,18 @@ async function getMyAptComment() {
     postCommentInfo.append(postCommentAptIcon);
     postCommentInfo.append(postCommentInfoAptName);
   }
+}
+
+function loginRequiredPopUp() {
+  Swal.fire({
+    text: "로그인이 필요합니다.",
+    timer: 4000,
+  });
+}
+
+function logoutPopUp() {
+  Swal.fire({
+    text: "로그아웃 되었습니다.",
+    timer: 2000,
+  });
 }

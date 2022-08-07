@@ -5,25 +5,13 @@ import fs from "fs";
 import "./env.js";
 import path from "path";
 import { fileURLToPath } from "url";
-
-import { dir } from "console";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// app.use(function (req, res, next) {
-//   console.log(req.secure);
-//   if (!req.secure) {
-//     res.redirect("https://" + "realestatewiki.kr" + req.url);
-//   } else {
-//     next();
-//   }
-// });
-
 app.use(express.json());
 app.use(express.static(`${__dirname}`));
-app.set("view engine", "ejs");
 
 // home 화면 띄워주기
 app.get("/", (req, res) => {
@@ -99,6 +87,13 @@ app.get("/search-result", (req, res) => {
 // 글쓰기 페이지로 이동
 app.get("/make-post", (req, res) => {
   const dirPath = path.join(__dirname, "html", "make-post.html");
+  console.log(dirPath);
+  res.sendFile(dirPath);
+});
+
+// 글수정 페이지로 이동
+app.get("/update-post/:id", (req, res) => {
+  const dirPath = path.join(__dirname, "html", "update-post.html");
   console.log(dirPath);
   res.sendFile(dirPath);
 });

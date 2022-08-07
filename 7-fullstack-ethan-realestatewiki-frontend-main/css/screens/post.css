@@ -55,3 +55,42 @@
   height: 100%;
   border-radius: 70px;
 }
+
+.flex-wrapper {
+  display: flex;
+}
+
+.post__button {
+  display: flex;
+  align-items: center;
+  margin: var(--margin) calc(var(--margin) / 5);
+}
+
+.post__button button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  color: #7e81a6;
+}
+
+.post__button button i {
+  font-size: var(--font-medium);
+}
+
+.comment__button-correct,
+.comment__button-delete {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  color: #7e81a6;
+  margin: auto calc(var(--margin) / 5);
+  font-size: var(--font-small);
+}

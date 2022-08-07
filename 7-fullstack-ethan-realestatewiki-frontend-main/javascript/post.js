@@ -1,25 +1,24 @@
 const href = window.location.href;
 const parts = href.split("/");
 const id = parts.pop().replace("?", "");
-// || parts.pop()
-console.log(`post id : ${id}`);
 
 const URL_GET_POST = `http://localhost:8080/posts/${id}`;
 const URL_GET_COMMENT = `http://localhost:8080/comments/getbypostid/${id}/?page=`;
 const URL_GET_POST_COMMENT_COUNT = `http://localhost:8080/comments/Countbypostid/${id}`;
 const URL_POST = `http://localhost:443/post/${id}`;
-
-let pageNumber = 1;
-
 const URL_LOGOUT = "http://localhost:8080/users/logout";
 const URL_LOGIN = `http://localhost:443/login`;
+const URL_CORRECT_POST = "http://localhost:443/update-post/";
+const URL_DELETE_POST = `http://localhost:8080/posts/${id}`;
+const URL_DELETE_RELATED_POST_COMMENT = `http://localhost:8080/comments/commentinpost/all-comment-in-post/${id}`;
+const URL_FREEBOARD = `http://localhost:443/freeboard`;
+const URL_DELETE_COMMENT = "http://localhost:8080/comments/commentinpost/";
+const URL_UPDATE_COMMENT = `http://localhost:8080/comments/commentinpost/`;
+const URL_GET_IMAGE = `http://localhost:8080/`;
+const URL_MAKE_APT_COMMENT = "http://localhost:8080/comments";
+const URL_GO_TO_POST = "http://localhost:443/post/";
 
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}
+let pageNumber = 1;
 
 // 쿠키 생성
 function getCookie(cName) {
@@ -46,7 +45,6 @@ const loginNav = document.querySelector(
   "header > nav:nth-child(1) > a:nth-child(4)"
 );
 if (getCookie("nickname") && getCookie("LoginSession")) {
-  console.log(loginNav);
   loginNav.innerHTML = "로그아웃";
   loginNav.setAttribute("href", `#`);
   loginNav.addEventListener("click", logout);
@@ -61,8 +59,8 @@ async function logout() {
     },
   });
   deleteCookie("LoginSession");
+  deleteCookie("user_id");
   deleteCookie("nickname");
-  console.log(response);
   logoutPopUp();
   loginNav.setAttribute("href", URL_LOGIN);
   return;
@@ -82,21 +80,24 @@ async function getPost() {
     credentials: "include",
   });
   const data = await response.json();
-  console.log("1");
-  console.log(data);
-  console.log("1");
+  if (getCookie("user_id") != data[0]["user_id"]) {
+    const postDeleteButton = document.querySelector(".post__button-delete");
+    const postCorrectButton = document.querySelector(".post__button-correct");
+    postDeleteButton.style.display = "none";
+    postCorrectButton.style.display = "none";
+  }
   const title = document.querySelector(".post__content__wrapper h3");
   title.innerHTML = data[0]["title"];
   const content = document.querySelector(".post__content__wrapper p");
   content.textContent = data[0]["content"];
   const profileImg = document.querySelector(
-    "#wrapper > section > section > div.post__content__wrapper > div > div.post__profile-picture > img"
+    "#wrapper > section > section > div.post__content__wrapper > div > div.post__imoticon > div.post__profile-picture > img"
   );
-  profileImg.src = `http://localhost:8080/${data[0]["image"]}`;
+  profileImg.src = `${URL_GET_IMAGE}${data[0]["image"]}`;
   const userName = document.querySelector(
     ".post__profile-information span span"
   );
-  userName.innerHTML = data[0]["nickname"];
+  userName.innerHTML = data[0]["user_id"];
   const createdDate = document.querySelector(
     ".post__imoticon :nth-child(2) :nth-child(2) :nth-child(1) span"
   );
@@ -113,7 +114,6 @@ async function getPost() {
 
 // 댓글 총개수를 파악하기
 async function getPostCommentCount() {
-  console.log(URL_GET_POST_COMMENT_COUNT);
   const response = await fetch(URL_GET_POST_COMMENT_COUNT, {
     method: "GET",
     headers: {
@@ -121,17 +121,11 @@ async function getPostCommentCount() {
     },
   });
   const data = await response.json();
-  console.log(data);
   return data;
 }
 
 // 댓글 불러오기 (게시글 관련) (페이지네이션)
 async function getComment(pageNumber) {
-  console.log(
-    `댓글 페이지네이션 가져오기 : ${URL_GET_COMMENT}${encodeURIComponent(
-      pageNumber
-    )}`
-  );
   // 댓글 데이터를 불러온다. (페이지 번호를 함께 요청)
   const response = await fetch(`${URL_GET_COMMENT}${pageNumber}`, {
     method: "GET",
@@ -140,14 +134,11 @@ async function getComment(pageNumber) {
     },
   });
   const data = await response.json();
-  console.log(`getComment : ${data}`);
   // 총 댓글 개수를 가져와서 textContent에 할당한다.
   const rawCommentCountData = await getPostCommentCount();
   const commentCountData = rawCommentCountData[0]["count(*)"];
-  console.log(commentCountData);
   const commentCount = document.querySelector(".comment h4 span");
   const commentWrapper = document.querySelector(".comment ul");
-  console.log(commentCount);
   commentCount.textContent = commentCountData;
   // 가져온 댓글 데이터 개수에 맞게, 댓글을 생성한다.
   for (let i = 0; i < data.length; i++) {
@@ -155,8 +146,10 @@ async function getComment(pageNumber) {
     const profileDiv = document.createElement("div");
     profileDiv.className = "comment__user-profile-image";
     const profileImg = document.createElement("img");
-    profileImg.src = `http://localhost:8080/${data[i]["image"]}`;
+    profileImg.src = `${URL_GET_IMAGE}${data[i]["image"]}`;
     commentWrapper.appendChild(li);
+    const commentWrapperWrapper = document.createElement("div");
+    commentWrapperWrapper.className = "comment__wrapper-wrapper";
     const commentDiv = document.createElement("div");
     commentDiv.className = "comment__wrapper";
     const commentContent = document.createElement("div");
@@ -166,15 +159,68 @@ async function getComment(pageNumber) {
     commentInfo.className = "comment__writer";
     const commentWriter = document.createElement("span");
     const commentCreatedTime = document.createElement("span");
+    const commentWriterId = document.createElement("span");
+    const commentId = document.createElement("span");
+    const postId = document.createElement("span");
     commentWriter.textContent = data[i]["user_id"];
     commentCreatedTime.textContent = ` / ${data[i]["datetime_updated"]}`;
+    commentWriterId.textContent = `${data[i]["user_index"]}`;
+    commentId.textContent = `${data[i]["id"]}`;
+    postId.textContent = `${data[i]["post_id"]}`;
+    const updateButton = document.createElement("button");
+    updateButton.className = "comment__button-correct";
+    updateButton.type = "button";
+    const updateButtonIcon = document.createElement("i");
+    updateButtonIcon.className = "fa-solid fa-pencil";
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "comment__button-delete";
+    deleteButton.type = "button";
+    const deleteButtonIcon = document.createElement("i");
+    deleteButtonIcon.className = "fa-solid fa-trash-can";
     li.appendChild(profileDiv);
     profileDiv.appendChild(profileImg);
-    li.appendChild(commentDiv);
+    li.appendChild(commentWrapperWrapper);
+    // li.appendChild(commentDiv);
     commentDiv.appendChild(commentContent);
-    li.appendChild(commentInfo);
+    // li.appendChild(commentInfo);
+    commentWrapperWrapper.appendChild(commentDiv);
+    commentWrapperWrapper.appendChild(commentInfo);
     commentInfo.appendChild(commentWriter);
     commentInfo.appendChild(commentCreatedTime);
+    commentInfo.appendChild(commentWriterId);
+    commentInfo.appendChild(commentId);
+    commentInfo.appendChild(postId);
+    updateButton.appendChild(updateButtonIcon);
+    deleteButton.appendChild(deleteButtonIcon);
+    commentInfo.appendChild(updateButton);
+    commentInfo.appendChild(deleteButton);
+    const textArea = document.createElement("input");
+    textArea.className = "comment-update-textarea";
+    textArea.value = data[i]["content"];
+    commentWrapperWrapper.appendChild(textArea);
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.className = "update-button-wrapper";
+    const textUpdatebutton = document.createElement("button");
+    textUpdatebutton.className = "comment-update-button";
+    textUpdatebutton.type = "button";
+    const textUpdatebuttonIcon = document.createElement("i");
+    textUpdatebuttonIcon.className = "fa-solid fa-check";
+    textUpdatebutton.appendChild(textUpdatebuttonIcon);
+    const updatecancelbutton = document.createElement("button");
+    updatecancelbutton.className = "comment-update-button";
+    const updatecancelbuttonIcon = document.createElement("i");
+    updatecancelbuttonIcon.className = "fa-solid fa-x";
+    updatecancelbutton.type = "button";
+    updatecancelbutton.appendChild(updatecancelbuttonIcon);
+    commentWrapperWrapper.appendChild(buttonWrapper);
+    buttonWrapper.appendChild(textUpdatebutton);
+    buttonWrapper.appendChild(updatecancelbutton);
+    textArea.style.display = "none";
+    buttonWrapper.style.display = "none";
+    if (getCookie("user_id") != data[i]["user_id"]) {
+      updateButton.style.display = "none";
+      deleteButton.style.display = "none";
+    }
   }
 }
 
@@ -182,7 +228,6 @@ async function getComment(pageNumber) {
 async function makePagination(page) {
   // 활성화해야할 페이지
   let activePageNumber = page;
-  console.log(`activePageNumber : ${activePageNumber}`);
   // 표시해야하는 페이지네이션의 첫번쨰 페이지를 나타낸다.
   let firstPageNumber = page;
   if (!page) {
@@ -222,7 +267,6 @@ async function makePagination(page) {
   if (data[0]["count(*)"] < 5) {
     return;
   }
-  console.log(`총 댓글 수 : ${data[0]["count(*)"]}`);
   const arrowPprev = document.createElement("a");
   arrowPprev.className = "arrow pprev";
   // arrowPprev.setAttribute("href", "#");
@@ -237,19 +281,10 @@ async function makePagination(page) {
   arrowPprev.appendChild(arrowPprevIcon);
   pagination.appendChild(arrowPrev);
   arrowPrev.appendChild(arrowPrevIcon);
-  console.log(`페이지 수 : ${Math.ceil(data[0]["count(*)"] / 5)}`);
   // 전체 페이지를 totalPage 변수에 넣는다.
   const totalPage = Math.ceil(data[0]["count(*)"] / 5);
-  // 요청한 페이지의 pageGroup
-  console.log(`pageGroup : ${pageGroup}`);
-  // 요청한 페이지 그룹에서 처음으로 표시되어야 할 페이지
-  console.log(`firstPageNumber : ${firstPageNumber}`);
-  // 요청한 페이지
-  console.log(`activePageNumber : ${activePageNumber}`);
-
   // 자신의 페이지 그룹 * 5 <= totalPage 일 때
   if (pageGroup * 5 <= totalPage) {
-    console.log("새로운 규칙");
     for (let i = 0; i < 5; i++) {
       const a = document.createElement("a");
       a.textContent = i + firstPageNumber;
@@ -258,14 +293,12 @@ async function makePagination(page) {
       a.classList.add(`page${i + firstPageNumber}`);
       pagination.appendChild(a);
     }
-    console.log(`.page${activePageNumber}`);
     const activePage = document.querySelector(`.page${activePageNumber}`);
     activePage.classList.add("active");
   }
 
   // 자신의 페이지 그룹 * 5 > totalPage 일 때
   if (pageGroup * 5 > totalPage) {
-    console.log("두번째 규칙");
     for (let i = 0; i < totalPage - (pageGroup - 1) * 5; i++) {
       const a = document.createElement("a");
       a.textContent = i + firstPageNumber;
@@ -274,7 +307,6 @@ async function makePagination(page) {
       a.classList.add(`page${i + firstPageNumber}`);
       pagination.appendChild(a);
     }
-    console.log(`.page${activePageNumber}`);
     const activePage = document.querySelector(`.page${activePageNumber}`);
     activePage.classList.add("active");
   }
@@ -306,13 +338,11 @@ pageButton.addEventListener("click", async (event) => {
   // 기존 페이지의 게시글 제거
   while (board.hasChildNodes()) {
     board.removeChild(board.firstChild);
-    console.log("지운다");
   }
 
   // 새로운 페이지의 게시글 불러오기
   // 타겟의 태그가 A라면
   if (event.target.tagName == "A") {
-    console.log("스위치 page");
     event.target.classList.add("active");
     getComment(event.target.innerText);
     return;
@@ -321,7 +351,6 @@ pageButton.addEventListener("click", async (event) => {
     switch (event.target.className) {
       // 맨 앞 페이지로 이동
       case "fa-solid fa-angles-left": {
-        console.log("pprev");
         while (pagination.hasChildNodes()) {
           pagination.removeChild(pagination.firstChild);
         }
@@ -331,9 +360,7 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 이전 페이지로 이동
       case "fa-solid fa-angle-left": {
-        console.log("prev");
         prePage = currentPage.previousSibling;
-        console.log(`prePage.innerText : ${prePage.innerText}`);
         // 이전 페이지에 내용이 없는데, 현재 페이지가 1페이지라면
         if (!prePage.innerText && currentPage.innerText == 1) {
           while (pagination.hasChildNodes()) {
@@ -359,14 +386,8 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 다음 페이지로 이동
       case "fa-solid fa-angle-right": {
-        console.log("next");
         // 만약 현재 페이지가 5의 배수라면 다음 페이지 그룹으로 만든다.
         if (currentPage.innerText % 5 == 0) {
-          console.log(
-            `currentPage.innerText / 5 : ${Math.ceil(
-              currentPage.innerText / 5
-            )}`
-          );
           while (pagination.hasChildNodes()) {
             pagination.removeChild(pagination.firstChild);
           }
@@ -376,9 +397,7 @@ pageButton.addEventListener("click", async (event) => {
         }
         // 현재 페이지가 5의 배수가 아니라면,
         nextPage = currentPage.nextSibling;
-        console.log(`nextPage.innerText : ${nextPage.innerText}`);
         if (!nextPage.innerText) {
-          console.log("다음 페이지가 없습니다.");
           currentPage.classList.add("active");
           getComment(currentPage.innerText);
           break;
@@ -389,12 +408,10 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 마지막 페이지로 이동
       case "fa-solid fa-angles-right": {
-        console.log("nnext");
         // 전체 데이터 수 가져오기
         const totalData = await getPostCommentCount();
         // 마지막 페이지수 구하기
         const lastPage = Math.ceil(totalData[0]["count(*)"] / 5);
-        console.log(`lastPage  ${lastPage}`);
         while (pagination.hasChildNodes()) {
           pagination.removeChild(pagination.firstChild);
         }
@@ -415,9 +432,9 @@ async function makeComment() {
     content: document.querySelector("textarea").value,
     post_id: id,
   };
-  // TODO : 파일에 입력하도록.. 만들기
+
   // 백엔드로 연결하지말고, 파일에 입력시키도록
-  const response = await fetch("http://localhost:8080/comments", {
+  const response = await fetch(URL_MAKE_APT_COMMENT, {
     method: "post", // POST 요청을 보낸다.
     body: JSON.stringify(comment), // comment JS 객체를 JSON으로 변경하여 보냄
     headers: {
@@ -436,6 +453,199 @@ async function makeComment() {
   return;
 }
 
+const postCorrectButton = document.querySelector(".post__button-correct");
+postCorrectButton.addEventListener("click", goToCorrectPost);
+function goToCorrectPost() {
+  location.href = `${URL_CORRECT_POST}${id}`;
+}
+
+const postDeleteButton = document.querySelector(".post__button-delete");
+postDeleteButton.addEventListener("click", deletePostPopUp);
+
+async function deletePostPopUp() {
+  Swal.fire({
+    title: "게시글을 삭제하시겠습니까?",
+    text: "삭제된 게시글은 복구되지 않습니다.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "삭제",
+    cancelButtonText: "취소",
+  }).then(async function (result) {
+    if (result.isConfirmed) {
+      const response = await fetch(URL_DELETE_POST, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      if (response["status"] == 204) {
+        deletePostSuccessPopUp();
+        setTimeout(() => {
+          location.href = URL_FREEBOARD;
+        }, 1000);
+        // }
+      }
+      return;
+    } else {
+      return;
+    }
+  });
+}
+
+// 댓글 수정, 삭제 버튼
+const commentBtn = document.querySelector(".comment ul");
+commentBtn.addEventListener("click", update);
+
+async function update(event) {
+  if (event.target.className == "fa-solid fa-pencil") {
+    const userId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.innerHTML;
+    const commentId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.nextSibling.innerHTML;
+    const commentArea = event.target.parentElement.parentElement.parentElement;
+    const contentArea = commentArea.firstChild;
+    const contentInfoArea = commentArea.firstChild.nextSibling;
+    const contentUpdateArea = commentArea.firstChild.nextSibling.nextSibling;
+    const contentUpdateButtonArea =
+      commentArea.firstChild.nextSibling.nextSibling.nextSibling;
+
+    contentArea.style.display = "none";
+    contentInfoArea.style.display = "none";
+    contentUpdateArea.style.display = "block";
+    contentUpdateButtonArea.style.display = "block";
+  }
+  if (event.target.className == "fa-solid fa-trash-can") {
+    const userId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.innerHTML;
+    const commentId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.nextSibling.innerHTML;
+    const postId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.nextSibling.nextSibling.innerHTML;
+    const response = await fetch(`${URL_DELETE_COMMENT}${commentId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    if (response["status"] == 204) {
+      deleteCommentSuccessPopUp();
+      setTimeout(() => {
+        location.href = `${URL_GO_TO_POST}${postId}`;
+      }, 1000);
+      // }
+    }
+    return;
+  }
+  if (event.target.className == "fa-solid fa-check") {
+    const userId =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.firstChild.nextSibling.nextSibling.innerHTML;
+    const commentId =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.firstChild.nextSibling.nextSibling.nextSibling.innerHTML;
+    const postId =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling
+        .innerHTML;
+    const contentUpdateArea =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.nextSibling;
+    const updateCommentUrl = `${URL_UPDATE_COMMENT}${commentId}`;
+    const comment = {
+      content: contentUpdateArea.value,
+    };
+    const response = await fetch(updateCommentUrl, {
+      method: "put", // POST 요청을 보낸다.
+      body: JSON.stringify(comment), // comment JS 객체를 JSON으로 변경하여 보냄
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    if (response["status"] == 201) {
+      updateCommentSuccessPopUp();
+      setTimeout(() => {
+        location.href = `${URL_GO_TO_POST}${postId}`;
+      }, 1000);
+      return;
+    }
+    if (response["status"] == 401) {
+      LoginRequiredPopUp();
+      return;
+    }
+    if (response["status"] == 204) {
+      noChangePopUp();
+      return;
+    }
+    updateFailPopUp();
+    return;
+
+    window.alert("확인");
+  }
+  if (event.target.className == "fa-solid fa-x") {
+    const commentArea = event.target.parentElement.parentElement.parentElement;
+    const contentArea = commentArea.firstChild;
+    const contentInfoArea = commentArea.firstChild.nextSibling;
+    const contentUpdateArea = commentArea.firstChild.nextSibling.nextSibling;
+    const contentUpdateButtonArea =
+      commentArea.firstChild.nextSibling.nextSibling.nextSibling;
+    contentArea.style.display = "block";
+    contentInfoArea.style.display = "block";
+    contentUpdateArea.style.display = "none";
+    contentUpdateButtonArea.style.display = "none";
+  }
+}
+
+function deleteCommentSuccessPopUp() {
+  Swal.fire({
+    text: "댓글이 삭제되었습니다.",
+    timer: 2000,
+  });
+}
+
+function updateCommentSuccessPopUp() {
+  Swal.fire({
+    text: "댓글이 수정되었습니다.",
+    timer: 2000,
+  });
+}
+
+function LoginRequiredPopUp() {
+  Swal.fire({
+    text: "로그인이 필요합니다.",
+    timer: 2000,
+  });
+}
+
+function noChangePopUp() {
+  Swal.fire({
+    text: "수정된 내용이 없습니다.",
+    timer: 2000,
+  });
+}
+
+function updateFailPopUp() {
+  Swal.fire({
+    text: "댓글 수정이 실패했습니다. 관리자에게 문의해주세요.",
+    timer: 2000,
+  });
+}
+
+function logoutPopUp() {
+  Swal.fire({
+    text: "로그아웃 되었습니다.",
+    timer: 2000,
+  });
+}
+
 function commentSuccessPopUp() {
   Swal.fire({
     text: "댓글이 작성 되었습니다.",
@@ -446,6 +656,13 @@ function commentSuccessPopUp() {
 function commentFailPopUp() {
   Swal.fire({
     text: "로그인이 필요합니다.",
+    timer: 2000,
+  });
+}
+
+function deletePostSuccessPopUp() {
+  Swal.fire({
+    text: "게시글이 삭제되었습니다.",
     timer: 2000,
   });
 }

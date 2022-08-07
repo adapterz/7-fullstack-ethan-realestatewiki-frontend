@@ -41,5 +41,6 @@ header nav:nth-child(2) a img {
 }
 
 header nav:nth-child(2) a i {
+  visibility: hidden;
   font-size: calc(var(--font-large) * 1.5);
 }

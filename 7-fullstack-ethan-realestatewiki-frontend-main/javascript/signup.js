@@ -1,5 +1,20 @@
+const URL_HOME = "http://localhost:443";
 const URL_LOGOUT = "http://localhost:8080/users/logout";
 const URL_LOGIN = `http://localhost:443/login`;
+const URL_ID_CHECK = "http://localhost:8080/users/id-check";
+const URL_NICKNAME_CHECK = "http://localhost:8080/users/nickname-check";
+const URL_PHONENUMBER_CHECK = "http://localhost:8080/users/phonenumber-check";
+const URL_EMAIL_CHECK = "http://localhost:8080/users/email-check";
+const URL_MAKE_USER = "http://localhost:8080/users";
+
+// 로그인 되어 있지 않을 때, 홈화면으로 돌아가기
+if (getCookie("LoginSession")) {
+  alreadyLoginPopUp();
+  setTimeout(() => {
+    location.href = URL_HOME;
+  });
+}
+
 // 쿠키 생성
 function getCookie(cName) {
   cName = cName + "=";
@@ -40,21 +55,13 @@ async function logout() {
     },
   });
   deleteCookie("LoginSession");
+  deleteCookie("user_id");
   deleteCookie("nickname");
   console.log(response);
   logoutPopUp();
   loginNav.setAttribute("href", URL_LOGIN);
   return;
 }
-
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}
-
-const URL_HOME = "http://localhost:443";
 
 /*
  * 디바운싱 : Interval 내 반복되는 이벤트를 무시함.
@@ -117,7 +124,8 @@ async function userIdinputHandler(event) {
         "아이디는 영문소문자로 시작하는 5~15자영문소문자, 숫자 조합으로 구성되어야 합니다."
       );
     }
-    const response = await fetch("http://localhost:8080/users/id-check", {
+
+    const response = await fetch(URL_ID_CHECK, {
       method: "post", // POST 요청을 보낸다.
       body: JSON.stringify(user_id), // comment JS 객체를 JSON문자열으로 변경하여 보냄
       headers: {
@@ -228,7 +236,8 @@ async function nicknameinputHandler(event) {
         "5~10자의 영어, 숫자 또는 한글의 조합으로 사용 가능합니다."
       );
     }
-    const response = await fetch("http://localhost:8080/users/nickname-check", {
+
+    const response = await fetch(URL_NICKNAME_CHECK, {
       method: "post", // POST 요청을 보낸다.
       body: JSON.stringify(nickname), // comment JS 객체를 JSON문자열으로 변경하여 보냄
       headers: {
@@ -282,16 +291,14 @@ async function phonenumberinputHandler(event) {
       userPhonenumberConfirmed = false;
       return console.log("번호는 - 없이 숫자로만 작성");
     }
-    const response = await fetch(
-      "http://localhost:8080/users/phonenumber-check",
-      {
-        method: "post", // POST 요청을 보낸다.
-        body: JSON.stringify(phonenumber), // comment JS 객체를 JSON문자열으로 변경하여 보냄
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+
+    const response = await fetch(URL_PHONENUMBER_CHECK, {
+      method: "post", // POST 요청을 보낸다.
+      body: JSON.stringify(phonenumber), // comment JS 객체를 JSON문자열으로 변경하여 보냄
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (response["status"] == 409) {
       checkMsgPhonenumber.style.display = "block";
       checkMsgPhonenumber.style.color = "red";
@@ -330,7 +337,8 @@ async function emailinputHandler(event) {
       userEmailConfirmed = false;
       return console.log("이메일을 입력해주세요.");
     }
-    const response = await fetch("http://localhost:8080/users/email-check", {
+
+    const response = await fetch(URL_EMAIL_CHECK, {
       method: "post", // POST 요청을 보낸다.
       body: JSON.stringify(email), // comment JS 객체를 JSON문자열으로 변경하여 보냄
       headers: {
@@ -453,7 +461,8 @@ async function signup() {
     requireAgreePopUp();
     return;
   }
-  const response = await fetch("http://localhost:8080/users", {
+
+  const response = await fetch(URL_MAKE_USER, {
     method: "post", // POST 요청을 보낸다.
     body: formData, // comment JS 객체를 JSON문자열으로 변경하여 보냄
     headers: {},
@@ -473,6 +482,46 @@ signupButton.addEventListener("click", signup);
 
 const privacyPolicyButton = document.querySelector(".privacy-policy-content");
 privacyPolicyButton.addEventListener("click", showPrivacyPolicy);
+
+const cancelButton = document.querySelector(".signup__button--cancel");
+cancelButton.addEventListener("click", goToHome);
+function goToHome() {
+  location.href = URL_HOME;
+}
+
+// 아이디 정규식, 영문자로 시작하는 영문자 또는 숫자 5~15자
+function isId(asValue) {
+  var regExp = /^[a-z](?=.*[a-z])(?=.*[0-9]).{4,14}$/g;
+  return regExp.test(asValue);
+}
+
+//비밀번호 정규식, 8 ~ 15자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+function isPassword(asValue) {
+  var regExp =
+    /^(?=.*[a-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,15}$/;
+  return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+}
+
+// 이메일 주소 체크
+function isEmail(asValue) {
+  var regExp =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+  return regExp.test(asValue);
+}
+
+// 핸드폰 번호 체크
+function isPhoneNumber(asValue) {
+  var regExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+  return regExp.test(asValue);
+}
+
+// 닉네임 체크 한글, 영문, 숫자 5 ~ 10자
+function isNickname(asValue) {
+  var regExp = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{5,10}$/;
+  return regExp.test(asValue);
+}
+
 function showPrivacyPolicy() {
   Swal.fire({
     text: "개인정보처리방침입니다. 개인정보처리방침입니다. 개인정보처리방침입니다. 개인정보처리방침입니다.",
@@ -511,71 +560,16 @@ function signupFailPopUp() {
   });
 }
 
-// emailinputBox.addEventListener("input", debounce(emailinputHandler, 500));
-
-// async function emailinputHandler(event) {
-//   const email = { email: event.target.value };
-//   if (email) {
-//     console.log(`email: ${email["email"]}`);
-//     console.log(`isEmail(email["email"]): ${isEmail(email["email"])}`);
-//     //닉네임이 정규식과 일치하지 않을 때,
-//     if (!isEmail(email["email"])) {
-//       checkMsgEmail.style.display = "block";
-//       checkMsgEmail.style.color = "red";
-//       checkMsgEmail.innerText = "이메일을 입력해주세요.";
-//       return console.log("이메일을 입력해주세요.");
-//     }
-//     const response = await fetch("http://localhost:8080/users/email-check", {
-//       method: "post", // POST 요청을 보낸다.
-//       body: JSON.stringify(email), // comment JS 객체를 JSON문자열으로 변경하여 보냄
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     if (response["status"] == 409) {
-//       checkMsgEmail.style.display = "block";
-//       checkMsgEmail.style.color = "red";
-//       checkMsgEmail.innerText = "중복된 이메일입니다.";
-//       return console.log("중복된 이메일입니다.");
-//     }
-//     if (response["status"] == 200) {
-//       checkMsgEmail.style.display = "block";
-//       checkMsgEmail.style.color = "green";
-//       checkMsgEmail.innerText = "사용가능한 이메일입니다.";
-//       return console.log("사용가능한 이메일입니다.");
-//     }
-//   }
-// }
-
-// 아이디 정규식, 영문자로 시작하는 영문자 또는 숫자 5~15자
-function isId(asValue) {
-  var regExp = /^[a-z](?=.*[a-z])(?=.*[0-9]).{4,14}$/g;
-  return regExp.test(asValue);
+function alreadyLoginPopUp() {
+  Swal.fire({
+    text: "이미 로그인되었습니다.",
+    timer: 4000,
+  });
 }
 
-//비밀번호 정규식, 8 ~ 15자 영문, 숫자, 특수문자를 최소 한가지씩 조합
-function isPassword(asValue) {
-  var regExp =
-    /^(?=.*[a-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,15}$/;
-  return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
-}
-
-// 이메일 주소 체크
-function isEmail(asValue) {
-  var regExp =
-    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-  return regExp.test(asValue);
-}
-
-// 핸드폰 번호 체크
-function isPhoneNumber(asValue) {
-  var regExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
-  return regExp.test(asValue);
-}
-
-// 닉네임 체크 한글, 영문, 숫자 5 ~ 10자
-function isNickname(asValue) {
-  var regExp = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{5,10}$/;
-  return regExp.test(asValue);
+function logoutPopUp() {
+  Swal.fire({
+    text: "로그아웃 되었습니다.",
+    timer: 2000,
+  });
 }

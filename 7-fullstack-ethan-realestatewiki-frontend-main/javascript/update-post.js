@@ -1,8 +1,9 @@
-// 자유 게시판 페이지
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_FREEBOARD = "http://localhost:443/freeboard";
-const URL_MAKE_POST = "http://localhost:8080/posts";
+// 게시글 아이디 확인
+const href = window.location.href;
+const parts = href.split("/");
+const id = parts.pop().replace("?", "");
+const URL_GET_POST = `http://localhost:8080/posts/${id}`;
+const URL_FREEBOARD = `http://localhost:443/freeboard`;
 
 // 쿠키 생성
 function getCookie(cName) {
@@ -50,30 +51,43 @@ async function logout() {
   return;
 }
 
-// 게시글 쓰기
+document.addEventListener("DOMContentLoaded", getPost);
 
-const confirmButton = document.querySelector(".button--confirm");
-confirmButton.addEventListener("click", makePost);
+const updateButton = document.querySelector(".button--confirm");
+updateButton.addEventListener("click", updatePost);
+const cancelButton = document.querySelector(".button--cancel");
+cancelButton.addEventListener("click", goToFreeboard);
 
-async function makePost() {
+async function getPost() {
+  const postTitle = document.querySelector("#title");
+  const postContent = document.querySelector("#content");
+  const response = await fetch(URL_GET_POST, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  const data = await response.json();
+  postTitle.value = data[0]["title"];
+  postContent.value = data[0]["content"];
+}
+
+async function updatePost() {
   const post = {
     title: document.querySelector("#title").value,
     content: document.querySelector("#content").value,
     use_enabled: 1,
     comments_enabled: 1,
   };
-  const response = await fetch(URL_MAKE_POST, {
-    method: "post", // POST 요청을 보낸다.
+  const response = await fetch(URL_GET_POST, {
+    method: "PUT", // POST 요청을 보낸다.
     body: JSON.stringify(post), // comment JS 객체를 JSON으로 변경하여 보냄
     headers: {
       "Content-Type": "application/json",
     },
     credentials: "include",
   });
-  if (response["status"] == 401) {
-    LoginRequiredPopUp();
-    return;
-  }
   if (response["status"] == 201) {
     postSuccessPopUp();
     setTimeout(() => {
@@ -81,27 +95,25 @@ async function makePost() {
     }, 1000);
     return;
   }
+  if (response["status"] == 401) {
+    LoginRequiredPopUp();
+    return;
+  }
+  if (response["status"] == 204) {
+    noChangePopUp();
+    return;
+  }
   postFailPopUp();
   return;
 }
-
-const cancelButton = document.querySelector(".button--cancel");
-cancelButton.addEventListener("click", goToFreeboard);
 
 function goToFreeboard() {
   location.href = URL_FREEBOARD;
 }
 
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}
-
 function postSuccessPopUp() {
   Swal.fire({
-    text: "게시글이 작성 되었습니다.",
+    text: "게시글이 수정 되었습니다.",
     timer: 2000,
   });
 }
@@ -116,6 +128,13 @@ function LoginRequiredPopUp() {
 function postFailPopUp() {
   Swal.fire({
     text: "제목과 내용을 올바르게 입력해주세요.",
+    timer: 2000,
+  });
+}
+
+function noChangePopUp() {
+  Swal.fire({
+    text: "수정된 사항이 없습니다.",
     timer: 2000,
   });
 }

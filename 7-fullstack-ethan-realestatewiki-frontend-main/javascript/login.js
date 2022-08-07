@@ -8,7 +8,6 @@ const signupButton = document.querySelector("#signupButton");
 // 로그인 버튼을 클릭하면 login 함수가 실행된다.
 loginbutton.addEventListener("click", login);
 signupButton.addEventListener("click", goToSignupPage);
-console.log(document.cookie);
 // 회원가입 페이지로 가기
 function goToSignupPage() {
   location.href = URL_SIGNUP;
@@ -36,7 +35,6 @@ async function checkUser(userId, userPw) {
     },
     credentials: "include",
   });
-  console.log(response);
   if (response["status"] == 403) {
     alreadyLoginPopUp();
     setTimeout(() => {

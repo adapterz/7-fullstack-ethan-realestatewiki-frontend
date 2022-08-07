@@ -1,30 +1,3 @@
-// function getParamMap(queryString) {
-//   let splited = queryString.replace("?", "").split(/[=?&]/);
-//   let param = {};
-//   for (let i = 0; i < splited.length; i++) {
-//     param[splited[i]] = splited[++i];
-//   }
-//   return param;
-// }
-
-// const paramObj = getParamMap(decodeURI(location.search));
-// console.log(paramObj.keyword);
-// console.log(paramObj.page);
-
-// 페이지 중앙 검색 기능
-const searchBarButton = document.querySelector(".search-bar__button");
-searchBarButton.addEventListener("click", search);
-const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
-
-async function search() {
-  const keyword = document.querySelector("#keyword").value;
-  const pageNumber = 1;
-  const URL_SEARCH_RESULT = `http://localhost:443/search-result/?keyword=${encodeURIComponent(
-    keyword
-  )}&page=${encodeURIComponent(pageNumber)}`;
-  location.href = URL_SEARCH_RESULT;
-}
-
 const URL_GET_POPULAR_POST = "http://localhost:8080/posts/popular";
 const URL_GET_POPULAR_APT = "http://localhost:8080/aptinfos/popular";
 const URL_GET_POST = `http://localhost:8080/posts/`;
@@ -34,6 +7,21 @@ const URL_LOGOUT = "http://localhost:8080/users/logout";
 const URL_LOGIN = `http://localhost:443/login`;
 const URL_APT = `http://localhost:443/info/`;
 const URL_APT_PRICE = `http://localhost:8080/aptTransaction/recent-price/?`;
+const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
+const URL_SEARCH_RESULT = "http://localhost:443/search-result/?keyword=";
+
+// 페이지 중앙 검색 기능
+const searchBarButton = document.querySelector(".search-bar__button");
+searchBarButton.addEventListener("click", search);
+
+async function search() {
+  const keyword = document.querySelector("#keyword").value;
+  const pageNumber = 1;
+  const searchUrl = `${URL_SEARCH_RESULT}${encodeURIComponent(
+    keyword
+  )}&page=${encodeURIComponent(pageNumber)}`;
+  location.href = searchUrl;
+}
 
 // 홈 페이지가 로드되면 getApt(), getPost()을 실행한다.
 document.addEventListener("DOMContentLoaded", getApt());
@@ -64,7 +52,6 @@ const loginNav = document.querySelector(
   "header > nav:nth-child(1) > a:nth-child(4)"
 );
 if (getCookie("nickname") && getCookie("LoginSession")) {
-  console.log(loginNav);
   loginNav.innerHTML = "로그아웃";
   loginNav.setAttribute("href", `#`);
   loginNav.addEventListener("click", logout);
@@ -79,8 +66,8 @@ async function logout() {
     },
   });
   deleteCookie("LoginSession");
+  deleteCookie("user_id");
   deleteCookie("nickname");
-  console.log(response);
   logoutPopUp();
   loginNav.setAttribute("href", URL_LOGIN);
   return;
@@ -96,7 +83,6 @@ async function getPost() {
     },
   });
   const data = await response.json();
-  console.log(data[0]["id"]);
   for (let i = 0; i < data.length; i++) {
     const li = document.createElement("li");
     const a = document.createElement("a");
@@ -109,7 +95,7 @@ async function getPost() {
     a.setAttribute("href", `${URL_GET_POST_DETAIL}${data[i]["id"]}`);
     nickname.textContent = data[i]["user_id"];
     view.textContent = ` / 조회수 : ${data[i]["views"]}`;
-    recomended.textContent = ` / 추천수 : ${data[i]["recommended_number"]}`;
+    // recomended.textContent = ` / 추천수 : ${data[i]["recommended_number"]}`;
     popularPost.appendChild(li);
     li.appendChild(a);
     li.appendChild(div);
@@ -117,14 +103,6 @@ async function getPost() {
     div.appendChild(view);
     div.appendChild(recomended);
   }
-  // for (let i = 3; i < 10; i++) {
-  //   const li = document.createElement("li");
-  //   const a = document.createElement("a");
-  //   a.textContent = data[i]["title"];
-  //   a.setAttribute("href", `${URL_GET_POST_DETAIL}${data[i]["id"]}`);
-  //   popularPost.appendChild(li);
-  //   li.appendChild(a);
-  // }
 }
 
 // 아파트별 가격 정보 데이터 가져오기
@@ -144,8 +122,6 @@ async function getAptPrice(aptName, dong) {
     return 0;
   }
   const data = await response.json();
-  console.log(data);
-  console.log(`price : ${data[0]["거래금액"]}`);
   return data[0]["거래금액"];
   // return `${parseInt(data[0]["거래금액"]) / 10}억원`;
 }
@@ -161,14 +137,13 @@ async function getApt() {
     },
   });
   const data = await response.json();
-  console.log(data);
   for (let i = 0; i < 3; i++) {
     // TODO : 변수명 변경, 다른 사람들이 봐도 이해할 수 있게 만들기
     const li = document.createElement("li");
     const a = document.createElement("a");
     const div = document.createElement("div");
-    const address = document.createElement("span");
-    const price = document.createElement("span");
+    const address = document.createElement("div");
+    const price = document.createElement("div");
     a.textContent = data[i]["name"];
     a.setAttribute("href", `${URL_APT}${data[i]["id"]}`);
     address.textContent = `${data[i]["address"]}`;

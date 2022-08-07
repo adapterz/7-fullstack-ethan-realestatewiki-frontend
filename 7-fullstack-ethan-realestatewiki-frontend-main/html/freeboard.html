@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8" />
@@ -18,14 +18,14 @@
     <header>
       <nav>
         <img class="logo" src="../images/main/logo_simple.png" alt="logo" />
-        <a href="http://localhost:443/news">부동산뉴스</a>
-        <a href="http://localhost:443/freeboard">자유게시판</a>
-        <a href="http://localhost:443/login">로그인</a>
-        <a href="http://localhost:443/signup">회원가입</a>
-        <a href="http://localhost:443/mypage">마이페이지</a>
+        <a href="https://news.naver.com/">부동산뉴스</a>
+        <a href="https://realestatewiki.kr/freeboard">자유게시판</a>
+        <a href="https://realestatewiki.kr/login">로그인</a>
+        <a href="https://realestatewiki.kr/signup">회원가입</a>
+        <a href="https://realestatewiki.kr/mypage">마이페이지</a>
       </nav>
       <nav>
-        <a href="http://localhost:443/"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
+        <a href="https://realestatewiki.kr"><img src="../images/main/logo_korean.png" alt="korean logo" /></a>
         <a href=""><i class="fa-solid fa-bars"></i></a>
       </nav>
     </header>
@@ -51,8 +51,8 @@
           </select>
         </div> -->
         <div class="search-bar__input-wrapper">
-          <input type="text" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
-          <button href="#" class="search-bar__button">
+          <input type="text" class="search-bar__txt" id="keyword" name="" placeholder="  검색어를 입력해주세요." />
+          <button href="#" type="button" class="search-bar__button">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
@@ -69,167 +69,6 @@
           </h3>
         </header>
         <ul class="board__content">
-          <!-- <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">서울 제외, 최고의 아파트를 소개드립니다.</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">힐스테이트 광교 호수뷰 구경하고 왔습니다.</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">오늘 제일 저렴한 아파트를 소개드립니다.</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">부동산 분석하는 방법5</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">금천롯데캐슬골드파크3차 탐방 다녀왔습니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">부동산 분석하는 방법 4</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">롯데캐슬골드파크1차 탐방 다녀왔습니다!!!!!!!!!!!!!!!</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">'22년 7월 현재 부동산 상황</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">부동산 분석하는 방법 3</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>1</span>
-            </div>
-          </li>
-          <li>
-            <div>
-              <div class="board__content-title">
-                <a href="">롯데캐슬골드파크1차 탐방기</a>
-              </div>
-              <div class="board__content-info">
-                <span> apartman </span>
-                <span> / '22.05.13</span>
-                <span> / 조회수 : 100</span>
-                <span> / 추천수 : 15</span>
-              </div>
-            </div>
-            <div class="board__content-likes">
-              <span>0</span>
-            </div>
-          </li> -->
         </ul>
 
 
@@ -243,9 +82,9 @@
   <!-- footer-->
   <footer>
     <nav class="footer-info">
-      <a href=""><span>홈 |</span></a>
-      <a href=""><span>로그인 |</span></a>
-      <a href=""><span>회원가입 |</span></a>
+      <a href="https://realestatewiki.kr"><span>홈 |</span></a>
+      <a href="https://realestatewiki.kr/login"><span>로그인 |</span></a>
+      <a href="https://realestatewiki.kr/signup"><span>회원가입 |</span></a>
       <a href=""><span>pc버전 |</span></a>
     </nav>
     <nav class="footer-info">

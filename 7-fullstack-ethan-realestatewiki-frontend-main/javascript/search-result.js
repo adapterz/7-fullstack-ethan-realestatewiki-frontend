@@ -1,5 +1,10 @@
 const URL_LOGOUT = "http://localhost:8080/users/logout";
 const URL_LOGIN = `http://localhost:443/login`;
+const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
+const URL_SEARCH_APT_INFO_COUNT =
+  "http://localhost:8080/aptinfos/aptnamecount/?";
+const URL_APT = `http://localhost:443/info/`;
+const URL_SEARCH_RESULT = `http://localhost:443/search-result/?keyword=`;
 
 // 쿠키 생성
 function getCookie(cName) {
@@ -41,18 +46,12 @@ async function logout() {
     },
   });
   deleteCookie("LoginSession");
+  deleteCookie("user_id");
   deleteCookie("nickname");
   console.log(response);
   logoutPopUp();
   loginNav.setAttribute("href", URL_LOGIN);
   return;
-}
-
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
 }
 
 //href를 분석해서, 그에 맞는 페이지를 로드한다.
@@ -67,11 +66,6 @@ function getParamMap(queryString) {
 const paramObj = getParamMap(decodeURI(location.search));
 const keyword = paramObj.keyword;
 const page = paramObj.page;
-
-const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
-const URL_SEARCH_APT_INFO_COUNT =
-  "http://localhost:8080/aptinfos/aptnamecount/?";
-const URL_APT = `http://localhost:443/info/`;
 
 // 페이지가 로드 되면, 키워드와 page를 이용해서 결과를 가져온다.
 document.addEventListener("DOMContentLoaded", makeSearchResult(keyword, page));
@@ -293,10 +287,10 @@ async function makePagination(keyword, page) {
 }
 
 function goToPage(keyword, pageNumber) {
-  const URL_SEARCH_RESULT = `http://localhost:443/search-result/?keyword=${encodeURIComponent(
+  const searchUrl = `${URL_SEARCH_RESULT}${encodeURIComponent(
     keyword
   )}&page=${encodeURIComponent(pageNumber)}`;
-  location.href = URL_SEARCH_RESULT;
+  location.href = searchUrl;
 }
 
 // 페이지 버튼 생성 및 이동
@@ -403,12 +397,10 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 마지막 페이지로 이동
       case "fa-solid fa-angles-right": {
-        console.log("nnext");
         // 전체 데이터 수 가져오기
         const data = await getSearchResultCount(keyword);
         // 마지막 페이지수 구하기
         const lastPage = Math.ceil(data.length / 10);
-        console.log(`lastPage  ${lastPage}`);
         while (pagination.hasChildNodes()) {
           pagination.removeChild(pagination.firstChild);
         }
@@ -421,67 +413,9 @@ pageButton.addEventListener("click", async (event) => {
   }
 });
 
-// async function search() {
-//   const board = document.querySelector(".board__content");
-//   while (board.hasChildNodes()) {
-//     board.removeChild(board.firstChild);
-//   }
-//   const keyword = document.querySelector("#keyword").value;
-//   console.log(keyword);
-//   const boardTitle = document.querySelector(".board__title>a");
-//   boardTitle.textContent = `"${keyword}" 검색결과`;
-//   const response = await fetch(
-//     `${URL_SEARCH_APT_INFO}aptName=${encodeURIComponent(
-//       keyword
-//     )}&page=${encodeURIComponent(pageNumber)}`,
-//     {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }
-//   );
-//   if (response["status"] == 404) {
-//     const item = document.createElement("li");
-//     const aptInfo = document.createElement("div");
-//     const aptInfoTitle = document.createElement("div");
-//     aptInfoTitle.className = "board__content-title";
-//     const aptInfoTitleName = document.createElement("a");
-//     aptInfoTitleName.textContent = "검색결과가 없습니다...";
-//     board.appendChild(item);
-//     item.appendChild(aptInfo);
-//     aptInfo.appendChild(aptInfoTitle);
-//     aptInfoTitle.appendChild(aptInfoTitleName);
-//   }
-//   const data = await response.json();
-
-//   console.log(data);
-//   console.log(data[0]["id"]);
-//   console.log(data[0]["name"]);
-//   console.log(data[1]["number_searched"]);
-//   for (let i = 0; i < data.length; i++) {
-//     const item = document.createElement("li");
-//     const aptInfo = document.createElement("div");
-//     const aptInfoTitle = document.createElement("div");
-//     aptInfoTitle.className = "board__content-title";
-//     const aptInfoTitleName = document.createElement("a");
-//     aptInfoTitleName.textContent = data[i]["name"];
-//     aptInfoTitleName.setAttribute("href", `${URL_APT}${data[i]["id"]}`);
-//     const aptInfoDetail = document.createElement("div");
-//     aptInfoDetail.className = "board__content-info";
-//     const aptInfoDetailAddress = document.createElement("span");
-//     aptInfoDetailAddress.textContent = data[i]["address"];
-//     const aptLikes = document.createElement("div");
-//     aptLikes.className = "board__content-likes";
-//     const aptLikesNumber = document.createElement("span");
-//     aptLikesNumber.textContent = data[i]["number_searched"];
-//     board.appendChild(item);
-//     item.appendChild(aptInfo);
-//     aptInfo.appendChild(aptInfoTitle);
-//     aptInfoTitle.appendChild(aptInfoTitleName);
-//     aptInfo.appendChild(aptInfoDetail);
-//     aptInfoDetail.appendChild(aptInfoDetailAddress);
-//     item.appendChild(aptLikes);
-//     aptLikes.appendChild(aptLikesNumber);
-//   }
-// }
+function logoutPopUp() {
+  Swal.fire({
+    text: "로그아웃 되었습니다.",
+    timer: 2000,
+  });
+}
