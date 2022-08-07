@@ -1,10 +1,10 @@
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_SEARCH_APT_INFO = "https://api.realestatewiki.kr/aptinfos/aptname/?";
 const URL_SEARCH_APT_INFO_COUNT =
-  "http://localhost:8080/aptinfos/aptnamecount/?";
-const URL_APT = `http://localhost:443/info/`;
-const URL_SEARCH_RESULT = `http://localhost:443/search-result/?keyword=`;
+  "https://api.realestatewiki.kr/aptinfos/aptnamecount/?";
+const URL_APT = `https://realestatewiki.kr/info/`;
+const URL_SEARCH_RESULT = `https://realestatewiki.kr/search-result/?keyword=`;
 
 // 쿠키 생성
 function getCookie(cName) {

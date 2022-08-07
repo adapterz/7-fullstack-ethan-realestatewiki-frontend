@@ -1,14 +1,27 @@
-const URL_GET_POPULAR_POST = "http://localhost:8080/posts/popular";
-const URL_GET_POPULAR_APT = "http://localhost:8080/aptinfos/popular";
-const URL_GET_POST = `http://localhost:8080/posts/`;
-const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
-const URL_GET_APT = `http://localhost:8080/aptinfos/`;
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_APT = `http://localhost:443/info/`;
-const URL_APT_PRICE = `http://localhost:8080/aptTransaction/recent-price/?`;
-const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
-const URL_SEARCH_RESULT = "http://localhost:443/search-result/?keyword=";
+// URL 상수 (개발)
+// const URL_GET_POPULAR_POST = "http://localhost:8080/posts/popular";
+// const URL_GET_POPULAR_APT = "http://localhost:8080/aptinfos/popular";
+// const URL_GET_POST = `http://localhost:8080/posts/`;
+// const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
+// const URL_GET_APT = `http://localhost:8080/aptinfos/`;
+// const URL_LOGOUT = "http://localhost:8080/users/logout";
+// const URL_LOGIN = `http://localhost:443/login`;
+// const URL_APT = `http://localhost:443/info/`;
+// const URL_APT_PRICE = `http://localhost:8080/aptTransaction/recent-price/?`;
+// const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
+// const URL_SEARCH_RESULT = "http://localhost:443/search-result/?keyword=";
+
+const URL_GET_POPULAR_POST = "https://api.realestatewiki.kr/posts/popular";
+const URL_GET_POPULAR_APT = "https://api.realestatewiki.kr/aptinfos/popular";
+const URL_GET_POST = `https://api.realestatewiki.kr/posts/`;
+const URL_GET_POST_DETAIL = `https://realestatewiki.kr/post/`;
+const URL_GET_APT = `https://api.realestatewiki.kr/aptinfos/`;
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_APT = `https://realestatewiki.kr/info/`;
+const URL_APT_PRICE = `https://api.realestatewiki.kr/aptTransaction/recent-price/?`;
+const URL_SEARCH_APT_INFO = "https://api.realestatewiki.kr/aptinfos/aptname/?";
+const URL_SEARCH_RESULT = "https://realestatewiki.kr/search-result/?keyword=";
 
 // 페이지 중앙 검색 기능
 const searchBarButton = document.querySelector(".search-bar__button");

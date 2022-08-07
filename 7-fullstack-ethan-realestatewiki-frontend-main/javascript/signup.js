@@ -1,11 +1,12 @@
-const URL_HOME = "http://localhost:443";
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_ID_CHECK = "http://localhost:8080/users/id-check";
-const URL_NICKNAME_CHECK = "http://localhost:8080/users/nickname-check";
-const URL_PHONENUMBER_CHECK = "http://localhost:8080/users/phonenumber-check";
-const URL_EMAIL_CHECK = "http://localhost:8080/users/email-check";
-const URL_MAKE_USER = "http://localhost:8080/users";
+const URL_HOME = "https://realestatewiki.kr";
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_ID_CHECK = "https://api.realestatewiki.kr/users/id-check";
+const URL_NICKNAME_CHECK = "https://api.realestatewiki.kr/users/nickname-check";
+const URL_PHONENUMBER_CHECK =
+  "https://api.realestatewiki.kr/users/phonenumber-check";
+const URL_EMAIL_CHECK = "https://api.realestatewiki.kr/users/email-check";
+const URL_MAKE_USER = "https://api.realestatewiki.kr/users";
 
 // 로그인 되어 있지 않을 때, 홈화면으로 돌아가기
 if (getCookie("LoginSession")) {

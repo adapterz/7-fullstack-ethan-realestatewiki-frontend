@@ -2,8 +2,8 @@
 const href = window.location.href;
 const parts = href.split("/");
 const id = parts.pop().replace("?", "");
-const URL_GET_POST = `http://localhost:8080/posts/${id}`;
-const URL_FREEBOARD = `http://localhost:443/freeboard`;
+const URL_GET_POST = `https://api.realestatewiki.kr/posts/${id}`;
+const URL_FREEBOARD = `https://realestatewiki.kr/freeboard`;
 
 // 쿠키 생성
 function getCookie(cName) {

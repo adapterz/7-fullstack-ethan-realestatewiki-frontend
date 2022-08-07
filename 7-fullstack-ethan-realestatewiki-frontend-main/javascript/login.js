@@ -1,6 +1,6 @@
-const URL_SINGIN = "http://localhost:8080/users/signin";
-const URL_SIGNUP = "http://localhost:443/signup";
-const URL_HOME = "http://localhost:443";
+const URL_SINGIN = "https://api.realestatewiki.kr/users/signin";
+const URL_SIGNUP = "https://realestatewiki.kr/signup";
+const URL_HOME = "https://realestatewiki.kr";
 
 const loginbutton = document.querySelector("#loginButton");
 const signupButton = document.querySelector("#signupButton");

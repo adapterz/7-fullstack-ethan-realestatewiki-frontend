@@ -2,21 +2,22 @@ const href = window.location.href;
 const parts = href.split("/");
 const id = parts.pop().replace("?", "");
 
-const URL_GET_POST = `http://localhost:8080/posts/${id}`;
-const URL_GET_COMMENT = `http://localhost:8080/comments/getbypostid/${id}/?page=`;
-const URL_GET_POST_COMMENT_COUNT = `http://localhost:8080/comments/Countbypostid/${id}`;
-const URL_POST = `http://localhost:443/post/${id}`;
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_CORRECT_POST = "http://localhost:443/update-post/";
-const URL_DELETE_POST = `http://localhost:8080/posts/${id}`;
-const URL_DELETE_RELATED_POST_COMMENT = `http://localhost:8080/comments/commentinpost/all-comment-in-post/${id}`;
-const URL_FREEBOARD = `http://localhost:443/freeboard`;
-const URL_DELETE_COMMENT = "http://localhost:8080/comments/commentinpost/";
-const URL_UPDATE_COMMENT = `http://localhost:8080/comments/commentinpost/`;
-const URL_GET_IMAGE = `http://localhost:8080/`;
-const URL_MAKE_APT_COMMENT = "http://localhost:8080/comments";
-const URL_GO_TO_POST = "http://localhost:443/post/";
+const URL_GET_POST = `https://api.realestatewiki.kr/posts/${id}`;
+const URL_GET_COMMENT = `https://api.realestatewiki.kr/comments/getbypostid/${id}/?page=`;
+const URL_GET_POST_COMMENT_COUNT = `https://api.realestatewiki.kr/comments/Countbypostid/${id}`;
+const URL_POST = `https://realestatewiki.kr/post/${id}`;
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_CORRECT_POST = "https://realestatewiki.kr/update-post/";
+const URL_DELETE_POST = `https://api.realestatewiki.kr/posts/${id}`;
+const URL_DELETE_RELATED_POST_COMMENT = `https://api.realestatewiki.kr/comments/commentinpost/all-comment-in-post/${id}`;
+const URL_FREEBOARD = `https://realestatewiki.kr/freeboard`;
+const URL_DELETE_COMMENT =
+  "https://api.realestatewiki.kr/comments/commentinpost/";
+const URL_UPDATE_COMMENT = `https://api.realestatewiki.kr/comments/commentinpost/`;
+const URL_GET_IMAGE = `https://api.realestatewiki.kr/`;
+const URL_MAKE_APT_COMMENT = "https://api.realestatewiki.kr/comments";
+const URL_GO_TO_POST = "https://realestatewiki.kr/post/";
 
 let pageNumber = 1;
 

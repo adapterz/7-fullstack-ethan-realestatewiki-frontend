@@ -5,21 +5,37 @@ const id = parts.pop().replace("?", "").replace("#", "");
 
 let pageNumber = 1;
 
-// URL 상수
-const URL_APT = `http://localhost:443/info/${id}`;
-const URL_APT_INFO = `http://localhost:8080/aptinfos/${id}`;
-const URL_APT_PRICE = `http://localhost:8080/aptTransaction/recent-price/?`;
-const URL_APT_POST = `http://localhost:8080/posts/by-aptname/?aptName=`;
-const URL_APT_COMMENT = `http://localhost:8080/comments/getbyaptid/${id}`;
-const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
-const URL_APT_COMMENT_PAGINATION = `http://localhost:8080/comments/getbyaptid/${id}/?page=`;
-const URL_GET_APT_COMMENT_COUNT = `http://localhost:8080/comments/Countbyaptid/${id}`;
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
-const URL_SEARCH_RESULT = `http://localhost:443/search-result/?keyword=`;
-const URL_GET_IMAGE = `http://localhost:8080/`;
-const URL_MAKE_COMMENT = "http://localhost:8080/comments";
+// // URL 상수 (개발)
+// const URL_APT = `http://localhost:443/info/${id}`;
+// const URL_APT_INFO = `http://localhost:8080/aptinfos/${id}`;
+// const URL_APT_PRICE = `http://localhost:8080/aptTransaction/recent-price/?`;
+// const URL_APT_POST = `http://localhost:8080/posts/by-aptname/?aptName=`;
+// const URL_APT_COMMENT = `http://localhost:8080/comments/getbyaptid/${id}`;
+// const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
+// const URL_APT_COMMENT_PAGINATION = `http://localhost:8080/comments/getbyaptid/${id}/?page=`;
+// const URL_GET_APT_COMMENT_COUNT = `http://localhost:8080/comments/Countbyaptid/${id}`;
+// const URL_LOGOUT = "http://localhost:8080/users/logout";
+// const URL_LOGIN = `http://localhost:443/login`;
+// const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
+// const URL_SEARCH_RESULT = `http://localhost:443/search-result/?keyword=`;
+// const URL_GET_IMAGE = `http://localhost:8080/`;
+// const URL_MAKE_COMMENT = "http://localhost:8080/comments";
+
+// URL 상수 (배포)
+const URL_APT = `https://realestatewiki.kr/info/${id}`;
+const URL_APT_INFO = `https://api.realestatewiki.kr/aptinfos/${id}`;
+const URL_APT_PRICE = `https://api.realestatewiki.kr/aptTransaction/recent-price/?`;
+const URL_APT_POST = `https://api.realestatewiki.kr/posts/by-aptname/?aptName=`;
+const URL_APT_COMMENT = `https://api.realestatewiki.kr/comments/getbyaptid/${id}`;
+const URL_GET_POST_DETAIL = `https://realestatewiki.kr/post/`;
+const URL_APT_COMMENT_PAGINATION = `https://api.realestatewiki.kr/comments/getbyaptid/${id}/?page=`;
+const URL_GET_APT_COMMENT_COUNT = `https://api.realestatewiki.kr/comments/Countbyaptid/${id}`;
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_SEARCH_APT_INFO = "https://api.realestatewiki.kr/aptinfos/aptname/?";
+const URL_SEARCH_RESULT = `https://realestatewiki.kr/search-result/?keyword=`;
+const URL_GET_IMAGE = `https://api.realestatewiki.kr/`;
+const URL_MAKE_COMMENT = "https://api.realestatewiki.kr/comments";
 
 // 쿠키 생성
 function getCookie(cName) {

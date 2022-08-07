@@ -1,14 +1,25 @@
 // 자유 게시판 페이지
-// URL 상수
-const URL_FREEBOARD = "http://localhost:8080/freeboard/";
-const URL_GET_ALL_POST = "http://localhost:8080/posts/lists?page=";
-const URL_POST_COUNT = "http://localhost:8080/posts/all";
-const URL_GET_POST = `http://localhost:8080/posts/`;
-const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_MAKE_POST = "http://localhost:443/make-post";
-const URL_SEARCH_RESULT = "http://localhost:443/search-result/?keyword=";
+// URL 상수 (개발)
+// const URL_FREEBOARD = "http://localhost:8080/freeboard/";
+// const URL_GET_ALL_POST = "http://localhost:8080/posts/lists?page=";
+// const URL_POST_COUNT = "http://localhost:8080/posts/all";
+// const URL_GET_POST = `http://localhost:8080/posts/`;
+// const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
+// const URL_LOGOUT = "http://localhost:8080/users/logout";
+// const URL_LOGIN = `http://localhost:443/login`;
+// const URL_MAKE_POST = "http://localhost:443/make-post";
+// const URL_SEARCH_RESULT = "http://localhost:443/search-result/?keyword=";
+
+// URL 상수 (배포)
+const URL_FREEBOARD = "https://api.realestatewiki.kr/freeboard/";
+const URL_GET_ALL_POST = "https://api.realestatewiki.kr/posts/lists?page=";
+const URL_POST_COUNT = "https://api.realestatewiki.kr/posts/all";
+const URL_GET_POST = `https://api.realestatewiki.kr/posts/`;
+const URL_GET_POST_DETAIL = `https://realestatewiki.kr/post/`;
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_MAKE_POST = "https://realestatewiki.kr/make-post";
+const URL_SEARCH_RESULT = "https://realestatewiki.kr/search-result/?keyword=";
 
 // 페이지 중앙 검색 기능
 const searchBarButton = document.querySelector(".search-bar__button");

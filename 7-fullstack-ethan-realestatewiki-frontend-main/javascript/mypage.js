@@ -1,13 +1,13 @@
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_HOME = "http://localhost:443";
-const URL_GET_MY_POST_COUNT = "http://localhost:8080/posts/user-post/count";
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_HOME = "https://realestatewiki.kr";
+const URL_GET_MY_POST_COUNT = "https://api.realestatewiki.kr/posts/user-post/count";
 const URL_GET_MY_POST_COMMENT =
-  "http://localhost:8080/comments/getbyuserIndex/post-comment";
+  "https://api.realestatewiki.kr/comments/getbyuserIndex/post-comment";
 const URL_GET_MY_APT_COMMENT =
-  "http://localhost:8080/comments/getbyuserIndex/apt-comment";
-const URL_GET_POST = "http://localhost:443/post/";
-const URL_GET_APT_INFO = "http://localhost:443/info/";
+  "https://api.realestatewiki.kr/comments/getbyuserIndex/apt-comment";
+const URL_GET_POST = "https://realestatewiki.kr/post/";
+const URL_GET_APT_INFO = "https://realestatewiki.kr/info/";
 
 // 쿠키 생성
 function getCookie(cName) {

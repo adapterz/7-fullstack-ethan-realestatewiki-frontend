@@ -1,8 +1,8 @@
 // 자유 게시판 페이지
-const URL_LOGOUT = "http://localhost:8080/users/logout";
-const URL_LOGIN = `http://localhost:443/login`;
-const URL_FREEBOARD = "http://localhost:443/freeboard";
-const URL_MAKE_POST = "http://localhost:8080/posts";
+const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
+const URL_LOGIN = `https://realestatewiki.kr/login`;
+const URL_FREEBOARD = "https://realestatewiki.kr/freeboard";
+const URL_MAKE_POST = "https://api.realestatewiki.kr/posts";
 
 // 쿠키 생성
 function getCookie(cName) {
