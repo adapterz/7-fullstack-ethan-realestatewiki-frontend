@@ -1,15 +1,35 @@
-const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
-const URL_LOGIN = `https://realestatewiki.kr/login`;
-const URL_HOME = "https://realestatewiki.kr";
-const URL_GET_MY_POST_COUNT = "https://api.realestatewiki.kr/posts/user-post/count";
-const URL_GET_MY_POST_COMMENT =
-  "https://api.realestatewiki.kr/comments/getbyuserIndex/post-comment";
-const URL_GET_MY_APT_COMMENT =
-  "https://api.realestatewiki.kr/comments/getbyuserIndex/apt-comment";
-const URL_GET_POST = "https://realestatewiki.kr/post/";
-const URL_GET_APT_INFO = "https://realestatewiki.kr/info/";
+import { makeNav } from "../middlewares/nav-maker.js";
+document.addEventListener("DOMContentLoaded", makeNav);
 
-// 쿠키 생성
+import { makeFooter } from "../middlewares/footer-maker.js";
+document.addEventListener("DOMContentLoaded", makeFooter);
+
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
+}
+
+const URL_LOGOUT = `${urlBackend}/users/logout`;
+const URL_LOGIN = `${urlFrontend}/login`;
+const URL_HOME = `${urlFrontend}`;
+const URL_GET_MY_POST_COUNT = `${urlBackend}/posts/user-post/count`;
+const URL_GET_MY_POST_COMMENT = `${urlBackend}/comments/getbyuserIndex/post-comment`;
+const URL_GET_MY_APT_COMMENT = `${urlBackend}/comments/getbyuserIndex/apt-comment`;
+const URL_GET_POST = `${urlFrontend}/post/`;
+const URL_GET_APT_INFO = `${urlFrontend}/info/`;
+
+// // 쿠키 생성
 function getCookie(cName) {
   cName = cName + "=";
   var cookieData = document.cookie;
@@ -24,36 +44,36 @@ function getCookie(cName) {
   return unescape(cValue);
 }
 
-// 쿠키 삭제
-function deleteCookie(name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
+// // 쿠키 삭제
+// function deleteCookie(name) {
+//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+// }
 
-// home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-const loginNav = document.querySelector(
-  "header > nav:nth-child(1) > a:nth-child(4)"
-);
-if (getCookie("nickname") && getCookie("LoginSession")) {
-  loginNav.innerHTML = "로그아웃";
-  loginNav.setAttribute("href", `#`);
-  loginNav.addEventListener("click", logout);
-}
+// // home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
+// const loginNav = document.querySelector(
+//   "header > nav:nth-child(1) > a:nth-child(4)"
+// );
+// if (getCookie("nickname") && getCookie("LoginSession")) {
+//   loginNav.innerHTML = "로그아웃";
+//   loginNav.setAttribute("href", `#`);
+//   loginNav.addEventListener("click", logout);
+// }
 
-async function logout() {
-  loginNav.innerHTML = "로그인";
-  const response = await fetch(URL_LOGOUT, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  deleteCookie("LoginSession");
-  deleteCookie("user_id");
-  deleteCookie("nickname");
-  logoutPopUp();
-  loginNav.setAttribute("href", URL_LOGIN);
-  return;
-}
+// async function logout() {
+//   loginNav.innerHTML = "로그인";
+//   const response = await fetch(URL_LOGOUT, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   deleteCookie("LoginSession");
+//   deleteCookie("user_id");
+//   deleteCookie("nickname");
+//   logoutPopUp();
+//   loginNav.setAttribute("href", URL_LOGIN);
+//   return;
+// }
 
 // 로그인 되어 있지 않을 때, 홈화면으로 돌아가기
 

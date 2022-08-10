@@ -4,7 +4,7 @@ module.exports = {
       name: "rewiki-frontend-server",
       script: "7-fullstack-ethan-realestatewiki-frontend-main/app.js",
       watch: true,
-      env: {
+      env_development: {
         NODE_ENV: "development",
       },
       env_production: {

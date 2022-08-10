@@ -1,27 +1,36 @@
-// URL 상수 (개발)
-// const URL_GET_POPULAR_POST = "http://localhost:8080/posts/popular";
-// const URL_GET_POPULAR_APT = "http://localhost:8080/aptinfos/popular";
-// const URL_GET_POST = `http://localhost:8080/posts/`;
-// const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
-// const URL_GET_APT = `http://localhost:8080/aptinfos/`;
-// const URL_LOGOUT = "http://localhost:8080/users/logout";
-// const URL_LOGIN = `http://localhost:443/login`;
-// const URL_APT = `http://localhost:443/info/`;
-// const URL_APT_PRICE = `http://localhost:8080/aptTransaction/recent-price/?`;
-// const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
-// const URL_SEARCH_RESULT = "http://localhost:443/search-result/?keyword=";
+import { makeNav } from "../middlewares/nav-maker.js";
+document.addEventListener("DOMContentLoaded", makeNav);
 
-const URL_GET_POPULAR_POST = "https://api.realestatewiki.kr/posts/popular";
-const URL_GET_POPULAR_APT = "https://api.realestatewiki.kr/aptinfos/popular";
-const URL_GET_POST = `https://api.realestatewiki.kr/posts/`;
-const URL_GET_POST_DETAIL = `https://realestatewiki.kr/post/`;
-const URL_GET_APT = `https://api.realestatewiki.kr/aptinfos/`;
-const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
-const URL_LOGIN = `https://realestatewiki.kr/login`;
-const URL_APT = `https://realestatewiki.kr/info/`;
-const URL_APT_PRICE = `https://api.realestatewiki.kr/aptTransaction/recent-price/?`;
-const URL_SEARCH_APT_INFO = "https://api.realestatewiki.kr/aptinfos/aptname/?";
-const URL_SEARCH_RESULT = "https://realestatewiki.kr/search-result/?keyword=";
+import { makeFooter } from "../middlewares/footer-maker.js";
+document.addEventListener("DOMContentLoaded", makeFooter);
+
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
+}
+
+const URL_GET_POPULAR_POST = `${urlBackend}/posts/popular`;
+const URL_GET_POPULAR_APT = `${urlBackend}/aptinfos/popular`;
+const URL_GET_POST = `${urlBackend}/posts/`;
+const URL_GET_POST_DETAIL = `${urlFrontend}/post/`;
+const URL_GET_APT = `${urlBackend}/aptinfos/`;
+const URL_LOGOUT = `${urlBackend}/users/logout`;
+const URL_LOGIN = `${urlFrontend}/login`;
+const URL_APT = `${urlFrontend}/info/`;
+const URL_APT_PRICE = `${urlBackend}/aptTransaction/recent-price/?`;
+const URL_SEARCH_APT_INFO = `${urlBackend}/aptinfos/aptname/?`;
+const URL_SEARCH_RESULT = `${urlFrontend}/search-result/?keyword=`;
 
 // 페이지 중앙 검색 기능
 const searchBarButton = document.querySelector(".search-bar__button");
@@ -40,51 +49,51 @@ async function search() {
 document.addEventListener("DOMContentLoaded", getApt());
 document.addEventListener("DOMContentLoaded", getPost());
 
-// 쿠키 생성
-function getCookie(cName) {
-  cName = cName + "=";
-  var cookieData = document.cookie;
-  var start = cookieData.indexOf(cName);
-  var cValue = "";
-  if (start != -1) {
-    start += cName.length;
-    var end = cookieData.indexOf(";", start);
-    if (end == -1) end = cookieData.length;
-    cValue = cookieData.substring(start, end);
-  }
-  return unescape(cValue);
-}
+// // 쿠키 생성
+// function getCookie(cName) {
+//   cName = cName + "=";
+//   var cookieData = document.cookie;
+//   var start = cookieData.indexOf(cName);
+//   var cValue = "";
+//   if (start != -1) {
+//     start += cName.length;
+//     var end = cookieData.indexOf(";", start);
+//     if (end == -1) end = cookieData.length;
+//     cValue = cookieData.substring(start, end);
+//   }
+//   return unescape(cValue);
+// }
 
-// 쿠키 삭제
-function deleteCookie(name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
+// // 쿠키 삭제
+// function deleteCookie(name) {
+//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+// }
 
-// home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-const loginNav = document.querySelector(
-  "header > nav:nth-child(1) > a:nth-child(4)"
-);
-if (getCookie("nickname") && getCookie("LoginSession")) {
-  loginNav.innerHTML = "로그아웃";
-  loginNav.setAttribute("href", `#`);
-  loginNav.addEventListener("click", logout);
-}
+// // home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
+// const loginNav = document.querySelector(
+//   "header > nav:nth-child(1) > a:nth-child(4)"
+// );
+// if (getCookie("nickname") && getCookie("LoginSession")) {
+//   loginNav.innerHTML = "로그아웃";
+//   loginNav.setAttribute("href", `#`);
+//   loginNav.addEventListener("click", logout);
+// }
 
-async function logout() {
-  loginNav.innerHTML = "로그인";
-  const response = await fetch(URL_LOGOUT, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  deleteCookie("LoginSession");
-  deleteCookie("user_id");
-  deleteCookie("nickname");
-  logoutPopUp();
-  loginNav.setAttribute("href", URL_LOGIN);
-  return;
-}
+// async function logout() {
+//   loginNav.innerHTML = "로그인";
+//   const response = await fetch(URL_LOGOUT, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   deleteCookie("LoginSession");
+//   deleteCookie("user_id");
+//   deleteCookie("nickname");
+//   logoutPopUp();
+//   loginNav.setAttribute("href", URL_LOGIN);
+//   return;
+// }
 
 // 게시글 정보 가져오기
 async function getPost() {

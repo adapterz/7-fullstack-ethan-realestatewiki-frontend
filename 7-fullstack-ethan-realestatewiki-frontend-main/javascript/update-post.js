@@ -1,55 +1,30 @@
+import { makeNav } from "../middlewares/nav-maker.js";
+document.addEventListener("DOMContentLoaded", makeNav);
+
+import { makeFooter } from "../middlewares/footer-maker.js";
+document.addEventListener("DOMContentLoaded", makeFooter);
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
+}
+
 // 게시글 아이디 확인
 const href = window.location.href;
 const parts = href.split("/");
 const id = parts.pop().replace("?", "");
-const URL_GET_POST = `https://api.realestatewiki.kr/posts/${id}`;
-const URL_FREEBOARD = `https://realestatewiki.kr/freeboard`;
-
-// 쿠키 생성
-function getCookie(cName) {
-  cName = cName + "=";
-  var cookieData = document.cookie;
-  var start = cookieData.indexOf(cName);
-  var cValue = "";
-  if (start != -1) {
-    start += cName.length;
-    var end = cookieData.indexOf(";", start);
-    if (end == -1) end = cookieData.length;
-    cValue = cookieData.substring(start, end);
-  }
-  return unescape(cValue);
-}
-
-// 쿠키 삭제
-function deleteCookie(name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
-
-// home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-const loginNav = document.querySelector(
-  "header > nav:nth-child(1) > a:nth-child(4)"
-);
-if (getCookie("nickname") && getCookie("LoginSession")) {
-  loginNav.innerHTML = "로그아웃";
-  loginNav.setAttribute("href", `#`);
-  loginNav.addEventListener("click", logout);
-}
-
-async function logout() {
-  loginNav.innerHTML = "로그인";
-  const response = await fetch(URL_LOGOUT, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  deleteCookie("LoginSession");
-  deleteCookie("user_id");
-  deleteCookie("nickname");
-  logoutPopUp();
-  loginNav.setAttribute("href", URL_LOGIN);
-  return;
-}
+const URL_GET_POST = `${urlBackend}/posts/${id}`;
+const URL_FREEBOARD = `${urlFrontend}/freeboard`;
 
 document.addEventListener("DOMContentLoaded", getPost);
 

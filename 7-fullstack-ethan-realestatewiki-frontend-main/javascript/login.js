@@ -1,6 +1,22 @@
-const URL_SINGIN = "https://api.realestatewiki.kr/users/signin";
-const URL_SIGNUP = "https://realestatewiki.kr/signup";
-const URL_HOME = "https://realestatewiki.kr";
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
+}
+
+const URL_SINGIN = `${urlBackend}/users/signin`;
+const URL_SIGNUP = `${urlFrontend}/signup`;
+const URL_HOME = `${urlFrontend}`;
 
 const loginbutton = document.querySelector("#loginButton");
 const signupButton = document.querySelector("#signupButton");
@@ -35,6 +51,7 @@ async function checkUser(userId, userPw) {
     },
     credentials: "include",
   });
+  const forCookie = await response.json();
   if (response["status"] == 403) {
     alreadyLoginPopUp();
     setTimeout(() => {
@@ -43,10 +60,16 @@ async function checkUser(userId, userPw) {
     return;
   }
   if (response["status"] == 200) {
+    console.log("쿠키를 생성합니다. ");
+    document.cookie = `session=${forCookie[0]["Loginsession"]}; maxAge = 30 * 60 * 1000`;
+    // document.cookie = `LoginSession=${forCookie[0]["Loginsession"]}; maxAge = 30 * 60 * 1000`;
+    document.cookie = `user_id=${forCookie[1]["user_id"]}; maxAge = 30 * 60 * 1000`;
+    document.cookie = `nickname=${forCookie[2]["nickname"]}; maxAge = 30 * 60 * 1000`;
     OkPopUp();
     setTimeout(() => {
       location.href = URL_HOME;
     }, 1000);
+
     return;
   }
   noPopUp();

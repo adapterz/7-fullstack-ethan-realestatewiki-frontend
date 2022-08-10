@@ -1,12 +1,33 @@
-const URL_HOME = "https://realestatewiki.kr";
-const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
-const URL_LOGIN = `https://realestatewiki.kr/login`;
-const URL_ID_CHECK = "https://api.realestatewiki.kr/users/id-check";
-const URL_NICKNAME_CHECK = "https://api.realestatewiki.kr/users/nickname-check";
-const URL_PHONENUMBER_CHECK =
-  "https://api.realestatewiki.kr/users/phonenumber-check";
-const URL_EMAIL_CHECK = "https://api.realestatewiki.kr/users/email-check";
-const URL_MAKE_USER = "https://api.realestatewiki.kr/users";
+import { makeNav } from "../middlewares/nav-maker.js";
+document.addEventListener("DOMContentLoaded", makeNav);
+
+import { makeFooter } from "../middlewares/footer-maker.js";
+document.addEventListener("DOMContentLoaded", makeFooter);
+
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
+}
+
+const URL_HOME = `${urlFrontend}`;
+const URL_LOGOUT = `${urlBackend}/users/logout`;
+const URL_LOGIN = `${urlFrontend}/login`;
+const URL_ID_CHECK = `${urlBackend}/users/id-check`;
+const URL_NICKNAME_CHECK = `${urlBackend}/users/nickname-check`;
+const URL_PHONENUMBER_CHECK = `${urlBackend}/users/phonenumber-check`;
+const URL_EMAIL_CHECK = `${urlBackend}/users/email-check`;
+const URL_MAKE_USER = `${urlBackend}/users`;
 
 // 로그인 되어 있지 않을 때, 홈화면으로 돌아가기
 if (getCookie("LoginSession")) {

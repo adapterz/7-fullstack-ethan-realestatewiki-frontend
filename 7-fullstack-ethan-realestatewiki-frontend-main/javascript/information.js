@@ -1,3 +1,25 @@
+import { makeNav } from "../middlewares/nav-maker.js";
+document.addEventListener("DOMContentLoaded", makeNav);
+
+import { makeFooter } from "../middlewares/footer-maker.js";
+document.addEventListener("DOMContentLoaded", makeFooter);
+
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
+}
+
 // 아파트 정보 페이지
 const href = window.location.href;
 const parts = href.split("/");
@@ -5,83 +27,67 @@ const id = parts.pop().replace("?", "").replace("#", "");
 
 let pageNumber = 1;
 
-// // URL 상수 (개발)
-// const URL_APT = `http://localhost:443/info/${id}`;
-// const URL_APT_INFO = `http://localhost:8080/aptinfos/${id}`;
-// const URL_APT_PRICE = `http://localhost:8080/aptTransaction/recent-price/?`;
-// const URL_APT_POST = `http://localhost:8080/posts/by-aptname/?aptName=`;
-// const URL_APT_COMMENT = `http://localhost:8080/comments/getbyaptid/${id}`;
-// const URL_GET_POST_DETAIL = `http://localhost:443/post/`;
-// const URL_APT_COMMENT_PAGINATION = `http://localhost:8080/comments/getbyaptid/${id}/?page=`;
-// const URL_GET_APT_COMMENT_COUNT = `http://localhost:8080/comments/Countbyaptid/${id}`;
-// const URL_LOGOUT = "http://localhost:8080/users/logout";
-// const URL_LOGIN = `http://localhost:443/login`;
-// const URL_SEARCH_APT_INFO = "http://localhost:8080/aptinfos/aptname/?";
-// const URL_SEARCH_RESULT = `http://localhost:443/search-result/?keyword=`;
-// const URL_GET_IMAGE = `http://localhost:8080/`;
-// const URL_MAKE_COMMENT = "http://localhost:8080/comments";
-
 // URL 상수 (배포)
-const URL_APT = `https://realestatewiki.kr/info/${id}`;
-const URL_APT_INFO = `https://api.realestatewiki.kr/aptinfos/${id}`;
-const URL_APT_PRICE = `https://api.realestatewiki.kr/aptTransaction/recent-price/?`;
-const URL_APT_POST = `https://api.realestatewiki.kr/posts/by-aptname/?aptName=`;
-const URL_APT_COMMENT = `https://api.realestatewiki.kr/comments/getbyaptid/${id}`;
-const URL_GET_POST_DETAIL = `https://realestatewiki.kr/post/`;
-const URL_APT_COMMENT_PAGINATION = `https://api.realestatewiki.kr/comments/getbyaptid/${id}/?page=`;
-const URL_GET_APT_COMMENT_COUNT = `https://api.realestatewiki.kr/comments/Countbyaptid/${id}`;
-const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
-const URL_LOGIN = `https://realestatewiki.kr/login`;
-const URL_SEARCH_APT_INFO = "https://api.realestatewiki.kr/aptinfos/aptname/?";
-const URL_SEARCH_RESULT = `https://realestatewiki.kr/search-result/?keyword=`;
-const URL_GET_IMAGE = `https://api.realestatewiki.kr/`;
-const URL_MAKE_COMMENT = "https://api.realestatewiki.kr/comments";
+const URL_APT_INFO = `${urlBackend}/aptinfos/${id}`;
+const URL_APT_PRICE = `${urlBackend}/aptTransaction/recent-price/?`;
+const URL_APT_POST = `${urlBackend}/posts/by-aptname/?aptName=`;
+const URL_APT_COMMENT = `${urlBackend}/comments/getbyaptid/${id}`;
+const URL_APT_COMMENT_PAGINATION = `${urlBackend}/comments/getbyaptid/${id}/?page=`;
+const URL_GET_APT_COMMENT_COUNT = `${urlBackend}/comments/Countbyaptid/${id}`;
+const URL_LOGOUT = `${urlBackend}/users/logout`;
+const URL_SEARCH_APT_INFO = `${urlBackend}/aptinfos/aptname/?`;
+const URL_GET_IMAGE = `${urlBackend}/`;
+const URL_MAKE_COMMENT = `${urlBackend}/comments`;
+const URL_APT = `${urlFrontend}/info/${id}`;
+const URL_GET_POST_DETAIL = `${urlFrontend}/post/`;
+const URL_LOGIN = `${urlFrontend}/login`;
+const URL_SEARCH_RESULT = `${urlFrontend}/search-result/?keyword=`;
 
-// 쿠키 생성
-function getCookie(cName) {
-  cName = cName + "=";
-  var cookieData = document.cookie;
-  var start = cookieData.indexOf(cName);
-  var cValue = "";
-  if (start != -1) {
-    start += cName.length;
-    var end = cookieData.indexOf(";", start);
-    if (end == -1) end = cookieData.length;
-    cValue = cookieData.substring(start, end);
-  }
-  return unescape(cValue);
-}
+// // 쿠키 생성
+// function getCookie(cName) {
+//   cName = cName + "=";
+//   var cookieData = document.cookie;
+//   var start = cookieData.indexOf(cName);
+//   var cValue = "";
+//   if (start != -1) {
+//     start += cName.length;
+//     var end = cookieData.indexOf(";", start);
+//     if (end == -1) end = cookieData.length;
+//     cValue = cookieData.substring(start, end);
+//   }
+//   return unescape(cValue);
+// }
 
-// 쿠키 삭제
-function deleteCookie(name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
+// // 쿠키 삭제
+// function deleteCookie(name) {
+//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+// }
 
-// home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-const loginNav = document.querySelector(
-  "header > nav:nth-child(1) > a:nth-child(4)"
-);
-if (getCookie("nickname") && getCookie("LoginSession")) {
-  loginNav.innerHTML = "로그아웃";
-  loginNav.setAttribute("href", `#`);
-  loginNav.addEventListener("click", logout);
-}
+// // home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
+// const loginNav = document.querySelector(
+//   "header > nav:nth-child(1) > a:nth-child(4)"
+// );
+// if (getCookie("nickname") && getCookie("LoginSession")) {
+//   loginNav.innerHTML = "로그아웃";
+//   loginNav.setAttribute("href", `#`);
+//   loginNav.addEventListener("click", logout);
+// }
 
-async function logout() {
-  loginNav.innerHTML = "로그인";
-  const response = await fetch(URL_LOGOUT, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  deleteCookie("LoginSession");
-  deleteCookie("user_id");
-  deleteCookie("nickname");
-  logoutPopUp();
-  loginNav.setAttribute("href", URL_LOGIN);
-  return;
-}
+// async function logout() {
+//   loginNav.innerHTML = "로그인";
+//   const response = await fetch(URL_LOGOUT, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   deleteCookie("LoginSession");
+//   deleteCookie("user_id");
+//   deleteCookie("nickname");
+//   logoutPopUp();
+//   loginNav.setAttribute("href", URL_LOGIN);
+//   return;
+// }
 
 // 페이지 중앙 검색 기능
 const searchBarButton = document.querySelector(".search-bar__button");
@@ -374,7 +380,7 @@ const pageButton = document.querySelector(".pagenation");
 pageButton.addEventListener("click", async (event) => {
   const pagination = document.querySelector(".pagenation");
   // 현재 active 클래스를 가진 요소를 선택한다.
-  currentPage = document.querySelector(".active");
+  let currentPage = document.querySelector(".active");
   // 그 요소의 active 클래스를 제거한다.
   currentPage.classList.remove("active");
   // 기존 페이지의 게시글 제거

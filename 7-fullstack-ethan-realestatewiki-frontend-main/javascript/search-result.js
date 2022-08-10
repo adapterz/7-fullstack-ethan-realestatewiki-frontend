@@ -1,58 +1,31 @@
-const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
-const URL_LOGIN = `https://realestatewiki.kr/login`;
-const URL_SEARCH_APT_INFO = "https://api.realestatewiki.kr/aptinfos/aptname/?";
-const URL_SEARCH_APT_INFO_COUNT =
-  "https://api.realestatewiki.kr/aptinfos/aptnamecount/?";
-const URL_APT = `https://realestatewiki.kr/info/`;
-const URL_SEARCH_RESULT = `https://realestatewiki.kr/search-result/?keyword=`;
+import { makeNav } from "../middlewares/nav-maker.js";
+document.addEventListener("DOMContentLoaded", makeNav);
 
-// 쿠키 생성
-function getCookie(cName) {
-  cName = cName + "=";
-  var cookieData = document.cookie;
-  var start = cookieData.indexOf(cName);
-  var cValue = "";
-  if (start != -1) {
-    start += cName.length;
-    var end = cookieData.indexOf(";", start);
-    if (end == -1) end = cookieData.length;
-    cValue = cookieData.substring(start, end);
-  }
-  return unescape(cValue);
+import { makeFooter } from "../middlewares/footer-maker.js";
+document.addEventListener("DOMContentLoaded", makeFooter);
+
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
 }
 
-// 쿠키 삭제
-function deleteCookie(name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
-
-// home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-const loginNav = document.querySelector(
-  "header > nav:nth-child(1) > a:nth-child(4)"
-);
-if (getCookie("nickname") && getCookie("LoginSession")) {
-  console.log(loginNav);
-  loginNav.innerHTML = "로그아웃";
-  loginNav.setAttribute("href", `#`);
-  loginNav.addEventListener("click", logout);
-}
-
-async function logout() {
-  loginNav.innerHTML = "로그인";
-  const response = await fetch(URL_LOGOUT, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  deleteCookie("LoginSession");
-  deleteCookie("user_id");
-  deleteCookie("nickname");
-  console.log(response);
-  logoutPopUp();
-  loginNav.setAttribute("href", URL_LOGIN);
-  return;
-}
+const URL_LOGOUT = `${urlBackend}/users/logout`;
+const URL_LOGIN = `${urlFrontend}/login`;
+const URL_SEARCH_APT_INFO = `${urlBackend}/aptinfos/aptname/?`;
+const URL_SEARCH_APT_INFO_COUNT = `${urlBackend}/aptinfos/aptnamecount/?`;
+const URL_APT = `${urlFrontend}/info/`;
+const URL_SEARCH_RESULT = `${urlFrontend}/search-result/?keyword=`;
 
 //href를 분석해서, 그에 맞는 페이지를 로드한다.
 function getParamMap(queryString) {
@@ -106,7 +79,7 @@ async function makeSearchResult(keyword, pageNumber) {
   console.log(data);
   console.log(data[0]["id"]);
   console.log(data[0]["name"]);
-  console.log(data[1]["number_searched"]);
+  console.log(data[0]["number_searched"]);
   for (let i = 0; i < data.length; i++) {
     const item = document.createElement("li");
     const aptInfo = document.createElement("div");
@@ -122,7 +95,11 @@ async function makeSearchResult(keyword, pageNumber) {
     const aptLikes = document.createElement("div");
     aptLikes.className = "board__content-likes";
     const aptLikesNumber = document.createElement("span");
-    aptLikesNumber.textContent = data[i]["number_searched"];
+    if (data[i]["number_searched"] == undefined) {
+      aptLikesNumber.textContent = 0;
+    } else {
+      aptLikesNumber.textContent = data[i]["number_searched"];
+    }
     board.appendChild(item);
     item.appendChild(aptInfo);
     aptInfo.appendChild(aptInfoTitle);

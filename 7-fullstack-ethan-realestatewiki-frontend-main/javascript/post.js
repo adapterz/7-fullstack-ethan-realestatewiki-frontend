@@ -1,23 +1,44 @@
+import { makeNav } from "../middlewares/nav-maker.js";
+document.addEventListener("DOMContentLoaded", makeNav);
+
+import { makeFooter } from "../middlewares/footer-maker.js";
+document.addEventListener("DOMContentLoaded", makeFooter);
+
+import {
+  URL_FRONTEND_DEV,
+  URL_BACKEND_DEV,
+  URL_FRONTEND_PROD,
+  URL_BACKEND_PROD,
+} from "../middlewares/constants.js";
+let urlBackend;
+let urlFrontend;
+
+urlBackend = URL_BACKEND_DEV;
+urlFrontend = URL_FRONTEND_DEV;
+if (location.protocol == "https:") {
+  urlBackend = URL_BACKEND_PROD;
+  urlFrontend = URL_FRONTEND_PROD;
+}
+
 const href = window.location.href;
 const parts = href.split("/");
 const id = parts.pop().replace("?", "");
 
-const URL_GET_POST = `https://api.realestatewiki.kr/posts/${id}`;
-const URL_GET_COMMENT = `https://api.realestatewiki.kr/comments/getbypostid/${id}/?page=`;
-const URL_GET_POST_COMMENT_COUNT = `https://api.realestatewiki.kr/comments/Countbypostid/${id}`;
-const URL_POST = `https://realestatewiki.kr/post/${id}`;
-const URL_LOGOUT = "https://api.realestatewiki.kr/users/logout";
-const URL_LOGIN = `https://realestatewiki.kr/login`;
-const URL_CORRECT_POST = "https://realestatewiki.kr/update-post/";
-const URL_DELETE_POST = `https://api.realestatewiki.kr/posts/${id}`;
-const URL_DELETE_RELATED_POST_COMMENT = `https://api.realestatewiki.kr/comments/commentinpost/all-comment-in-post/${id}`;
-const URL_FREEBOARD = `https://realestatewiki.kr/freeboard`;
-const URL_DELETE_COMMENT =
-  "https://api.realestatewiki.kr/comments/commentinpost/";
-const URL_UPDATE_COMMENT = `https://api.realestatewiki.kr/comments/commentinpost/`;
-const URL_GET_IMAGE = `https://api.realestatewiki.kr/`;
-const URL_MAKE_APT_COMMENT = "https://api.realestatewiki.kr/comments";
-const URL_GO_TO_POST = "https://realestatewiki.kr/post/";
+const URL_GET_POST = `${urlBackend}/posts/${id}`;
+const URL_GET_COMMENT = `${urlBackend}/comments/getbypostid/${id}/?page=`;
+const URL_GET_POST_COMMENT_COUNT = `${urlBackend}/comments/Countbypostid/${id}`;
+const URL_POST = `${urlFrontend}/post/${id}`;
+const URL_LOGOUT = `${urlBackend}/users/logout`;
+const URL_LOGIN = `${urlFrontend}/login`;
+const URL_CORRECT_POST = `${urlFrontend}/update-post/`;
+const URL_DELETE_POST = `${urlBackend}/posts/${id}`;
+const URL_DELETE_RELATED_POST_COMMENT = `${urlBackend}/comments/commentinpost/all-comment-in-post/${id}`;
+const URL_FREEBOARD = `${urlFrontend}/freeboard`;
+const URL_DELETE_COMMENT = `${urlBackend}/comments/commentinpost/`;
+const URL_UPDATE_COMMENT = `${urlBackend}/comments/commentinpost/`;
+const URL_GET_IMAGE = `${urlBackend}/`;
+const URL_MAKE_APT_COMMENT = `${urlBackend}/comments`;
+const URL_GO_TO_POST = `${urlFrontend}/post/`;
 
 let pageNumber = 1;
 
@@ -36,36 +57,36 @@ function getCookie(cName) {
   return unescape(cValue);
 }
 
-// 쿠키 삭제
-function deleteCookie(name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
+// // 쿠키 삭제
+// function deleteCookie(name) {
+//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+// }
 
-// home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-const loginNav = document.querySelector(
-  "header > nav:nth-child(1) > a:nth-child(4)"
-);
-if (getCookie("nickname") && getCookie("LoginSession")) {
-  loginNav.innerHTML = "로그아웃";
-  loginNav.setAttribute("href", `#`);
-  loginNav.addEventListener("click", logout);
-}
+// // home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
+// const loginNav = document.querySelector(
+//   "header > nav:nth-child(1) > a:nth-child(4)"
+// );
+// if (getCookie("nickname") && getCookie("LoginSession")) {
+//   loginNav.innerHTML = "로그아웃";
+//   loginNav.setAttribute("href", `#`);
+//   loginNav.addEventListener("click", logout);
+// }
 
-async function logout() {
-  loginNav.innerHTML = "로그인";
-  const response = await fetch(URL_LOGOUT, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  deleteCookie("LoginSession");
-  deleteCookie("user_id");
-  deleteCookie("nickname");
-  logoutPopUp();
-  loginNav.setAttribute("href", URL_LOGIN);
-  return;
-}
+// async function logout() {
+//   loginNav.innerHTML = "로그인";
+//   const response = await fetch(URL_LOGOUT, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   deleteCookie("LoginSession");
+//   deleteCookie("user_id");
+//   deleteCookie("nickname");
+//   logoutPopUp();
+//   loginNav.setAttribute("href", URL_LOGIN);
+//   return;
+// }
 
 // 자유 게시판 페이지
 document.addEventListener("DOMContentLoaded", getPost());
@@ -333,7 +354,7 @@ const pageButton = document.querySelector(".pagenation");
 pageButton.addEventListener("click", async (event) => {
   const pagination = document.querySelector(".pagenation");
   // 현재 active 클래스를 가진 요소를 선택한다.
-  currentPage = document.querySelector(".active");
+  let currentPage = document.querySelector(".active");
   // 그 요소의 active 클래스를 제거한다.
   currentPage.classList.remove("active");
   // 기존 페이지의 게시글 제거

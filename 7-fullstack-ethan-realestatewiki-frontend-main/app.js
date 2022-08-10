@@ -2,11 +2,14 @@ import express from "express";
 import http from "http";
 import https from "https";
 import fs from "fs";
-import "./env.js";
+import "./middlewares/config.js";
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// export const URL_BACKEND = process.env.URL_BACKEND;
+// export const URL_FRONTEND = process.env.URL_FRONTEND;
 
 const app = express();
 
@@ -152,10 +155,10 @@ const options = {
 };
 
 if (options.cert != undefined) {
-  http.createServer(app).listen(80, () => {
+  http.createServer(app).listen(process.env.PORT_NUM_PROD, () => {
     console.log(`server is listening ${process.env.PORT_NUM_PROD}`);
   });
-  https.createServer(options, app).listen(443, () => {
+  https.createServer(options, app).listen(process.env.PORT_NUM, () => {
     console.log(`server is listening ${process.env.PORT_NUM}`);
   });
 } else {

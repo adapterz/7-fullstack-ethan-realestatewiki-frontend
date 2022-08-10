@@ -10,13 +10,14 @@ let envpath;
 switch (process.env.NODE_ENV) {
   // NODE_ENV 값이 production일 때
   case "production":
-    envpath = path.join(__dirname, "..", ".env.prod");
-    console.log(path.join(__dirname, "..", ".env.prod"));
+    envpath = path.join(__dirname, "..", "..", ".env.prod");
+    console.log(path.join(__dirname, "..", "..", ".env.prod"));
     break;
 
   // NODE_ENV 값이 development일 때
   case "development":
-    envpath = path.join(__dirname, "..", ".env.dev");
+    envpath = path.join(__dirname, "..", "..", ".env.dev");
+    console.log(envpath);
     break;
 }
 
