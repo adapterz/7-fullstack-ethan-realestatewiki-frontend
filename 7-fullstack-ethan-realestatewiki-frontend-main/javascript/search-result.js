@@ -4,21 +4,12 @@ document.addEventListener("DOMContentLoaded", makeNav);
 import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
 
-import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import { getParamMap } from "../middlewares/utils.js";
 
 const URL_LOGOUT = `${urlBackend}/users/logout`;
 const URL_LOGIN = `${urlFrontend}/login`;
@@ -28,14 +19,6 @@ const URL_APT = `${urlFrontend}/info/`;
 const URL_SEARCH_RESULT = `${urlFrontend}/search-result/?keyword=`;
 
 //href를 분석해서, 그에 맞는 페이지를 로드한다.
-function getParamMap(queryString) {
-  let splited = queryString.replace("?", "").split(/[=?&]/);
-  let param = {};
-  for (let i = 0; i < splited.length; i++) {
-    param[splited[i]] = splited[++i];
-  }
-  return param;
-}
 const paramObj = getParamMap(decodeURI(location.search));
 const keyword = paramObj.keyword;
 const page = paramObj.page;
@@ -389,10 +372,3 @@ pageButton.addEventListener("click", async (event) => {
     }
   }
 });
-
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}

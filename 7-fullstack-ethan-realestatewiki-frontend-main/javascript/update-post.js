@@ -3,21 +3,18 @@ document.addEventListener("DOMContentLoaded", makeNav);
 
 import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
-import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
+
+import {
+  updatePostSuccessPopUp,
+  updatePostFailPopUp,
+  loginRequiredPopUp,
+  noChangePopUp,
+} from "../middlewares/popup.js";
 
 // 게시글 아이디 확인
 const href = window.location.href;
@@ -64,52 +61,24 @@ async function updatePost() {
     credentials: "include",
   });
   if (response["status"] == 201) {
-    postSuccessPopUp();
+    updatePostSuccessPopUp();
     setTimeout(() => {
       location.href = URL_FREEBOARD;
     }, 1000);
     return;
   }
   if (response["status"] == 401) {
-    LoginRequiredPopUp();
+    loginRequiredPopUp();
     return;
   }
   if (response["status"] == 204) {
     noChangePopUp();
     return;
   }
-  postFailPopUp();
+  updatePostFailPopUp();
   return;
 }
 
 function goToFreeboard() {
   location.href = URL_FREEBOARD;
-}
-
-function postSuccessPopUp() {
-  Swal.fire({
-    text: "게시글이 수정 되었습니다.",
-    timer: 2000,
-  });
-}
-
-function LoginRequiredPopUp() {
-  Swal.fire({
-    text: "로그인이 필요합니다.",
-    timer: 2000,
-  });
-}
-
-function postFailPopUp() {
-  Swal.fire({
-    text: "제목과 내용을 올바르게 입력해주세요.",
-    timer: 2000,
-  });
-}
-
-function noChangePopUp() {
-  Swal.fire({
-    text: "수정된 사항이 없습니다.",
-    timer: 2000,
-  });
 }

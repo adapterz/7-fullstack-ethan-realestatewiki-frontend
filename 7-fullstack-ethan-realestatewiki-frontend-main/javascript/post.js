@@ -5,20 +5,22 @@ import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
 
 import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
+  deleteCommentSuccessPopUp,
+  updateCommentSuccessPopUp,
+  loginRequiredPopUp,
+  noChangePopUp,
+  updateCommentFailurePopUp,
+  logoutPopUp,
+  makingCommentSuccessPopUp,
+  deletePostSuccessPopUp,
+} from "../middlewares/popup.js";
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import { getCookie } from "../middlewares/utils.js";
+
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
 const href = window.location.href;
 const parts = href.split("/");
@@ -41,52 +43,6 @@ const URL_MAKE_APT_COMMENT = `${urlBackend}/comments`;
 const URL_GO_TO_POST = `${urlFrontend}/post/`;
 
 let pageNumber = 1;
-
-// 쿠키 생성
-function getCookie(cName) {
-  cName = cName + "=";
-  var cookieData = document.cookie;
-  var start = cookieData.indexOf(cName);
-  var cValue = "";
-  if (start != -1) {
-    start += cName.length;
-    var end = cookieData.indexOf(";", start);
-    if (end == -1) end = cookieData.length;
-    cValue = cookieData.substring(start, end);
-  }
-  return unescape(cValue);
-}
-
-// // 쿠키 삭제
-// function deleteCookie(name) {
-//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-// }
-
-// // home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-// const loginNav = document.querySelector(
-//   "header > nav:nth-child(1) > a:nth-child(4)"
-// );
-// if (getCookie("nickname") && getCookie("LoginSession")) {
-//   loginNav.innerHTML = "로그아웃";
-//   loginNav.setAttribute("href", `#`);
-//   loginNav.addEventListener("click", logout);
-// }
-
-// async function logout() {
-//   loginNav.innerHTML = "로그인";
-//   const response = await fetch(URL_LOGOUT, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-//   deleteCookie("LoginSession");
-//   deleteCookie("user_id");
-//   deleteCookie("nickname");
-//   logoutPopUp();
-//   loginNav.setAttribute("href", URL_LOGIN);
-//   return;
-// }
 
 // 자유 게시판 페이지
 document.addEventListener("DOMContentLoaded", getPost());
@@ -465,13 +421,13 @@ async function makeComment() {
     credentials: "include",
   });
   if (response["status"] == 201) {
-    commentSuccessPopUp();
+    makingCommentSuccessPopUp();
     setTimeout(() => {
       location.href = URL_POST;
     }, 1000);
     return;
   }
-  commentFailPopUp();
+  loginRequiredPopUp();
   return;
 }
 
@@ -600,17 +556,15 @@ async function update(event) {
       return;
     }
     if (response["status"] == 401) {
-      LoginRequiredPopUp();
+      loginRequiredPopUp();
       return;
     }
     if (response["status"] == 204) {
       noChangePopUp();
       return;
     }
-    updateFailPopUp();
+    updateCommentFailurePopUp();
     return;
-
-    window.alert("확인");
   }
   if (event.target.className == "fa-solid fa-x") {
     const commentArea = event.target.parentElement.parentElement.parentElement;
@@ -624,67 +578,4 @@ async function update(event) {
     contentUpdateArea.style.display = "none";
     contentUpdateButtonArea.style.display = "none";
   }
-}
-
-function deleteCommentSuccessPopUp() {
-  Swal.fire({
-    text: "댓글이 삭제되었습니다.",
-    timer: 2000,
-  });
-}
-
-function updateCommentSuccessPopUp() {
-  Swal.fire({
-    text: "댓글이 수정되었습니다.",
-    timer: 2000,
-  });
-}
-
-function LoginRequiredPopUp() {
-  Swal.fire({
-    text: "로그인이 필요합니다.",
-    timer: 2000,
-  });
-}
-
-function noChangePopUp() {
-  Swal.fire({
-    text: "수정된 내용이 없습니다.",
-    timer: 2000,
-  });
-}
-
-function updateFailPopUp() {
-  Swal.fire({
-    text: "댓글 수정이 실패했습니다. 관리자에게 문의해주세요.",
-    timer: 2000,
-  });
-}
-
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}
-
-function commentSuccessPopUp() {
-  Swal.fire({
-    text: "댓글이 작성 되었습니다.",
-    timer: 2000,
-  });
-}
-
-function commentFailPopUp() {
-  Swal.fire({
-    text: "로그인이 필요합니다.",
-    timer: 2000,
-  });
-}
-
-function deletePostSuccessPopUp() {
-  Swal.fire({
-    text: "게시글이 삭제되었습니다.",
-    timer: 2000,
-  });
 }

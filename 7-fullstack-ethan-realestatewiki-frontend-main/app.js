@@ -7,10 +7,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// export const URL_BACKEND = process.env.URL_BACKEND;
-// export const URL_FRONTEND = process.env.URL_FRONTEND;
-
 const app = express();
 
 app.use(express.json());

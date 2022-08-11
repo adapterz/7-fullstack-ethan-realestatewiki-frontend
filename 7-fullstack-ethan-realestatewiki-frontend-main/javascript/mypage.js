@@ -4,21 +4,12 @@ document.addEventListener("DOMContentLoaded", makeNav);
 import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
 
-import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
+import { cookieDoor } from "../middlewares/cookie-door.js";
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
 const URL_LOGOUT = `${urlBackend}/users/logout`;
 const URL_LOGIN = `${urlFrontend}/login`;
@@ -29,60 +20,8 @@ const URL_GET_MY_APT_COMMENT = `${urlBackend}/comments/getbyuserIndex/apt-commen
 const URL_GET_POST = `${urlFrontend}/post/`;
 const URL_GET_APT_INFO = `${urlFrontend}/info/`;
 
-// // 쿠키 생성
-function getCookie(cName) {
-  cName = cName + "=";
-  var cookieData = document.cookie;
-  var start = cookieData.indexOf(cName);
-  var cValue = "";
-  if (start != -1) {
-    start += cName.length;
-    var end = cookieData.indexOf(";", start);
-    if (end == -1) end = cookieData.length;
-    cValue = cookieData.substring(start, end);
-  }
-  return unescape(cValue);
-}
-
-// // 쿠키 삭제
-// function deleteCookie(name) {
-//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-// }
-
-// // home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-// const loginNav = document.querySelector(
-//   "header > nav:nth-child(1) > a:nth-child(4)"
-// );
-// if (getCookie("nickname") && getCookie("LoginSession")) {
-//   loginNav.innerHTML = "로그아웃";
-//   loginNav.setAttribute("href", `#`);
-//   loginNav.addEventListener("click", logout);
-// }
-
-// async function logout() {
-//   loginNav.innerHTML = "로그인";
-//   const response = await fetch(URL_LOGOUT, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-//   deleteCookie("LoginSession");
-//   deleteCookie("user_id");
-//   deleteCookie("nickname");
-//   logoutPopUp();
-//   loginNav.setAttribute("href", URL_LOGIN);
-//   return;
-// }
-
 // 로그인 되어 있지 않을 때, 홈화면으로 돌아가기
-
-if (!getCookie("LoginSession")) {
-  loginRequiredPopUp();
-  setTimeout(() => {
-    location.href = URL_HOME;
-  });
-}
+cookieDoor();
 
 document.addEventListener("DOMContentLoaded", getMyPost);
 document.addEventListener("DOMContentLoaded", getMyPostComment);
@@ -244,18 +183,4 @@ async function getMyAptComment() {
     postCommentInfo.append(postCommentAptIcon);
     postCommentInfo.append(postCommentInfoAptName);
   }
-}
-
-function loginRequiredPopUp() {
-  Swal.fire({
-    text: "로그인이 필요합니다.",
-    timer: 4000,
-  });
-}
-
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
 }

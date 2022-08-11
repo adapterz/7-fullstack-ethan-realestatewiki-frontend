@@ -6,3 +6,17 @@
 @import "../components/related-post.css";
 @import "../components/comment.css";
 @import "../components/pagenation.css";
+
+.comment__button-correct,
+.comment__button-delete {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  color: #7e81a6;
+  margin: auto calc(var(--margin) / 5);
+  font-size: var(--font-small);
+}

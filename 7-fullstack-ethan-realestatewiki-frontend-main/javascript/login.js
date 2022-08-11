@@ -1,18 +1,13 @@
-import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import {
+  loginSuccessPopUp,
+  loginFailurePopUp,
+  alreadyLoginPopUp,
+} from "../middlewares/popup.js";
 
 const URL_SINGIN = `${urlBackend}/users/signin`;
 const URL_SIGNUP = `${urlFrontend}/signup`;
@@ -24,6 +19,7 @@ const signupButton = document.querySelector("#signupButton");
 // 로그인 버튼을 클릭하면 login 함수가 실행된다.
 loginbutton.addEventListener("click", login);
 signupButton.addEventListener("click", goToSignupPage);
+
 // 회원가입 페이지로 가기
 function goToSignupPage() {
   location.href = URL_SIGNUP;
@@ -61,40 +57,15 @@ async function checkUser(userId, userPw) {
   }
   if (response["status"] == 200) {
     console.log("쿠키를 생성합니다. ");
-    document.cookie = `session=${forCookie[0]["Loginsession"]}; maxAge = 30 * 60 * 1000`;
-    // document.cookie = `LoginSession=${forCookie[0]["Loginsession"]}; maxAge = 30 * 60 * 1000`;
-    document.cookie = `user_id=${forCookie[1]["user_id"]}; maxAge = 30 * 60 * 1000`;
-    document.cookie = `nickname=${forCookie[2]["nickname"]}; maxAge = 30 * 60 * 1000`;
-    OkPopUp();
+    document.cookie = `session=${forCookie[0]["Loginsession"]}; max-age=3600`;
+    document.cookie = `user_id=${forCookie[1]["user_id"]}; max-age=3600`;
+    document.cookie = `nickname=${forCookie[2]["nickname"]}; max-age=3600`;
+    loginSuccessPopUp();
     setTimeout(() => {
       location.href = URL_HOME;
     }, 1000);
-
     return;
   }
-  noPopUp();
+  loginFailurePopUp();
   return;
-}
-
-function OkPopUp() {
-  Swal.fire({
-    text: "로그인 되었습니다.",
-    confirmButtonText: "확인",
-    timer: 2000,
-  });
-}
-
-function noPopUp() {
-  Swal.fire({
-    text: "아이디 또는 비밀번호가 일치하지 않습니다.",
-    confirmButtonText: "확인",
-  });
-}
-
-function alreadyLoginPopUp() {
-  Swal.fire({
-    text: "이미 로그인 되어 있습니다.",
-    confirmButtonText: "확인",
-    timer: 2000,
-  });
 }

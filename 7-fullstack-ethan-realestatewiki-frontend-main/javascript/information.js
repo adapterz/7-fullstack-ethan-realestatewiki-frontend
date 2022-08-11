@@ -4,21 +4,23 @@ document.addEventListener("DOMContentLoaded", makeNav);
 import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
 
-import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
+import { getCookie, deleteCookie } from "../middlewares/utils.js";
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import {
+  deleteCommentSuccessPopUp,
+  updateCommentSuccessPopUp,
+  loginRequiredPopUp,
+  noChangePopUp,
+  updateCommentFailurePopUp,
+  logoutPopUp,
+  makingCommentSuccessPopUp,
+  deletePostSuccessPopUp,
+} from "../middlewares/popup.js";
+
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
 // 아파트 정보 페이지
 const href = window.location.href;
@@ -42,52 +44,6 @@ const URL_APT = `${urlFrontend}/info/${id}`;
 const URL_GET_POST_DETAIL = `${urlFrontend}/post/`;
 const URL_LOGIN = `${urlFrontend}/login`;
 const URL_SEARCH_RESULT = `${urlFrontend}/search-result/?keyword=`;
-
-// // 쿠키 생성
-// function getCookie(cName) {
-//   cName = cName + "=";
-//   var cookieData = document.cookie;
-//   var start = cookieData.indexOf(cName);
-//   var cValue = "";
-//   if (start != -1) {
-//     start += cName.length;
-//     var end = cookieData.indexOf(";", start);
-//     if (end == -1) end = cookieData.length;
-//     cValue = cookieData.substring(start, end);
-//   }
-//   return unescape(cValue);
-// }
-
-// // 쿠키 삭제
-// function deleteCookie(name) {
-//   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-// }
-
-// // home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-// const loginNav = document.querySelector(
-//   "header > nav:nth-child(1) > a:nth-child(4)"
-// );
-// if (getCookie("nickname") && getCookie("LoginSession")) {
-//   loginNav.innerHTML = "로그아웃";
-//   loginNav.setAttribute("href", `#`);
-//   loginNav.addEventListener("click", logout);
-// }
-
-// async function logout() {
-//   loginNav.innerHTML = "로그인";
-//   const response = await fetch(URL_LOGOUT, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-//   deleteCookie("LoginSession");
-//   deleteCookie("user_id");
-//   deleteCookie("nickname");
-//   logoutPopUp();
-//   loginNav.setAttribute("href", URL_LOGIN);
-//   return;
-// }
 
 // 페이지 중앙 검색 기능
 const searchBarButton = document.querySelector(".search-bar__button");
@@ -224,6 +180,54 @@ async function getAptCommentCount() {
   return data;
 }
 
+// // 댓글 불러오기 (아파트 관련) (페이지네이션)
+// async function getAptComment(pageNumber) {
+//   const response = await fetch(
+//     `${URL_APT_COMMENT_PAGINATION}${encodeURIComponent(pageNumber)}`,
+//     {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }
+//   );
+//   const data = await response.json();
+//   console.log(data);
+//   // 총 댓글 개수를 가져와서 textContent에 할당한다.
+//   const rawCommentCountData = await getAptCommentCount();
+//   const commentCountData = rawCommentCountData[0]["count(*)"];
+//   const commentCount = document.querySelector(".comment h4 span");
+//   const commentWrapper = document.querySelector(".comment ul");
+//   commentCount.textContent = commentCountData;
+//   // 가져온 댓글 데이터 개수에 맞게, 댓글을 생성한다.
+//   for (let i = 0; i < data.length; i++) {
+//     const li = document.createElement("li");
+//     const profileDiv = document.createElement("div");
+//     profileDiv.className = "comment__user-profile-image";
+//     const profileImg = document.createElement("img");
+//     profileImg.src = `${URL_GET_IMAGE}${data[i]["image"]}`;
+//     commentWrapper.appendChild(li);
+//     const commentDiv = document.createElement("div");
+//     commentDiv.className = "comment__wrapper";
+//     const commentContent = document.createElement("div");
+//     commentContent.className = "comment__content";
+//     commentContent.textContent = data[i]["content"];
+//     const commentInfo = document.createElement("div");
+//     commentInfo.className = "comment__writer";
+//     const commentWriter = document.createElement("span");
+//     const commentCreatedTime = document.createElement("span");
+//     commentWriter.textContent = data[i]["user_id"];
+//     commentCreatedTime.textContent = ` / ${data[i]["datetime_updated"]}`;
+//     li.appendChild(profileDiv);
+//     profileDiv.appendChild(profileImg);
+//     li.appendChild(commentDiv);
+//     commentDiv.appendChild(commentContent);
+//     li.appendChild(commentInfo);
+//     commentInfo.appendChild(commentWriter);
+//     commentInfo.appendChild(commentCreatedTime);
+//   }
+// }
+
 // 댓글 불러오기 (아파트 관련) (페이지네이션)
 async function getAptComment(pageNumber) {
   const response = await fetch(
@@ -236,6 +240,7 @@ async function getAptComment(pageNumber) {
     }
   );
   const data = await response.json();
+  console.log(data);
   // 총 댓글 개수를 가져와서 textContent에 할당한다.
   const rawCommentCountData = await getAptCommentCount();
   const commentCountData = rawCommentCountData[0]["count(*)"];
@@ -250,6 +255,8 @@ async function getAptComment(pageNumber) {
     const profileImg = document.createElement("img");
     profileImg.src = `${URL_GET_IMAGE}${data[i]["image"]}`;
     commentWrapper.appendChild(li);
+    const commentWrapperWrapper = document.createElement("div");
+    commentWrapperWrapper.className = "comment__wrapper-wrapper";
     const commentDiv = document.createElement("div");
     commentDiv.className = "comment__wrapper";
     const commentContent = document.createElement("div");
@@ -259,15 +266,68 @@ async function getAptComment(pageNumber) {
     commentInfo.className = "comment__writer";
     const commentWriter = document.createElement("span");
     const commentCreatedTime = document.createElement("span");
+    const commentWriterId = document.createElement("span");
+    const commentId = document.createElement("span");
+    const aptId = document.createElement("span");
     commentWriter.textContent = data[i]["user_id"];
     commentCreatedTime.textContent = ` / ${data[i]["datetime_updated"]}`;
+    commentWriterId.textContent = `${data[i]["user_index"]}`;
+    commentId.textContent = `${data[i]["comment_index"]}`;
+    aptId.textContent = `${data[i]["apt_index"]}`;
+    const updateButton = document.createElement("button");
+    updateButton.className = "comment__button-correct";
+    updateButton.type = "button";
+    const updateButtonIcon = document.createElement("i");
+    updateButtonIcon.className = "fa-solid fa-pencil";
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "comment__button-delete";
+    deleteButton.type = "button";
+    const deleteButtonIcon = document.createElement("i");
+    deleteButtonIcon.className = "fa-solid fa-trash-can";
     li.appendChild(profileDiv);
     profileDiv.appendChild(profileImg);
-    li.appendChild(commentDiv);
+    li.appendChild(commentWrapperWrapper);
+    // li.appendChild(commentDiv);
     commentDiv.appendChild(commentContent);
-    li.appendChild(commentInfo);
+    // li.appendChild(commentInfo);
+    commentWrapperWrapper.appendChild(commentDiv);
+    commentWrapperWrapper.appendChild(commentInfo);
     commentInfo.appendChild(commentWriter);
     commentInfo.appendChild(commentCreatedTime);
+    commentInfo.appendChild(commentWriterId);
+    commentInfo.appendChild(commentId);
+    commentInfo.appendChild(aptId);
+    updateButton.appendChild(updateButtonIcon);
+    deleteButton.appendChild(deleteButtonIcon);
+    commentInfo.appendChild(updateButton);
+    commentInfo.appendChild(deleteButton);
+    const textArea = document.createElement("input");
+    textArea.className = "comment-update-textarea";
+    textArea.value = data[i]["content"];
+    commentWrapperWrapper.appendChild(textArea);
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.className = "update-button-wrapper";
+    const textUpdatebutton = document.createElement("button");
+    textUpdatebutton.className = "comment-update-button";
+    textUpdatebutton.type = "button";
+    const textUpdatebuttonIcon = document.createElement("i");
+    textUpdatebuttonIcon.className = "fa-solid fa-check";
+    textUpdatebutton.appendChild(textUpdatebuttonIcon);
+    const updatecancelbutton = document.createElement("button");
+    updatecancelbutton.className = "comment-update-button";
+    const updatecancelbuttonIcon = document.createElement("i");
+    updatecancelbuttonIcon.className = "fa-solid fa-x";
+    updatecancelbutton.type = "button";
+    updatecancelbutton.appendChild(updatecancelbuttonIcon);
+    commentWrapperWrapper.appendChild(buttonWrapper);
+    buttonWrapper.appendChild(textUpdatebutton);
+    buttonWrapper.appendChild(updatecancelbutton);
+    textArea.style.display = "none";
+    buttonWrapper.style.display = "none";
+    if (getCookie("user_id") != data[i]["user_id"]) {
+      updateButton.style.display = "none";
+      deleteButton.style.display = "none";
+    }
   }
 }
 
@@ -488,33 +548,127 @@ async function makeComment() {
     credentials: "include",
   });
   if (response["status"] == 201) {
-    commentSuccessPopUp();
+    makingCommentSuccessPopUp();
     setTimeout(() => {
       location.href = URL_APT;
     }, 1000);
     return;
   }
-  commentFailPopUp();
+  loginRequiredPopUp();
   return;
 }
 
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
-}
+const URL_DELETE_COMMENT = `${urlBackend}/comments/commentinaptinfo/`;
+const URL_UPDATE_COMMENT = `${urlBackend}/comments/commentinaptinfo/`;
+const URL_GO_TO_APT_INFO = `${urlFrontend}/info/`;
 
-function commentSuccessPopUp() {
-  Swal.fire({
-    text: "댓글이 작성 되었습니다.",
-    timer: 2000,
-  });
-}
+// 댓글 수정, 삭제 버튼
+const commentBtn = document.querySelector(".comment ul");
+commentBtn.addEventListener("click", update);
 
-function commentFailPopUp() {
-  Swal.fire({
-    text: "로그인이 필요합니다.",
-    timer: 2000,
-  });
+async function update(event) {
+  if (event.target.className == "fa-solid fa-pencil") {
+    const userId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.innerHTML;
+    const commentId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.nextSibling.innerHTML;
+    const commentArea = event.target.parentElement.parentElement.parentElement;
+    const contentArea = commentArea.firstChild;
+    const contentInfoArea = commentArea.firstChild.nextSibling;
+    const contentUpdateArea = commentArea.firstChild.nextSibling.nextSibling;
+    const contentUpdateButtonArea =
+      commentArea.firstChild.nextSibling.nextSibling.nextSibling;
+
+    contentArea.style.display = "none";
+    contentInfoArea.style.display = "none";
+    contentUpdateArea.style.display = "block";
+    contentUpdateButtonArea.style.display = "block";
+  }
+  if (event.target.className == "fa-solid fa-trash-can") {
+    const userId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.innerHTML;
+    const commentId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.nextSibling.innerHTML;
+    const postId =
+      event.target.parentElement.parentElement.firstChild.nextSibling
+        .nextSibling.nextSibling.nextSibling.innerHTML;
+    const response = await fetch(`${URL_DELETE_COMMENT}${commentId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    if (response["status"] == 204) {
+      deleteCommentSuccessPopUp();
+      setTimeout(() => {
+        location.href = `${URL_GO_TO_APT_INFO}${postId}`;
+      }, 1000);
+      // }
+    }
+    return;
+  }
+
+  // 글쓴이, 댓글번호, 아파트번호
+  if (event.target.className == "fa-solid fa-check") {
+    const userId =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.firstChild.nextSibling.nextSibling.innerHTML;
+    const commentId =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.firstChild.nextSibling.nextSibling.nextSibling.innerHTML;
+    const aptId =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling
+        .innerHTML;
+    const contentUpdateArea =
+      event.target.parentElement.parentElement.parentElement.firstChild
+        .nextSibling.nextSibling;
+    const updateCommentUrl = `${URL_UPDATE_COMMENT}${commentId}`;
+    const comment = {
+      content: contentUpdateArea.value,
+    };
+    const response = await fetch(updateCommentUrl, {
+      method: "put", // POST 요청을 보낸다.
+      body: JSON.stringify(comment), // comment JS 객체를 JSON으로 변경하여 보냄
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    if (response["status"] == 201) {
+      updateCommentSuccessPopUp();
+      setTimeout(() => {
+        location.href = `${URL_GO_TO_APT_INFO}${aptId}`;
+      }, 1000);
+      return;
+    }
+    if (response["status"] == 401) {
+      loginRequiredPopUp();
+      return;
+    }
+    if (response["status"] == 204) {
+      noChangePopUp();
+      return;
+    }
+    updateCommentFailurePopUp();
+    return;
+  }
+  if (event.target.className == "fa-solid fa-x") {
+    const commentArea = event.target.parentElement.parentElement.parentElement;
+    const contentArea = commentArea.firstChild;
+    const contentInfoArea = commentArea.firstChild.nextSibling;
+    const contentUpdateArea = commentArea.firstChild.nextSibling.nextSibling;
+    const contentUpdateButtonArea =
+      commentArea.firstChild.nextSibling.nextSibling.nextSibling;
+    contentArea.style.display = "block";
+    contentInfoArea.style.display = "block";
+    contentUpdateArea.style.display = "none";
+    contentUpdateButtonArea.style.display = "none";
+  }
 }

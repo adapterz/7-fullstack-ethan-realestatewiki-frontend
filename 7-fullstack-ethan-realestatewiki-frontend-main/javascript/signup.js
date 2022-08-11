@@ -5,20 +5,23 @@ import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
 
 import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
+  logoutPopUp,
+  alreadyLoginPopUp,
+  showPrivacyPolicy,
+  requireAgreePopUp,
+  requireInfoPopUp,
+  signupSuccessPopUp,
+  signupFailPopUp,
+} from "../middlewares/popup.js";
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import { reverseCookieDoor } from "../middlewares/cookie-door.js";
+
+import { getCookie, deleteCookie } from "../middlewares/utils.js";
+
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
 const URL_HOME = `${urlFrontend}`;
 const URL_LOGOUT = `${urlBackend}/users/logout`;
@@ -29,61 +32,8 @@ const URL_PHONENUMBER_CHECK = `${urlBackend}/users/phonenumber-check`;
 const URL_EMAIL_CHECK = `${urlBackend}/users/email-check`;
 const URL_MAKE_USER = `${urlBackend}/users`;
 
-// 로그인 되어 있지 않을 때, 홈화면으로 돌아가기
-if (getCookie("LoginSession")) {
-  alreadyLoginPopUp();
-  setTimeout(() => {
-    location.href = URL_HOME;
-  });
-}
-
-// 쿠키 생성
-function getCookie(cName) {
-  cName = cName + "=";
-  var cookieData = document.cookie;
-  var start = cookieData.indexOf(cName);
-  var cValue = "";
-  if (start != -1) {
-    start += cName.length;
-    var end = cookieData.indexOf(";", start);
-    if (end == -1) end = cookieData.length;
-    cValue = cookieData.substring(start, end);
-  }
-  return unescape(cValue);
-}
-
-// 쿠키 삭제
-function deleteCookie(name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-}
-
-// home 화면 띄우기 전, 쿠키 확인 후, 로그인 처리
-const loginNav = document.querySelector(
-  "header > nav:nth-child(1) > a:nth-child(4)"
-);
-if (getCookie("nickname") && getCookie("LoginSession")) {
-  console.log(loginNav);
-  loginNav.innerHTML = "로그아웃";
-  loginNav.setAttribute("href", `#`);
-  loginNav.addEventListener("click", logout);
-}
-
-async function logout() {
-  loginNav.innerHTML = "로그인";
-  const response = await fetch(URL_LOGOUT, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  deleteCookie("LoginSession");
-  deleteCookie("user_id");
-  deleteCookie("nickname");
-  console.log(response);
-  logoutPopUp();
-  loginNav.setAttribute("href", URL_LOGIN);
-  return;
-}
+// 로그인 되어 있을 때, 홈화면으로 돌아가기
+reverseCookieDoor();
 
 /*
  * 디바운싱 : Interval 내 반복되는 이벤트를 무시함.
@@ -542,56 +492,4 @@ function isPhoneNumber(asValue) {
 function isNickname(asValue) {
   var regExp = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{5,10}$/;
   return regExp.test(asValue);
-}
-
-function showPrivacyPolicy() {
-  Swal.fire({
-    text: "개인정보처리방침입니다. 개인정보처리방침입니다. 개인정보처리방침입니다. 개인정보처리방침입니다.",
-    confirmButtonText: "확인",
-    timer: 2000,
-  });
-}
-
-function requireAgreePopUp() {
-  Swal.fire({
-    text: "개인정보처리방침 동의가 필요합니다.",
-    confirmButtonText: "확인",
-    timer: 2000,
-  });
-}
-
-function requireInfoPopUp() {
-  Swal.fire({
-    text: "필수 항목을 입력해주세요.",
-    confirmButtonText: "확인",
-    timer: 2000,
-  });
-}
-
-function signupSuccessPopUp() {
-  Swal.fire({
-    text: "회원가입 되었습니다.",
-    timer: 2000,
-  });
-}
-
-function signupFailPopUp() {
-  Swal.fire({
-    text: "회원가입이 실패하였습니다. 입력 정보를 확인해주세요.",
-    timer: 2000,
-  });
-}
-
-function alreadyLoginPopUp() {
-  Swal.fire({
-    text: "이미 로그인되었습니다.",
-    timer: 4000,
-  });
-}
-
-function logoutPopUp() {
-  Swal.fire({
-    text: "로그아웃 되었습니다.",
-    timer: 2000,
-  });
 }

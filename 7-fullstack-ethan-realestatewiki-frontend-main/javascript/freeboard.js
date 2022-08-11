@@ -5,22 +5,10 @@ document.addEventListener("DOMContentLoaded", makeNav);
 import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
 
-import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-
-let urlBackend;
-let urlFrontend;
-
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
 // URL 상수 (배포)
 const URL_FREEBOARD = `${urlBackend}/freeboard/`;
@@ -222,7 +210,7 @@ const pageButton = document.querySelector(".pagenation");
 pageButton.addEventListener("click", async (event) => {
   const pagination = document.querySelector(".pagenation");
   // 현재 active 클래스를 가진 요소를 선택한다.
-  currentPage = document.querySelector(".active");
+  let currentPage = document.querySelector(".active");
   // 그 요소의 active 클래스를 제거한다.
   currentPage.classList.remove("active");
   // 기존 페이지의 게시글 제거
@@ -250,7 +238,7 @@ pageButton.addEventListener("click", async (event) => {
       }
       // 이전 페이지로 이동
       case "fa-solid fa-angle-left": {
-        prePage = currentPage.previousSibling;
+        let prePage = currentPage.previousSibling;
         // 이전 페이지에 내용이 없는데, 현재 페이지가 1페이지라면
         if (!prePage.innerText && currentPage.innerText == 1) {
           while (pagination.hasChildNodes()) {
@@ -284,7 +272,7 @@ pageButton.addEventListener("click", async (event) => {
           return;
         }
         // 현재 페이지가 5의 배수가 아니라면,
-        nextPage = currentPage.nextSibling;
+        let nextPage = currentPage.nextSibling;
         if (!nextPage.innerText) {
           currentPage.classList.add("active");
           getAllPost(currentPage.innerText);

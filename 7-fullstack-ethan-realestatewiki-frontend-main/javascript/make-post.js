@@ -4,27 +4,20 @@ document.addEventListener("DOMContentLoaded", makeNav);
 import { makeFooter } from "../middlewares/footer-maker.js";
 document.addEventListener("DOMContentLoaded", makeFooter);
 
-import {
-  URL_FRONTEND_DEV,
-  URL_BACKEND_DEV,
-  URL_FRONTEND_PROD,
-  URL_BACKEND_PROD,
-} from "../middlewares/constants.js";
-let urlBackend;
-let urlFrontend;
+import { cookieDoor } from "../middlewares/cookie-door.js";
 
-urlBackend = URL_BACKEND_DEV;
-urlFrontend = URL_FRONTEND_DEV;
-if (location.protocol == "https:") {
-  urlBackend = URL_BACKEND_PROD;
-  urlFrontend = URL_FRONTEND_PROD;
-}
+import { identifyProtocol } from "../middlewares/identifyProtocol.js";
+const baseUrl = identifyProtocol();
+const urlBackend = baseUrl["urlBackend"];
+const urlFrontend = baseUrl["urlFrontend"];
 
 // 자유 게시판 페이지
 const URL_LOGOUT = `${urlBackend}/users/logout`;
 const URL_LOGIN = `${urlFrontend}/login`;
 const URL_FREEBOARD = `${urlFrontend}/freeboard`;
 const URL_MAKE_POST = `${urlBackend}/posts`;
+
+cookieDoor();
 
 // 게시글 쓰기
 
