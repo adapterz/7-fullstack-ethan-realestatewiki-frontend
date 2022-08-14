@@ -134,3 +134,38 @@ export function updatePostFailPopUp() {
     timer: 2000,
   });
 }
+
+export function updatePwFailPopUp() {
+  Swal.fire({
+    text: "비밀번호를 확인해주세요.",
+    timer: 2000,
+  });
+}
+
+export function deleteUserIdSuccessPopUp() {
+  Swal.fire({
+    text: "회원 탈퇴가 완료되었습니다.",
+    timer: 2000,
+  });
+}
+
+export function updatePwSuccessPopUP() {
+  Swal.fire({
+    text: "비밀번호 수정이 완료되었습니다.",
+    timer: 2000,
+  });
+}
+
+export function notFoundImagePopUp() {
+  Swal.fire({
+    text: "이미지가 첨부되지 않았습니다.",
+    timer: 2000,
+  });
+}
+
+export function updateImageSuccessPopUP() {
+  Swal.fire({
+    text: "프로필 이미지 수정이 완료되었습니다.",
+    timer: 2000,
+  });
+}

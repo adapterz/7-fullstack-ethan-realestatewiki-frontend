@@ -63,6 +63,66 @@
                 <div class="pagenation">
                 </div>
             </section>
+            <section class="update">
+                <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />회원 정보 수정
+                </h3>
+                <div class="update__info">
+                </div>
+
+                <div class="button-wrapper">
+                    <form id="change-password__form" action="" method="post" enctype="multipart/form-data">
+                        <div class="change-password-box">
+                            <div class="signup__element">
+                                <label for="user_pw">현재 비밀번호</label>
+                                <div><input type="password" id="user_pw" placeholder="현재 비밀번호" minlength="8"
+                                        maxlength="15" required="반드시 입력해야 합니다."></div>
+                            </div>
+                            <div class="signup__check_msg signup__check_msg-user_pw"> asdasd</div>
+                            <div class="signup__line"></div>
+
+                            <div class="signup__element">
+                                <label for="new_user_pw">새비밀번호</label>
+                                <div><input type="password" id="new_user_pw" placeholder="8~15자 영문소문자,숫자,특수문자 포함"
+                                        minlength="8" maxlength="15" required="반드시 입력해야 합니다."></div>
+                            </div>
+                            <div class="signup__check_msg signup__check_msg-new_user_pw"> asdasd</div>
+                            <div class="signup__line"></div>
+
+                            <div class="signup__element">
+                                <label for="new_user_pw_check">새비밀번호 확인</label>
+                                <div><input type="password" id="new_user_pw_check" placeholder="비밀번호 재확인" minlength="8"
+                                        maxlength="15" required="반드시 입력해야 합니다."></div>
+                            </div>
+
+                            <div class="signup__check_msg signup__check_msg-new_user_pw_check"> asdasd</div>
+                            <div class="signup__line"></div>
+                            <div class="change-password-button-wrapper">
+                                <button type="button" class="change-password-button-cancel">취소</button>
+                                <button type="button" class="change-password-button-confirm">확인</button>
+                            </div>
+                        </div>
+                    </form>
+                    <button type="button" class="change-password-button">비밀번호 변경</button>
+                    <div class="change-image-box">
+                        <form id="change-image__form" action="" method="post" enctype="multipart/form-data">
+                            <div class="signup__element signup__element--image">
+                                <label>프로필 이미지</label>
+                                <div><input type="file" id="user_image" accept="image/*" placeholder="이미지 파일만 업로드 가능">
+                                </div>
+                            </div>
+                            <div class="signup__check_msg signup__check_msg-image"> asdasd</div>
+                            <div class="signup__line"></div>
+
+                            <div class="change-image-button-wrapper">
+                                <button type="button" class="change-image-button-cancel">취소</button>
+                                <button type="button" class="change-image-button-confirm">확인</button>
+                            </div>
+                        </form>
+                    </div>
+                    <button type="button" class="change-image-button">프로필 이미지 변경</button>
+                    <button type="button" class="delete-id-button">탈퇴하기</button>
+                </div>
+            </section>
     </div>
 
     </section>

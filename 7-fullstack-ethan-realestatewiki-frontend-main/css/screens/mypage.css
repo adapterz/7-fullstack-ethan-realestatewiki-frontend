@@ -172,3 +172,139 @@
 .myAptcomments__sub-detail i {
   padding-right: calc(var(--padding) / 3);
 }
+
+.update {
+  padding: var(--padding);
+}
+
+.update h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.update h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.update__info {
+  margin: calc(var(--margin) / 2) 0;
+  padding: calc(var(--padding) / 2) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-wrapper button {
+  padding: calc(var(--padding) / 2) 0;
+  /* margin: calc(var(--margin) / 2) 0; */
+}
+
+.signup__element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: var(--grey-light-color) 1px solid; */
+}
+
+.signup__line {
+  border-bottom: var(--grey-light-color) 1px solid;
+}
+
+.signup__check_msg {
+  padding-left: calc(var(--margin) * 1.7);
+  color: var(--red-color);
+  display: none;
+  font-size: var(--font-small);
+  margin-bottom: calc(var(--margin) / 3);
+}
+
+.signup__element label {
+  width: 35%;
+  text-align: center;
+  vertical-align: middle;
+  /* line-height: 70px; */
+}
+
+.signup__element label span {
+  color: var(--red-color);
+}
+
+.signup__element div {
+  /* margin-right: 20px; */
+  width: 60%;
+  border: 1px solid var(--grey-dark-color);
+  margin: calc(var(--margin) / 1.5) auto;
+  padding: var(--padding);
+}
+
+.signup__element div input {
+  border: none;
+  width: 100%;
+}
+
+.change-password-button-wrapper {
+  display: flex;
+}
+
+.change-password-box button {
+  /* background: inherit; */
+  /* border: none; */
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 50%;
+  vertical-align: middle;
+  height: 33px;
+  margin: var(--margin) calc(var(--margin) / 2);
+}
+
+.change-password-button-confirm {
+  background-color: #0a2e4f;
+  color: var(--white-color);
+}
+
+.change-password-button-cancel {
+  background-color: var(--dark-green);
+  color: var(--white-color);
+}
+
+.change-image-button-wrapper {
+  display: flex;
+}
+
+.change-image-box button {
+  /* background: inherit; */
+  /* border: none; */
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 50%;
+  vertical-align: middle;
+  height: 33px;
+  margin: var(--margin) calc(var(--margin) / 2);
+}
+
+.change-image-button-confirm {
+  background-color: #0a2e4f;
+  color: var(--white-color);
+}
+
+.change-image-button-cancel {
+  background-color: var(--dark-green);
+  color: var(--white-color);
+}
