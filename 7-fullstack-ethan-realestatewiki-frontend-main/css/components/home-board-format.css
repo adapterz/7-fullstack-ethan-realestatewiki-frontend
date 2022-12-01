@@ -1,0 +1,91 @@
+@import "../root.css";
+
+#wrapper section {
+  padding: var(--padding);
+}
+
+.home-board__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: var(--font-super-large);
+  border-bottom: var(--grey-dark-color) solid;
+  padding-bottom: calc(var(--margin) / 5);
+  margin-bottom: calc(var(--margin) / 2);
+}
+
+.home-board__items {
+  list-style: none;
+  margin-bottom: calc(var(--margin) / 2);
+  padding: 0;
+  counter-reset: list-number;
+  margin-bottom: var(--margin);
+}
+
+.home-board__items li {
+  margin-bottom: calc(var(--margin) / 3);
+  counter-increment: list-number;
+  padding-bottom: 7px;
+  font-size: var(--font-medium);
+}
+
+.home-board__items li a::before {
+  content: counter(list-number);
+  display: inline-block;
+  text-align: center;
+  line-height: 1.5;
+  width: 25px;
+  height: 25px;
+  border-radius: 10%;
+  color: #fff;
+  margin-right: 10px;
+  background: darkblue;
+  font-size: 16px;
+}
+
+.home-board__items li,
+.home-board__items li,
+.home-board__items li {
+  font-size: var(--font-large);
+  border-bottom: var(--grey-light-color) solid 1px;
+}
+
+.home-board__items li div,
+.home-board__items li div,
+.home-board__items li div {
+  margin-left: calc(var(--margin) * 2.3);
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+/* ////////////// */
+
+.home-board__items li:nth-child(1),
+.home-board__items li:nth-child(2),
+.home-board__items li:nth-child(3) {
+  font-size: var(--font-large);
+  border-bottom: var(--grey-light-color) solid 1px;
+}
+
+.home-board__items li:nth-child(1) div,
+.home-board__items li:nth-child(2) div,
+.home-board__items li:nth-child(3) div {
+  margin-left: calc(var(--margin) * 2.3);
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+.home-board__items li:nth-child(1) ::before {
+  background: orangered;
+}
+
+.home-board__items li:nth-child(2) ::before,
+.home-board__items li:nth-child(3) ::before {
+  background: var(--blue-color);
+}
+
+.home-board__items li:nth-child(1) div div,
+.home-board__items li:nth-child(2) div div,
+.home-board__items li:nth-child(3) div div {
+  margin-left: 0;
+}

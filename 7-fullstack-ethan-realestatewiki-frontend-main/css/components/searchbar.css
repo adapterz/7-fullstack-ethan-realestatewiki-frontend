@@ -1,0 +1,44 @@
+@import "../root.css";
+
+/* 검색바 */
+.search-bar {
+  background-image: url(../../images/main/background-search.png);
+  background-size: cover;
+  padding: calc(var(--padding)) var(--padding) calc(var(--padding))
+    var(--padding);
+}
+
+.search-bar__banner {
+  padding: calc(var(--padding) / 3);
+  width: 50%;
+}
+
+.search-bar__input-wrapper {
+  border: 1px solid var(--grey-dark-color);
+  border-radius: 30px;
+  height: 30px;
+  margin-top: calc(var(--margin) / 2);
+}
+
+.search-bar__txt {
+  width: 90%;
+  border: none;
+  background-color: inherit;
+  padding-left: var(--padding);
+}
+
+.search-bar__button {
+  width: 5%;
+  font-size: var(--font-medium);
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.search-bar__selector-wrapper {
+  margin: calc(var(--margin) / 2) 0;
+}

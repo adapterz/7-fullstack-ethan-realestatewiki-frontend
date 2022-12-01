@@ -1,0 +1,22 @@
+.button {
+  text-align: center;
+}
+
+.button button {
+  font-size: var(--font-large);
+  display: inline-block;
+  height: 50px;
+  width: 130px;
+  margin: calc(var(--margin) / 2) calc(var(--margin) / 2);
+  border: none;
+}
+
+.button--confirm {
+  background-color: #0a2e4f;
+  color: var(--white-color);
+}
+
+.button--cancel {
+  background-color: var(--dark-green);
+  color: var(--white-color);
+}

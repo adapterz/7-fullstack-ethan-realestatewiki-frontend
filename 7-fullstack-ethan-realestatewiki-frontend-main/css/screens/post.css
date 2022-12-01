@@ -1,0 +1,97 @@
+@import "../root.css";
+@import "../components/header.css";
+@import "../components/header-line.css";
+@import "../components/searchbar.css";
+@import "../components/footer.css";
+@import "../components/pagenation.css";
+@import "../components/comment.css";
+
+/* 게시글 조회 */
+.post__content__wrapper {
+  padding: var(--padding);
+}
+
+.post__content p {
+  margin: calc(var(--padding) * 2) 0 calc(var(--padding) * 8) 0;
+}
+
+.post__content h2 {
+  color: #0a2e4f;
+}
+
+.post__imoticon {
+  margin: var(--margin) 0;
+  padding-bottom: calc(var(--padding) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+  display: flex;
+  justify-content: left;
+  width: 100%;
+}
+
+.post__imoticon div {
+  margin-right: var(--padding);
+}
+
+.post__imoticon span {
+  color: #7e81a6;
+  font-size: var(--font-small);
+}
+
+.post__imoticon > div:nth-child(2) {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.post__imoticon span i {
+  padding: 0 calc(var(--padding) / 4);
+}
+
+.post__profile-picture {
+  width: 13%;
+}
+
+.post__profile-picture img {
+  width: 100%;
+  height: 100%;
+  border-radius: 70px;
+}
+
+.flex-wrapper {
+  display: flex;
+}
+
+.post__button {
+  display: flex;
+  align-items: center;
+  margin: var(--margin) calc(var(--margin) / 5);
+}
+
+.post__button button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  color: #7e81a6;
+}
+
+.post__button button i {
+  font-size: var(--font-medium);
+}
+
+.comment__button-correct,
+.comment__button-delete {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  color: #7e81a6;
+  margin: auto calc(var(--margin) / 5);
+  font-size: var(--font-small);
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="title" content="부동산 WIKI 홈">
+  <meta name="description" content="부동산에 대한 모든 것, 부동산 WIKI">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="부동산 WIKI 홈">
+  <meta property="og:url" content="https://realestatewiki.kr/">
+  <meta property="og:site_name" content="부동산 WIKI">
+  <meta property="og:description" content="부동산에 대한 모든 것, 부동산 WIKI">
+  <meta property="og:image" content="https://kr.object.iwinv.kr/adapterz/og%2Fdf/1200x630.png">
+  <title>부동산WIKI-홈</title>
+  <link rel="stylesheet" type="text/css" href="../css/screens/home.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="shortcut icon" href="../images/main/logo_simple.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+    rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+  <meta name="google-site-verification" content="I3mhwjfNYxvD-q2XXqUubAOcknoHLVK1NUUdc6rVJzE" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-461N1PF41Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-461N1PF41Z');
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MWS277L');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WJ32P72"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MWS277L" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div id="wrapper">
+    <header>
+    </header>
+
+    <!-- 검색어 입력창 -->
+    <section class="search-bar">
+      <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
+      <form class="search-bar__container" action="">
+        <!-- <div class="search-bar__selector-wrapper">
+          <select id="si" class="search-bar__selector-option">
+            <option value="all">시 : 전체검색</option>
+            <option value="seoul">서울시</option>
+            <option value="busan">부산시</option>
+          </select>
+          <select id="gu" class="search-bar__selector-option">
+            <option value="all">구 : 전체검색</option>
+            <option value="gangnam">강남구</option>
+            <option value="songpa">송파구</option>
+          </select>
+          <select id="dong" class="search-bar__selector-option">
+            <option value="all">동 : 전체검색</option>
+            <option value="suseo">수서동</option>
+            <option value="ilwon">일원동</option>
+          </select>
+        </div> -->
+        <div class="search-bar__input-wrapper">
+          <input type="text" id="keyword" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
+          <button href="#" type="button" class="search-bar__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 메인 페이지 (인기 부동산)-->
+    <section>
+      <div class="home-board">
+        <header class="home-board__title">
+          <h4>인기 부동산 TOP 10</h4>
+        </header>
+        <ul class=" home-board__items popular-apt">
+        </ul>
+      </div>
+    </section>
+
+    <!-- 메인 페이지 (인기 게시글)-->
+    <section>
+      <div class="home-board">
+        <header class="home-board__title">
+          <h4>인기 게시글 TOP 10</h4>
+        </header>
+        <ul class="home-board__items popular-post">
+        </ul>
+      </div>
+    </section>
+  </div>
+  <!-- footer-->
+  <footer>
+  </footer>
+  <script type="module" src="../javascript/home.js"></script>
+</body>
+
+</html>

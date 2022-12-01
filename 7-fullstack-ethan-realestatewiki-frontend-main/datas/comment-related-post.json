@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "post_id": 1,
+    "user_id": "ethan12",
+    "content": "1번댓글",
+    "datetime_updated": "22-06-12",
+    "image": "dfadgasgagda"
+  },
+  {
+    "id": 2,
+    "post_id": 1,
+    "user_id": "ethan2",
+    "content": "2번댓글",
+    "datetime_updated": "22-06-12",
+    "image": "dfadgasgagda"
+  },
+  {
+    "id": 3,
+    "post_id": 1,
+    "user_id": "ethan3",
+    "content": "3번 댓글",
+    "datetime_updated": "22-06-12",
+    "image": "dfadgasgagda"
+  },
+  {
+    "id": 5,
+    "post_id": 1,
+    "user_id": "ethan4",
+    "content": "5번 댓글",
+    "datetime_updated": "22-06-12",
+    "image": "dfadgasgagda"
+  },
+  {
+    "id": 32,
+    "post_id": 1,
+    "user_id": "ethan20",
+    "content": "잠실동",
+    "datetime_updated": "22-06-23",
+    "image": "server/uploads/JDK, JRE, JVM1655446915341.png"
+  }
+]

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>부동산WIKI-부동산정보</title>
+  <link rel="stylesheet" href="../css/screens/information.css">
+  <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
+  <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- header -->
+    <header>
+    </header>
+
+    <!-- 검색어 입력창 -->
+    <section class="search-bar">
+      <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
+      <form class="search-bar__container" action="">
+        <div class="search-bar__input-wrapper">
+          <input type="text" id="keyword" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
+          <button href="#" type="button" class="search-bar__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 메인 페이지 (상세 조회)-->
+    <section>
+      <div class="apt-info">
+        <div class="apt-info__title-wrapper">
+          <h3 class="apt-info__title"></h3>
+          <!-- <div><a href=""><span>관심등록 </span><i class="fa-regular fa-star"></i></a></div> -->
+        </div>
+        <div class="apt-info__subtitle">
+          <div>
+            <span></span>
+            <span></span>
+          </div>
+          <div>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="apt-info__image">
+          <img src="../images/apts/heliocity.jpg" alt="롯데캐슬골드파크1차" width="70%" />
+        </div>
+        <div class="apt-info__price">
+          <div>
+            <h4>최근 매매 실거래가</h4>
+          </div>
+          <div>
+            <div class="content"></div>
+            <div class="content-sub"></div>
+          </div>
+        </div>
+        <div class="apt-info__posts">
+          <div class="title__wrapper">
+            <h4 class="title">관련 게시글 보기</h4>
+            <div>
+              <a href="">
+                <i class="fa-solid fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="content">
+          </div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <h4>댓글 보기 <span> </span></h4>
+        <ul>
+        </ul>
+      </div>
+      <!-- 페이지네이션 -->
+      <div class="pagenation">
+      </div>
+
+
+      <!-- 댓글 달기 -->
+      <div class="comment-maker">
+        <h4 class="comment-maker__title">댓글 작성</h4>
+        <div class="comment-maker__input">
+          <form action="" id="comment-form">
+            <textarea cols="50" rows="5" placeholder="댓글을 입력해 주세요.(200자 제한)"></textarea>
+            <!-- <input type="text" placeholder="댓글을 입력해 주세요.(200자 제한)" /> -->
+          </form>
+          <div><button class="comment-maker__button" type="button" form="comment-form">등록</button></div>
+        </div>
+      </div>
+
+
+  </div>
+
+
+  </section>
+
+  </div>
+  <!-- footer-->
+  <footer>
+  </footer>
+  <script type="module" src="../javascript/information.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+.comment-maker {
+  padding: 0 var(--padding);
+}
+
+.comment-maker__title {
+  margin-bottom: var(--margin);
+}
+
+.comment-maker__title span {
+  color: var(--blue-color);
+}
+
+.comment-maker__input {
+  text-align: center;
+  border: 1px solid var(--grey-dark-color);
+}
+
+.comment-maker__input {
+  margin-top: calc(var(--margin));
+}
+
+.comment-maker__input textarea {
+  width: 100%;
+  padding: 15px 15px;
+  font-size: var(--font-medium);
+  border: none;
+}
+
+.comment-maker__input div {
+  border-top: 1px solid var(--grey-dark-color);
+  height: 35px;
+}
+
+.comment-maker__input button {
+  text-align: center;
+  width: 15%;
+  height: 100%;
+  background: #3396ff;
+  color: var(--white-color);
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  cursor: pointer;
+  font-size: var(--font-large);
+  float: right;
+}
+.comment {
+  margin-bottom: calc(var(--margin) * 2);
+  padding: 0 var(--padding);
+}
+
+.comment h4 span {
+  color: blue;
+}
+
+.comment h4 {
+  border-bottom: 1px solid var(--grey-dark-color);
+  margin-bottom: calc(var(--margin) / 2);
+  padding-bottom: calc(var(--margin) / 2);
+}
+
+.comment ul li {
+  display: flex;
+  margin-bottom: var(--margin);
+  display: table;
+  /* width: %; */
+}
+
+.comment ul li .comment__user-profile-image {
+  line-height: 100%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.comment ul li .comment__user-profile-image img {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 10px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.comment__writer {
+  font-size: var(--font-small);
+  color: #7e81a6;
+}
+
+.comment__writer :nth-child(3),
+.comment__writer :nth-child(4),
+.comment__writer :nth-child(5) {
+  font-size: var(--font-small);
+  color: red;
+  visibility: hidden;
+}
+
+.comment__content {
+  font-size: var(--font-medium);
+}
+
+.comment-update-textarea {
+  height: 50px;
+  width: 130%;
+  border: 1px solid black;
+}
+
+.comment-update-button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  color: #7e81a6;
+  margin-right: calc(var(--margin) / 5);
+}
+
+.button-wrapper {
+  width: 130%;
+  text-align: right;
+}

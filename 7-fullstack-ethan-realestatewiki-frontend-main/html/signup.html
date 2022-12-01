@@ -1,0 +1,120 @@
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>부동산WIKI-회원가입</title>
+    <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
+    <link rel="stylesheet" href="../css/screens/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- header -->
+        <header>
+        </header>
+        <section class="section--signup">
+            <header class="signup__header">
+                <h3>회원가입</h3>
+            </header>
+            <div class="signup__content">
+                <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />회원정보(필수<span>*</span>)</h3>
+                <form id="signup__form" action="" method="post" enctype="multipart/form-data">
+                    <div class="signup__element">
+                        <label for="user_id">아이디<span> * </span></label>
+                        <div><input type="text" id="user_id" placeholder="5~15자 영문소문자,숫자 포함" minlength="5"
+                                maxlength="15" required="반드시 입력해야 합니다.">
+                        </div>
+                    </div>
+                    <div class="signup__check_msg signup__check_msg-user_id"> asdasd</div>
+                    <div class="signup__line"></div>
+                    <div class="signup__element">
+                        <label>비밀번호<span> * </span></label>
+                        <div><input type="password" id="user_pw" placeholder="8~15자 영문소문자,숫자,특수문자 포함" minlength="8"
+                                maxlength="15" required="반드시 입력해야 합니다."></div>
+                    </div>
+                    <div class="signup__check_msg signup__check_msg-user_pw"> asdasd</div>
+                    <div class="signup__line"></div>
+                    <div class="signup__element">
+                        <label>비밀번호 확인<span> * </span></label>
+                        <div><input type="password" id="user_pw_check" placeholder="비밀번호 재확인" minlength="8"
+                                maxlength="15" required="반드시 입력해야 합니다."></div>
+                    </div>
+                    <div class="signup__check_msg signup__check_msg-user_pw_check"> asdasd</div>
+                    <div class="signup__line"></div>
+                    <div class="signup__element">
+                        <label>닉네임<span> * </span></label>
+                        <div><input type="text" id="user_nickname" placeholder="5~10자의 영어, 숫자 또는 한글로 구성" minlength="5"
+                                maxlength="10" required="반드시 입력해야 합니다.">
+                        </div>
+                    </div>
+                    <div class="signup__check_msg signup__check_msg-nickname"> asdasd</div>
+                    <div class="signup__line"></div>
+                    <div class="signup__element">
+                        <label>휴대전화<span> * </span></label>
+                        <div><input type="number" id="user_phonenumber" placeholder="- 없이 숫자로만 작성"
+                                required="반드시 입력해야 합니다.">
+                        </div>
+                    </div>
+                    <div class="signup__check_msg signup__check_msg-phonenumber"> asdasd</div>
+                    <div class="signup__line"></div>
+                    <div class="signup__element">
+                        <label>이메일 주소<span> * </span></label>
+                        <div><input type="email" id="user_email" placeholder="이메일아이디@도메인주소" required="반드시 입력해야 합니다.">
+                        </div>
+                    </div>
+                    <div class="signup__check_msg signup__check_msg-email"> asdasd</div>
+                    <div class="signup__line"></div>
+                    <div class="signup__element signup__element--image">
+                        <label>프로필 이미지</label>
+                        <div><input type="file" id="user_image" accept="image/*" placeholder="이미지 파일만 업로드 가능"></div>
+                    </div>
+                    <div class="signup__check_msg signup__check_msg-image"> asdasd</div>
+                    <div class="signup__line"></div>
+                    <h3> <img class="logo" src="../../images/main/logo_simple.png" alt="logo" />이용약관
+                        동의(필수<span>*</span>)</h3>
+
+                    <!-- <div class="signup__element--terms">
+                        <input type="checkbox" id="agree_all">
+                        <label for="agree_all">전체동의</label>
+                    </div> -->
+
+                    <div class="signup__element--terms">
+                        <input type="checkbox" id="agree">
+                        <label for="agree">개인정보처리방침 동의(필수<span>*</span>)</label>
+                        <div><button class="privacy-policy-content" type="button"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i> 내용보기</button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="signup__button">
+                        <button class="signup__button signup__button--cancel" type="button">
+                            취소
+                        </button>
+                        <button class="signup__button signup__button--confirm" type="button">
+                            확인
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </section>
+    </div>
+    <!-- footer-->
+    <footer>
+    </footer>
+    <script type="module" src="../javascript/signup.js"></script>
+
+</body>
+
+</html>

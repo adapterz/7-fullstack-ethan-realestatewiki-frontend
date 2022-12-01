@@ -1,0 +1,310 @@
+@import "../root.css";
+@import "../components/header.css";
+@import "../components/header-line.css";
+@import "../components/searchbar.css";
+@import "../components/footer.css";
+@import "../components/pagenation.css";
+
+.myposts {
+  padding: var(--padding);
+}
+
+.myposts h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.myposts h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.myposts__info {
+  margin: calc(var(--margin) / 2) 0;
+  padding: calc(var(--padding) / 2) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.myposts span {
+  font-size: var(--font-small);
+  margin-right: var(--margin);
+}
+
+.myposts button {
+  font-size: var(--font-small);
+  border: none;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.myposts__Items li {
+  list-style: none;
+  margin-bottom: var(--margin);
+  padding-bottom: calc(var(--margin) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+}
+
+.myposts__sub-detail {
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+.myposts__sub-detail i {
+  padding-right: calc(var(--padding) / 3);
+}
+
+.myPostcomments {
+  padding: var(--padding);
+}
+
+.myPostcomments h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.myPostcomments h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.myPostcomments__info {
+  margin: calc(var(--margin) / 2) 0;
+  padding: calc(var(--padding) / 2) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.myPostcomments span {
+  font-size: var(--font-small);
+  margin-right: var(--margin);
+}
+
+.myPostcomments button {
+  font-size: var(--font-small);
+  border: none;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.myPostcomments__Items li {
+  list-style: none;
+  margin-bottom: var(--margin);
+  padding-bottom: calc(var(--margin) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+}
+
+.myPostcomments__sub-detail {
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+.myPostcomments__sub-detail i {
+  padding-right: calc(var(--padding) / 3);
+}
+
+.myAptcomments {
+  padding: var(--padding);
+}
+
+.myAptcomments h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.myAptcomments h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.myAptcomments__info {
+  margin: calc(var(--margin) / 2) 0;
+  padding: calc(var(--padding) / 2) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.myAptcomments span {
+  font-size: var(--font-small);
+  margin-right: var(--margin);
+}
+
+.myAptcomments button {
+  font-size: var(--font-small);
+  border: none;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  width: 150px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.myAptcomments__Items li {
+  list-style: none;
+  margin-bottom: var(--margin);
+  padding-bottom: calc(var(--margin) / 2);
+  border-bottom: 1px solid var(--grey-light-color);
+}
+
+.myAptcomments__sub-detail {
+  font-size: var(--font-small);
+  color: #999999;
+}
+
+.myAptcomments__sub-detail i {
+  padding-right: calc(var(--padding) / 3);
+}
+
+.update {
+  padding: var(--padding);
+}
+
+.update h3 {
+  display: flex;
+  align-items: center;
+  color: #0a2e4f;
+}
+
+.update h3 img {
+  padding: calc(var(--padding) / 2);
+  width: 8%;
+  vertical-align: middle;
+}
+
+.update__info {
+  margin: calc(var(--margin) / 2) 0;
+  padding: calc(var(--padding) / 2) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--grey-light-color);
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-wrapper button {
+  padding: calc(var(--padding) / 2) 0;
+  /* margin: calc(var(--margin) / 2) 0; */
+}
+
+.signup__element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: var(--grey-light-color) 1px solid; */
+}
+
+.signup__line {
+  border-bottom: var(--grey-light-color) 1px solid;
+}
+
+.signup__check_msg {
+  padding-left: calc(var(--margin) * 1.7);
+  color: var(--red-color);
+  display: none;
+  font-size: var(--font-small);
+  margin-bottom: calc(var(--margin) / 3);
+}
+
+.signup__element label {
+  width: 35%;
+  text-align: center;
+  vertical-align: middle;
+  /* line-height: 70px; */
+}
+
+.signup__element label span {
+  color: var(--red-color);
+}
+
+.signup__element div {
+  /* margin-right: 20px; */
+  width: 60%;
+  border: 1px solid var(--grey-dark-color);
+  margin: calc(var(--margin) / 1.5) auto;
+  padding: var(--padding);
+}
+
+.signup__element div input {
+  border: none;
+  width: 100%;
+}
+
+.change-password-button-wrapper {
+  display: flex;
+}
+
+.change-password-box button {
+  /* background: inherit; */
+  /* border: none; */
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 50%;
+  vertical-align: middle;
+  height: 33px;
+  margin: var(--margin) calc(var(--margin) / 2);
+}
+
+.change-password-button-confirm {
+  background-color: #0a2e4f;
+  color: var(--white-color);
+}
+
+.change-password-button-cancel {
+  background-color: var(--dark-green);
+  color: var(--white-color);
+}
+
+.change-image-button-wrapper {
+  display: flex;
+}
+
+.change-image-box button {
+  /* background: inherit; */
+  /* border: none; */
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  width: 50%;
+  vertical-align: middle;
+  height: 33px;
+  margin: var(--margin) calc(var(--margin) / 2);
+}
+
+.change-image-button-confirm {
+  background-color: #0a2e4f;
+  color: var(--white-color);
+}
+
+.change-image-button-cancel {
+  background-color: var(--dark-green);
+  color: var(--white-color);
+}

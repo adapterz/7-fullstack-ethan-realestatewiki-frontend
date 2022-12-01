@@ -1,0 +1,21 @@
+@import "../root.css";
+
+footer {
+  height: 80px;
+  position: relative;
+  transform: translateY(-100%);
+  margin-top: calc(var(--margin));
+  padding: var(--padding);
+  background-color: var(--light-green);
+}
+
+.footer-info {
+  margin: auto;
+  text-align: center;
+  font-size: var(--font-micro);
+  padding: calc(var(--padding) / 7);
+}
+
+.footer-info span {
+  color: var(--white-color);
+}

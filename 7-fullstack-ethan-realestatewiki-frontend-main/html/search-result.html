@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>부동산WIKI-검색결과</title>
+  <!-- <link rel="stylesheet" href="/7-fullstack-ethan-realestatewiki-frontend-main/css/index.css" /> -->
+  <link rel="stylesheet" href="../css/screens/search-result.css">
+  <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- header -->
+    <header>
+    </header>
+
+    <!-- 검색어 입력창 -->
+    <section class="search-bar">
+      <img class="search-bar__banner" src="../images/main/paint_information.png" alt="아파트 정보 / 실거래가 정보" />
+      <form class="search-bar__container" action="">
+        <!-- <div class="search-bar__selector-wrapper">
+          <select id="si" class="search-bar__selector-option">
+            <option value="all">시 : 전체검색</option>
+            <option value="seoul">서울시</option>
+            <option value="busan">부산시</option>
+          </select>
+          <select id="gu" class="search-bar__selector-option">
+            <option value="all">구 : 전체검색</option>
+            <option value="gangnam">강남구</option>
+            <option value="songpa">송파구</option>
+          </select>
+          <select id="dong" class="search-bar__selector-option">
+            <option value="all">동 : 전체검색</option>
+            <option value="suseo">수서동</option>
+            <option value="ilwon">일원동</option>
+          </select>
+        </div> -->
+        <div class="search-bar__input-wrapper">
+          <input type="text" id="keyword" class="search-bar__txt" name="" placeholder="  검색어를 입력해주세요." />
+          <button type="button" class="search-bar__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </section>
+    <!-- 메인 페이지 (검색결과)-->
+    <section id="board">
+      <article class="board">
+        <header class="board__header">
+          <h3 class="board__title">
+            <a href="#"></a>
+          </h3>
+        </header>
+        <ul class="board__content">
+        </ul>
+
+        <!-- 페이지네이션 -->
+        <div class="pagenation">
+        </div>
+      </article>
+    </section>
+  </div>
+  <!-- footer-->
+  <footer>
+  </footer>
+  <script type="module" src="../javascript/search-result.js"></script>
+</body>
+
+</html>

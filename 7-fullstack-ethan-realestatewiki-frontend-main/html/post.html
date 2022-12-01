@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>부동산WIKI-자유게시판_게시글 보기</title>
+    <link rel="stylesheet" href="../css/screens/post.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/3299dead40.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- header -->
+        <header>
+        </header>
+        <section class="post">
+            <header>
+                <h3 class="post__header">자유게시판</h3>
+            </header>
+            <section class="post__content">
+                <div class="post__content__wrapper">
+                    <h3></h3>
+                    <div class="flex-wrapper">
+                        <div class="post__imoticon">
+                            <div class="post__profile-picture">
+                                <img src="../../images/profiles/basic_profile.jpg" alt="">
+                            </div>
+                            <div>
+                                <div class="post__profile-information">
+                                    <span><i class="fa-solid fa-user"></i><span></span></span>
+                                </div>
+                                <div>
+                                    <span><i class="fa-regular fa-calendar-days"></i><span></span></span>
+                                    <span><i class="fa-regular fa-eye"></i><span></span></span>
+                                    <span><i class="fa-regular fa-comment-dots"></i><span></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post__button"><button class="post__button-correct" type="button"><i
+                                    class="fa-solid fa-pencil"></i></button></div>
+                        <div class="post__button"><button class="post__button-delete" type="button"><i
+                                    class="fa-solid fa-trash-can"></i></button></div>
+
+                    </div>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="comment">
+                    <h4>댓글 <span> </span></h4>
+                    <ul>
+                    </ul>
+                </div>
+                <!-- 페이지네이션 -->
+                <div class="pagenation">
+                </div>
+
+                <!-- 댓글 달기 -->
+                <div class="comment-maker">
+                    <h4 class="comment-maker__title">댓글 작성</h4>
+                    <div class="comment-maker__input">
+                        <form action="" id="comment-form">
+                            <textarea cols="50" rows="5" placeholder="댓글을 입력해 주세요.(200자 제한)"></textarea>
+                            <!-- <input type="text" placeholder="댓글을 입력해 주세요.(200자 제한)" /> -->
+                        </form>
+                        <div><button class="comment-maker__button" type="button" form="comment-form">등록</button></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+    <!-- footer-->
+    <footer>
+    </footer>
+    <script type="module" src="../javascript/post.js"></script>
+</body>
+
+</html>
